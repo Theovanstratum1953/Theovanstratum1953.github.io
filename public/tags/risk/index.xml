@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Risk on Probabilistic Delivery</title>
+    <link>//localhost:1313/tags/risk/</link>
+    <description>Recent content in Risk on Probabilistic Delivery</description>
+    <generator>Hugo -- 0.155.3</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 12 Feb 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="//localhost:1313/tags/risk/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The Month 11 Shock: Why Software Projects Fail Late</title>
+      <link>//localhost:1313/posts/the-month-11-shock/</link>
+      <pubDate>Thu, 12 Feb 2026 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/posts/the-month-11-shock/</guid>
+      <description>&lt;p&gt;Traditional project tracking focuses on what is done, not what is hidden.
+In this post, we explore why complexity reveals itself only when the capital is spent&amp;hellip;&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

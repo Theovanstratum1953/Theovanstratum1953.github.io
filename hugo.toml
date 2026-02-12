@@ -1,3 +1,4 @@
+baseURL = 'https://theovanstratum1953.github.io/'
 theme = "PaperMod"
 title = "Probabilistic Delivery"
 canonifyURLs = true
@@ -11,7 +12,7 @@ canonifyURLs = true
     enabled = true
     title = "Theo van Stratum, PhD"
     subtitle = "The Actuarial Science of Software Governance"
-    # This adds the buttons right on the home page
+    # Ensure there is a comma between each { ... } block
     buttons = [
         { name = "Read the Blog", url = "/posts" },
         { name = "About the Book", url = "/about" },

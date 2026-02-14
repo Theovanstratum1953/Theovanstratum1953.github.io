@@ -89,7 +89,7 @@ The probability distribution does not care about your sprint commitment. But it 
 ---
 
 *Probabilistic Delivery: The Actuarial Science of Software Governance* by Theo van Stratum, PhD is available now. Subsequent posts in this series will examine the mechanics of Flow Item decomposition, the Monte Carlo algorithm in detail, and how to implement the Risk Horizon Dashboard in your organisation.
-https://leanpub.com/# What Is Probabilistic Delivery? A New Operating System for Software Governance
+What Is Probabilistic Delivery? A New Operating System for Software Governance
 
 *By Theo van Stratum, PhD*
 

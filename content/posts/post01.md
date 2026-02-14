@@ -93,7 +93,7 @@ https://leanpub.com/# What Is Probabilistic Delivery? A New Operating System for
 
 *By Theo van Stratum, PhD*
 
-[The Book](https://leanpub/probabilisticdelivery)
+[The Book](https://leanpub.com/probabilisticdelivery)
 
-![Probabilistic Delivery](../assets/cover-web,png)
+![Probabilistic Delivery](/images/cover-web.png)
 

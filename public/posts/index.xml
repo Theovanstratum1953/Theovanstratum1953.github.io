@@ -2,19 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Posts on Probabilistic Delivery</title>
-    <link>//localhost:1313/posts/</link>
+    <link>https://theovanstratum1953.github.io/posts/</link>
     <description>Recent content in Posts on Probabilistic Delivery</description>
     <generator>Hugo -- 0.155.3</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 12 Feb 2026 00:00:00 +0000</lastBuildDate>
-    <atom:link href="//localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://theovanstratum1953.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>The Month 11 Shock: Why Software Projects Fail Late</title>
-      <link>//localhost:1313/posts/the-month-11-shock/</link>
-      <pubDate>Thu, 12 Feb 2026 00:00:00 +0000</pubDate>
-      <guid>//localhost:1313/posts/the-month-11-shock/</guid>
-      <description>&lt;p&gt;Traditional project tracking focuses on what is done, not what is hidden.
-In this post, we explore why complexity reveals itself only when the capital is spent&amp;hellip;&lt;/p&gt;</description>
+      <title></title>
+      <link>https://theovanstratum1953.github.io/posts/post01/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://theovanstratum1953.github.io/posts/post01/</guid>
+      <description>&lt;h1 id=&#34;what-is-probabilistic-delivery-a-new-operating-system-for-software-governance&#34;&gt;What Is Probabilistic Delivery? A New Operating System for Software Governance&lt;/h1&gt;
+&lt;p&gt;&lt;em&gt;By Theo van Stratum, PhD&lt;/em&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;Every year, organisations collectively spend hundreds of billions of dollars on software projects that arrive late, over budget, or simply fail to deliver. The post-mortems invariably describe the same sequence: dashboards showed green, stakeholders were reassured, and then — somewhere around month nine or eleven — reality arrived uninvited. What went wrong is rarely a question of effort or talent. It is almost always a question of measurement.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

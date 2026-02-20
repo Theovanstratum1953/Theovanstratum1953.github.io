@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>What Is Probabilistic Delivery? — Theo van Stratum, PhD</title>
+<title>{{ .Title }} — Theo van Stratum, PhD</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -97,11 +97,9 @@
 
   /* ── ARTICLE HEADER ── */
   .article-header {
-    padding: 10rem 0 5rem;
+    padding: 10rem 4rem 5rem;
     max-width: 820px;
     margin: 0 auto;
-    padding-left: 4rem;
-    padding-right: 4rem;
     opacity: 0;
     animation: fadeUp 0.8s ease forwards 0.2s;
   }
@@ -160,12 +158,10 @@
     padding: 1.5rem 0;
     border-top: 1px solid var(--rule);
     border-bottom: 1px solid var(--rule);
+    flex-wrap: wrap;
   }
 
-  .article-author {
-    display: flex;
-    flex-direction: column;
-  }
+  .article-author { display: flex; flex-direction: column; }
 
   .article-author-name {
     font-family: 'Playfair Display', serif;
@@ -215,9 +211,7 @@
   }
 
   /* ── ARTICLE BODY ── */
-  .article-body {
-    min-width: 0;
-  }
+  .article-body { min-width: 0; }
 
   .article-body p {
     font-size: 1.05rem;
@@ -245,7 +239,6 @@
   }
 
   .article-body strong { font-weight: 500; color: var(--ink); }
-
   .article-body em { font-style: italic; }
 
   .article-body blockquote {
@@ -296,21 +289,16 @@
     margin: 3rem 0;
   }
 
-  /* Pull quote */
-  .pull-quote {
-    border-top: 2px solid var(--rust);
-    border-bottom: 1px solid var(--rule);
-    padding: 2rem 0;
-    margin: 3rem 0;
+  .article-body ul, .article-body ol {
+    padding-left: 1.5rem;
+    margin-bottom: 1.6rem;
   }
 
-  .pull-quote p {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.4rem !important;
-    font-style: italic;
-    color: var(--ink) !important;
-    line-height: 1.5 !important;
-    margin-bottom: 0 !important;
+  .article-body li {
+    font-size: 1.05rem;
+    color: var(--slate);
+    line-height: 1.9;
+    margin-bottom: 0.4rem;
   }
 
   /* ── SIDEBAR ── */
@@ -335,13 +323,8 @@
     margin-bottom: 1rem;
   }
 
-  .toc-list {
-    list-style: none;
-  }
-
-  .toc-list li {
-    margin-bottom: 0.6rem;
-  }
+  .toc-list { list-style: none; }
+  .toc-list li { margin-bottom: 0.6rem; }
 
   .toc-list a {
     font-family: 'IBM Plex Sans', sans-serif;
@@ -349,15 +332,13 @@
     color: var(--slate);
     text-decoration: none;
     line-height: 1.4;
-    transition: color 0.2s;
     display: block;
     padding-left: 0.8rem;
     border-left: 2px solid transparent;
     transition: all 0.2s;
   }
 
-  .toc-list a:hover,
-  .toc-list a.active {
+  .toc-list a:hover, .toc-list a.active {
     color: var(--rust);
     border-left-color: var(--rust);
   }
@@ -386,7 +367,6 @@
     display: block;
     transition: background 0.2s;
   }
-
   .sidebar-book:hover { background: var(--cream); }
 
   .sidebar-book-label {
@@ -417,9 +397,8 @@
   .article-footer {
     max-width: 820px;
     margin: 0 auto;
-    padding: 0 4rem 6rem;
+    padding: 3rem 4rem 6rem;
     border-top: 1px solid var(--rule);
-    padding-top: 3rem;
   }
 
   .author-card {
@@ -468,8 +447,6 @@
     line-height: 1.7;
   }
 
-  .related-posts {}
-
   .related-label {
     font-family: 'IBM Plex Mono', monospace;
     font-size: 0.65rem;
@@ -504,7 +481,6 @@
     display: block;
     transition: background 0.2s;
   }
-
   .related-card:hover { background: var(--cream); }
 
   .related-card-category {
@@ -564,7 +540,6 @@
     text-decoration: none;
     transition: color 0.2s;
   }
-
   .footer-links a:hover { color: var(--rust); }
 
   .footer-copy {
@@ -598,28 +573,33 @@
 
 <!-- ── NAV ── -->
 <nav>
-  <a href="/" class="nav-brand">Theo van Stratum, PhD</a>
+  <a href="{{ .Site.BaseURL }}" class="nav-brand">Theo van Stratum, PhD</a>
   <ul class="nav-links">
-    <li><a href="/">Home</a></li>
-    <li><a href="/#books">Books</a></li>
-    <li><a href="/#research">Research</a></li>
-    <li><a href="/posts/" class="active">Writing</a></li>
-    <li><a href="/#contact">Contact</a></li>
+    <li><a href="{{ .Site.BaseURL }}">Home</a></li>
+    <li><a href="{{ .Site.BaseURL }}#books">Books</a></li>
+    <li><a href="{{ .Site.BaseURL }}#research">Research</a></li>
+    <li><a href="{{ .Site.BaseURL }}posts/" class="active">Writing</a></li>
+    <li><a href="{{ .Site.BaseURL }}#contact">Contact</a></li>
   </ul>
 </nav>
 
 <!-- ── ARTICLE HEADER ── -->
 <header class="article-header">
   <div class="article-breadcrumb">
-    <a href="/posts/">Writing</a>
+    <a href="{{ .Site.BaseURL }}posts/">Writing</a>
     <span>/</span>
-    <span>Software Governance</span>
+    <span>{{ with .Params.categories }}{{ index . 0 | title }}{{ end }}</span>
   </div>
 
-  <div class="article-category">Software Governance · Essay</div>
+  <div class="article-category">
+    {{ with .Params.categories }}{{ index . 0 | title }}{{ end }} · Essay
+  </div>
 
-  <h1 class="article-title">What Is Probabilistic Delivery? A New Operating System for Software Governance</h1>
-  <p class="article-subtitle">Why dashboards lie, story points fail, and actuarial science is the only honest alternative</p>
+  <h1 class="article-title">{{ .Title }}</h1>
+
+  {{ with .Params.subtitle }}
+  <p class="article-subtitle">{{ . }}</p>
+  {{ end }}
 
   <div class="article-meta-bar">
     <div class="article-author">
@@ -628,12 +608,12 @@
     </div>
     <div class="article-meta-divider"></div>
     <div class="article-meta-item">
-      <strong>2026</strong>
+      <strong>{{ .Date.Format "2006" }}</strong>
       <span>Published</span>
     </div>
     <div class="article-meta-divider"></div>
     <div class="article-meta-item">
-      <strong>12 min</strong>
+      <strong>{{ .ReadingTime }} min</strong>
       <span>Reading time</span>
     </div>
     <div class="article-meta-divider"></div>
@@ -648,91 +628,34 @@
 <div class="article-layout">
 
   <article class="article-body" id="article-body">
-
-    <p>Every year, organisations collectively spend hundreds of billions of dollars on software projects that arrive late, over budget, or simply fail to deliver. The post-mortems invariably describe the same sequence: dashboards showed green, stakeholders were reassured, and then — somewhere around month nine or eleven — reality arrived uninvited.</p>
-
-    <p>What went wrong is rarely a question of effort or talent. It is almost always a question of measurement.</p>
-
-    <div class="pull-quote">
-      <p>Dashboards showed green. Stakeholders were reassured. And then — somewhere around month nine — reality arrived uninvited.</p>
-    </div>
-
-    <h2 id="the-lie">The Lie of the Sprint</h2>
-
-    <p>The velocity dashboard is a comfort blanket. It takes a deeply uncertain, non-linear, human process and presents it as a smooth, predictable machine. Story points accumulate. Burn-down charts descend. Confidence is performed, professionally, by people who have learned that expressing doubt is dangerous.</p>
-
-    <p>Somewhere in most organisations is an engineer who knows the date is wrong. She has known since week three. She has not said so out loud, because the last time she did, in a retrospective several months ago, the conversation became uncomfortable in a way that took weeks to dissipate.</p>
-
-    <p>This is not a failure of courage. It is a failure of measurement. The organisation has built a system that <strong>incentivises the performance of confidence</strong> over the production of it.</p>
-
-    <h2 id="actuarial">The Actuarial Alternative</h2>
-
-    <p>Actuaries have been solving this problem for over two centuries. The insurance industry cannot afford comfortable fictions about the future — it must price risk accurately or it ceases to exist. The tools actuaries use — reference class forecasting, Monte Carlo simulation, confidence interval modelling — are not exotic. They are simply honest.</p>
-
-    <p>Probabilistic Delivery applies these tools to software governance. The central instrument is the <strong>P85 Actuarial Standard</strong>: a commitment date at which there is an 85% probability of delivery. Not a guarantee. Not a hope. A statistically defensible probability.</p>
-
-    <blockquote>
-      <p>Any delivery commitment below P85 is, by definition, an unhedged gamble. The P85 Standard does not prevent failure — nothing does. It prevents the pretence that failure was unforeseeable.</p>
-    </blockquote>
-
-    <h2 id="monte-carlo">Inside the Black Box: Monte Carlo</h2>
-
-    <p>The engine of Probabilistic Delivery is the Monte Carlo algorithm. Rather than producing a single projected completion date — which is almost always wrong — it produces a <strong>distribution of outcomes</strong>, each weighted by its probability.</p>
-
-    <p>Run ten thousand simulations. Each one draws from the historical distribution of your team's actual delivery data. Some simulations complete early. Most cluster in the middle. Some fail badly. The result is not a date. It is a probability curve — and from that curve, you extract your P50, your P85, and your P95.</p>
-
-    <p>The P50 is your median — the date by which half of simulations complete. It is useful for internal planning. The P85 is your commitment date — the date by which 85% of simulations complete. It is the only number you should ever give to a stakeholder.</p>
-
-    <h2 id="binary-gate">The Binary Gate Protocol</h2>
-
-    <p>Probabilistic Delivery is not only a forecasting tool. It is a governance framework. At its heart is the <strong>Binary Gate Protocol</strong>: a unit of work is either done or it is not. There is no 80% complete. There is no "in review". There is done, and there is not done.</p>
-
-    <p>This sounds obvious. It is, in practice, revolutionary. Most software organisations have elaborate systems for tracking partial completion — systems that create the illusion of progress while hiding the true cost of unfinished work.</p>
-
-    <h2 id="implementation">Getting Started</h2>
-
-    <p>The transition to Probabilistic Delivery does not require replacing your existing process wholesale. It requires, first, an honest accounting of your historical delivery data. How long did work items actually take? Not how long they were estimated to take. Not how long the story points predicted. How long did they actually take?</p>
-
-    <p>From that foundation — from real data, honestly recorded — the Monte Carlo engine can be seeded. The Risk Horizon can be established. The P85 commitment dates can replace the comfortable fictions.</p>
-
-    <p>The organisations that have made this transition — and data from over 200 project teams informs this claim — consistently achieve on-time delivery rates at P85 that are more than double the industry average. Not because they became more talented. Because they became more honest.</p>
-
-    <hr>
-
-    <p><em>This essay is adapted from </em>Probabilistic Delivery: The Actuarial Science of Software Governance<em> (2026).</em></p>
-
+    {{ .Content }}
   </article>
 
   <!-- ── SIDEBAR ── -->
   <aside class="article-sidebar">
 
+    {{ if .TableOfContents }}
     <div class="sidebar-block">
       <div class="sidebar-label">In this essay</div>
-      <ul class="toc-list" id="toc">
-        <li><a href="#the-lie">The Lie of the Sprint</a></li>
-        <li><a href="#actuarial">The Actuarial Alternative</a></li>
-        <li><a href="#monte-carlo">Monte Carlo</a></li>
-        <li><a href="#binary-gate">The Binary Gate Protocol</a></li>
-        <li><a href="#implementation">Getting Started</a></li>
-      </ul>
+      {{ .TableOfContents }}
     </div>
+    {{ end }}
 
+    {{ with .Params.tags }}
     <div class="sidebar-block">
       <div class="sidebar-label">Tags</div>
       <div class="sidebar-tags">
-        <span class="sidebar-tag">Monte Carlo</span>
-        <span class="sidebar-tag">P85</span>
-        <span class="sidebar-tag">Agile</span>
-        <span class="sidebar-tag">Risk</span>
-        <span class="sidebar-tag">Forecasting</span>
-        <span class="sidebar-tag">Governance</span>
+        {{ range . }}
+        <span class="sidebar-tag">{{ . }}</span>
+        {{ end }}
       </div>
     </div>
+    {{ end }}
 
-    <a href="/#books" class="sidebar-book">
-      <div class="sidebar-book-label">From the book</div>
-      <div class="sidebar-book-title">Probabilistic Delivery</div>
-      <div class="sidebar-book-desc">The Actuarial Science of Software Governance — 297 pages, 2026</div>
+    <a href="{{ .Site.BaseURL }}#books" class="sidebar-book">
+      <div class="sidebar-book-label">Related work</div>
+      <div class="sidebar-book-title">View all books</div>
+      <div class="sidebar-book-desc">Probabilistic Delivery · The Gambler's Fallacy · and more</div>
     </a>
 
   </aside>
@@ -753,16 +676,13 @@
   <div class="related-posts">
     <div class="related-label">Continue reading</div>
     <div class="related-grid">
-      <a href="/posts/" class="related-card">
-        <div class="related-card-category">Decision-making</div>
-        <div class="related-card-title">The Gambler in the Sprint Room</div>
-        <span class="related-card-arrow">Coming soon →</span>
+      {{ range first 2 (where (where .Site.RegularPages "Type" "posts") "Permalink" "ne" .Permalink) }}
+      <a href="{{ .Permalink }}" class="related-card">
+        <div class="related-card-category">{{ with .Params.categories }}{{ index . 0 | title }}{{ end }}</div>
+        <div class="related-card-title">{{ .Title }}</div>
+        <span class="related-card-arrow">Read essay →</span>
       </a>
-      <a href="/posts/" class="related-card">
-        <div class="related-card-category">Probability</div>
-        <div class="related-card-title">The P85 Standard Explained</div>
-        <span class="related-card-arrow">Coming soon →</span>
-      </a>
+      {{ end }}
     </div>
   </div>
 
@@ -770,15 +690,15 @@
 
 <!-- ── FOOTER ── -->
 <footer>
-  <a href="/" class="footer-brand">Theo van Stratum, PhD</a>
+  <a href="{{ .Site.BaseURL }}" class="footer-brand">Theo van Stratum, PhD</a>
   <ul class="footer-links">
-    <li><a href="/">Home</a></li>
-    <li><a href="/#books">Books</a></li>
-    <li><a href="/posts/">Writing</a></li>
-    <li><a href="/#contact">Contact</a></li>
+    <li><a href="{{ .Site.BaseURL }}">Home</a></li>
+    <li><a href="{{ .Site.BaseURL }}#books">Books</a></li>
+    <li><a href="{{ .Site.BaseURL }}posts/">Writing</a></li>
+    <li><a href="{{ .Site.BaseURL }}#contact">Contact</a></li>
     <li><a href="https://www.linkedin.com/in/theo-van-stratum-1a92022b1/" target="_blank">LinkedIn</a></li>
   </ul>
-  <span class="footer-copy">© 2026 Theo van Stratum, PhD</span>
+  <span class="footer-copy">© {{ now.Year }} Theo van Stratum, PhD</span>
 </footer>
 
 <script>
@@ -786,16 +706,15 @@
   window.addEventListener('scroll', () => {
     const article = document.getElementById('article-body');
     if (!article) return;
-    const rect = article.getBoundingClientRect();
     const total = article.offsetHeight;
-    const scrolled = Math.max(0, -rect.top);
+    const scrolled = Math.max(0, window.scrollY - article.offsetTop);
     const pct = Math.min(100, (scrolled / total) * 100);
     document.getElementById('reading-progress').style.width = pct + '%';
   });
 
   // TOC active state
   const headings = document.querySelectorAll('.article-body h2[id]');
-  const tocLinks = document.querySelectorAll('.toc-list a');
+  const tocLinks = document.querySelectorAll('#TableOfContents a');
 
   window.addEventListener('scroll', () => {
     let current = '';

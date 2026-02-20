@@ -1,20 +1,14 @@
 baseURL = 'https://theovanstratum1953.github.io/'
 theme = "PaperMod"
-title = "Probabilistic Delivery"
+title = "Theo van Stratum, PhD"
 canonifyURLs = true
 
 [params]
-    description = "The Actuarial Science of Software Governance"
+    description = "Author, Researcher & PhD — Probabilistic Delivery, Bayesian Python, Software Governance"
     author = "Theo van Stratum, PhD"
     showCodeCopyButtons = true
 
+    # PaperMod profileMode is disabled — homepage is now served
+    # by layouts/index.html (custom author page)
 [params.profileMode]
-    enabled = true
-    title = "Theo van Stratum, PhD"
-    subtitle = "The Actuarial Science of Software Governance"
-    # Ensure there is a comma between each { ... } block
-    buttons = [
-        { name = "Read the Blog", url = "/posts" },
-        { name = "About the Book", url = "/about" },
-        { name = "LinkedIn", url = "https://www.linkedin.com/in/theo-van-stratum-1a92022b1/" }
-    ]
+    enabled = false

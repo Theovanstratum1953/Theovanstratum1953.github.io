@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+<head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Writing — Theo van Stratum, PhD</title>
@@ -41,7 +41,7 @@
     opacity: 0.4;
   }
 
-   
+  /* ── NAV ── */
   nav {
     position: fixed;
     top: 0; left: 0; right: 0;
@@ -87,7 +87,7 @@
   .nav-links a:hover,
   .nav-links a.active { color: var(--rust); }
 
-   
+  /* ── PAGE HEADER ── */
   .page-header {
     padding: 10rem 6rem 5rem;
     border-bottom: 1px solid var(--rule);
@@ -138,7 +138,7 @@
     margin-bottom: 2rem;
   }
 
-   
+  /* ── FILTERS ── */
   .filter-bar {
     display: flex;
     gap: 0.5rem;
@@ -165,7 +165,7 @@
     color: white;
   }
 
-   
+  /* ── FEATURED POST ── */
   .featured-section {
     padding: 5rem 6rem 0;
     max-width: 1400px;
@@ -309,7 +309,7 @@
 
   .featured-post:hover .read-more { gap: 0.9rem; }
 
-   
+  /* ── POST GRID ── */
   .posts-section {
     padding: 4rem 6rem 6rem;
     max-width: 1400px;
@@ -403,7 +403,7 @@
 
   .post-card:hover .post-card-arrow { transform: translateX(4px); }
 
-   
+  /* ── NEWSLETTER / SUBSCRIBE STRIP ── */
   .subscribe-strip {
     background: var(--ink);
     padding: 4rem 6rem;
@@ -452,7 +452,7 @@
     line-height: 1.7;
   }
 
-   
+  /* ── BACK TO TOP / PAGINATION ── */
   .pagination {
     padding: 3rem 6rem;
     display: flex;
@@ -495,7 +495,7 @@
     color: white;
   }
 
-   
+  /* ── FOOTER ── */
   footer {
     background: var(--ink);
     padding: 2.5rem 4rem;
@@ -537,7 +537,7 @@
     color: rgba(255,255,255,0.25);
   }
 
-   
+  /* ── ANIMATIONS ── */
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(18px); }
     to   { opacity: 1; transform: translateY(0); }
@@ -554,7 +554,7 @@
     transform: translateY(0);
   }
 
-   
+  /* ── RESPONSIVE ── */
   @media (max-width: 1000px) {
     nav { padding: 1rem 1.5rem; }
     .page-header { grid-template-columns: 1fr; padding: 8rem 1.5rem 3rem; gap: 2rem; }
@@ -571,19 +571,19 @@
 </head>
 <body>
 
-
+<!-- ── NAV ── -->
 <nav>
-  <a href="http://localhost:1313/" class="nav-brand">Theo van Stratum, PhD</a>
+  <a href="/" class="nav-brand">Theo van Stratum, PhD</a>
   <ul class="nav-links">
-    <li><a href="http://localhost:1313/">Home</a></li>
-    <li><a href="http://localhost:1313/#books">Books</a></li>
-    <li><a href="http://localhost:1313/#research">Research</a></li>
-    <li><a href="http://localhost:1313/posts/" class="active">Writing</a></li>
-    <li><a href="http://localhost:1313/#contact">Contact</a></li>
+    <li><a href="/">Home</a></li>
+    <li><a href="/#books">Books</a></li>
+    <li><a href="/#research">Research</a></li>
+    <li><a href="/posts/" class="active">Writing</a></li>
+    <li><a href="/#contact">Contact</a></li>
   </ul>
 </nav>
 
-
+<!-- ── PAGE HEADER ── -->
 <header class="page-header">
   <div class="page-header-left">
     <div class="page-eyebrow">Essays &amp; Articles</div>
@@ -601,11 +601,11 @@
   </div>
 </header>
 
-
+<!-- ── FEATURED POST ── -->
 <div class="featured-section">
   <div class="section-label reveal">Featured</div>
 
-  <a href="http://localhost:1313/posts/what-is-probabilistic-delivery/" class="featured-post" data-category="governance">
+  <a href="/posts/what-is-probabilistic-delivery/" class="featured-post" data-category="governance">
     <div class="featured-post-left">
       <div>
         <div class="post-category">Software Governance</div>
@@ -632,14 +632,14 @@
   </a>
 </div>
 
-
+<!-- ── POST GRID ── -->
 <div class="posts-section">
   <div class="section-label reveal">All Writing</div>
 
   <div class="posts-grid" id="posts-grid">
 
-    
-    <a href="http://localhost:1313/posts/what-is-probabilistic-delivery/" class="post-card reveal" data-category="governance">
+    <!-- Post 1 -->
+    <a href="/posts/what-is-probabilistic-delivery/" class="post-card reveal" data-category="governance">
       <div class="post-card-number">01</div>
       <div class="post-card-category">Software Governance</div>
       <h3 class="post-card-title">What Is Probabilistic Delivery?</h3>
@@ -651,7 +651,7 @@
       </div>
     </a>
 
-    
+    <!-- Placeholder 2 — coming soon styling -->
     <div class="post-card reveal" data-category="bias" style="opacity:0.5; cursor:default;">
       <div class="post-card-number">02</div>
       <div class="post-card-category">Decision-making</div>
@@ -664,7 +664,7 @@
       </div>
     </div>
 
-    
+    <!-- Placeholder 3 -->
     <div class="post-card reveal" data-category="python" style="opacity:0.5; cursor:default;">
       <div class="post-card-number">03</div>
       <div class="post-card-category">Python · Research</div>
@@ -677,7 +677,7 @@
       </div>
     </div>
 
-    
+    <!-- Placeholder 4 -->
     <div class="post-card reveal" data-category="probability" style="opacity:0.5; cursor:default;">
       <div class="post-card-number">04</div>
       <div class="post-card-category">Probability</div>
@@ -690,7 +690,7 @@
       </div>
     </div>
 
-    
+    <!-- Placeholder 5 -->
     <div class="post-card reveal" data-category="governance" style="opacity:0.5; cursor:default;">
       <div class="post-card-number">05</div>
       <div class="post-card-category">Software Governance</div>
@@ -703,7 +703,7 @@
       </div>
     </div>
 
-    
+    <!-- Placeholder 6 -->
     <div class="post-card reveal" data-category="probability" style="opacity:0.5; cursor:default;">
       <div class="post-card-number">06</div>
       <div class="post-card-category">Probability · Python</div>
@@ -719,7 +719,7 @@
   </div>
 </div>
 
-
+<!-- ── SUBSCRIBE STRIP ── -->
 <div class="subscribe-strip">
   <div class="subscribe-left">
     <div class="subscribe-label">Stay in the loop</div>
@@ -727,13 +727,13 @@
   </div>
   <p class="subscribe-desc">Occasional long-form writing — no filler, no velocity dashboards, no story points. Just honest thinking about how software actually works.</p>
   <div class="subscribe-right">
-    <a href="http://localhost:1313/#contact" style="font-family:'IBM Plex Mono',monospace; font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase; padding:0.9rem 2rem; background:var(--rust); color:white; text-decoration:none; transition:background 0.2s; display:inline-block;">
+    <a href="/#contact" style="font-family:'IBM Plex Mono',monospace; font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase; padding:0.9rem 2rem; background:var(--rust); color:white; text-decoration:none; transition:background 0.2s; display:inline-block;">
       Get in touch →
     </a>
   </div>
 </div>
 
-
+<!-- ── PAGINATION ── -->
 <div class="pagination">
   <span class="pagination-info">Showing 6 of 6 articles</span>
   <div class="pagination-links">
@@ -741,22 +741,22 @@
   </div>
 </div>
 
-
+<!-- ── FOOTER ── -->
 <footer>
-  <a href="http://localhost:1313/" class="footer-brand">Theo van Stratum, PhD</a>
+  <a href="/" class="footer-brand">Theo van Stratum, PhD</a>
   <ul class="footer-links">
-    <li><a href="http://localhost:1313/">Home</a></li>
-    <li><a href="http://localhost:1313/#books">Books</a></li>
-    <li><a href="http://localhost:1313/#research">Research</a></li>
-    <li><a href="http://localhost:1313/posts/">Writing</a></li>
-    <li><a href="http://localhost:1313/#contact">Contact</a></li>
+    <li><a href="/">Home</a></li>
+    <li><a href="/#books">Books</a></li>
+    <li><a href="/#research">Research</a></li>
+    <li><a href="/posts/">Writing</a></li>
+    <li><a href="/#contact">Contact</a></li>
     <li><a href="https://www.linkedin.com/in/theo-van-stratum-1a92022b1/" target="_blank">LinkedIn</a></li>
   </ul>
   <span class="footer-copy">© 2026 Theo van Stratum, PhD</span>
 </footer>
 
 <script>
-  
+  // Scroll reveal
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry, i) => {
@@ -767,7 +767,7 @@
   }, { threshold: 0.08 });
   reveals.forEach(el => observer.observe(el));
 
-  
+  // Category filter
   function filterPosts(category, btn) {
     document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');

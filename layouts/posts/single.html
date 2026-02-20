@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+<head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>What Is Probabilistic Delivery? — Theo van Stratum, PhD</title>
@@ -41,7 +41,7 @@
     opacity: 0.4;
   }
 
-   
+  /* ── NAV ── */
   nav {
     position: fixed;
     top: 0; left: 0; right: 0;
@@ -84,7 +84,7 @@
   }
   .nav-links a:hover, .nav-links a.active { color: var(--rust); }
 
-   
+  /* ── PROGRESS BAR ── */
   .reading-progress {
     position: fixed;
     top: 0; left: 0;
@@ -95,7 +95,7 @@
     transition: width 0.1s linear;
   }
 
-   
+  /* ── ARTICLE HEADER ── */
   .article-header {
     padding: 10rem 0 5rem;
     max-width: 820px;
@@ -203,7 +203,7 @@
     color: var(--ink);
   }
 
-   
+  /* ── ARTICLE LAYOUT ── */
   .article-layout {
     display: grid;
     grid-template-columns: 1fr 260px;
@@ -214,7 +214,7 @@
     align-items: start;
   }
 
-   
+  /* ── ARTICLE BODY ── */
   .article-body {
     min-width: 0;
   }
@@ -296,7 +296,7 @@
     margin: 3rem 0;
   }
 
-   
+  /* Pull quote */
   .pull-quote {
     border-top: 2px solid var(--rust);
     border-bottom: 1px solid var(--rule);
@@ -313,7 +313,7 @@
     margin-bottom: 0 !important;
   }
 
-   
+  /* ── SIDEBAR ── */
   .article-sidebar {
     position: sticky;
     top: 100px;
@@ -413,7 +413,7 @@
     line-height: 1.5;
   }
 
-   
+  /* ── ARTICLE FOOTER ── */
   .article-footer {
     max-width: 820px;
     margin: 0 auto;
@@ -532,7 +532,7 @@
     display: block;
   }
 
-   
+  /* ── FOOTER ── */
   footer {
     background: var(--ink);
     padding: 2.5rem 4rem;
@@ -573,13 +573,13 @@
     color: rgba(255,255,255,0.25);
   }
 
-   
+  /* ── ANIMATIONS ── */
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(18px); }
     to   { opacity: 1; transform: translateY(0); }
   }
 
-   
+  /* ── RESPONSIVE ── */
   @media (max-width: 900px) {
     nav { padding: 1rem 1.5rem; }
     .article-header { padding: 8rem 1.5rem 3rem; }
@@ -596,22 +596,22 @@
 
 <div class="reading-progress" id="reading-progress"></div>
 
-
+<!-- ── NAV ── -->
 <nav>
-  <a href="http://localhost:1313/" class="nav-brand">Theo van Stratum, PhD</a>
+  <a href="/" class="nav-brand">Theo van Stratum, PhD</a>
   <ul class="nav-links">
-    <li><a href="http://localhost:1313/">Home</a></li>
-    <li><a href="http://localhost:1313/#books">Books</a></li>
-    <li><a href="http://localhost:1313/#research">Research</a></li>
-    <li><a href="http://localhost:1313/posts/" class="active">Writing</a></li>
-    <li><a href="http://localhost:1313/#contact">Contact</a></li>
+    <li><a href="/">Home</a></li>
+    <li><a href="/#books">Books</a></li>
+    <li><a href="/#research">Research</a></li>
+    <li><a href="/posts/" class="active">Writing</a></li>
+    <li><a href="/#contact">Contact</a></li>
   </ul>
 </nav>
 
-
+<!-- ── ARTICLE HEADER ── -->
 <header class="article-header">
   <div class="article-breadcrumb">
-    <a href="http://localhost:1313/posts/">Writing</a>
+    <a href="/posts/">Writing</a>
     <span>/</span>
     <span>Software Governance</span>
   </div>
@@ -644,7 +644,7 @@
   </div>
 </header>
 
-
+<!-- ── ARTICLE BODY + SIDEBAR ── -->
 <div class="article-layout">
 
   <article class="article-body" id="article-body">
@@ -703,7 +703,7 @@
 
   </article>
 
-  
+  <!-- ── SIDEBAR ── -->
   <aside class="article-sidebar">
 
     <div class="sidebar-block">
@@ -729,7 +729,7 @@
       </div>
     </div>
 
-    <a href="http://localhost:1313/#books" class="sidebar-book">
+    <a href="/#books" class="sidebar-book">
       <div class="sidebar-book-label">From the book</div>
       <div class="sidebar-book-title">Probabilistic Delivery</div>
       <div class="sidebar-book-desc">The Actuarial Science of Software Governance — 297 pages, 2026</div>
@@ -738,7 +738,7 @@
   </aside>
 </div>
 
-
+<!-- ── ARTICLE FOOTER ── -->
 <div class="article-footer">
 
   <div class="author-card">
@@ -753,12 +753,12 @@
   <div class="related-posts">
     <div class="related-label">Continue reading</div>
     <div class="related-grid">
-      <a href="http://localhost:1313/posts/" class="related-card">
+      <a href="/posts/" class="related-card">
         <div class="related-card-category">Decision-making</div>
         <div class="related-card-title">The Gambler in the Sprint Room</div>
         <span class="related-card-arrow">Coming soon →</span>
       </a>
-      <a href="http://localhost:1313/posts/" class="related-card">
+      <a href="/posts/" class="related-card">
         <div class="related-card-category">Probability</div>
         <div class="related-card-title">The P85 Standard Explained</div>
         <span class="related-card-arrow">Coming soon →</span>
@@ -768,21 +768,21 @@
 
 </div>
 
-
+<!-- ── FOOTER ── -->
 <footer>
-  <a href="http://localhost:1313/" class="footer-brand">Theo van Stratum, PhD</a>
+  <a href="/" class="footer-brand">Theo van Stratum, PhD</a>
   <ul class="footer-links">
-    <li><a href="http://localhost:1313/">Home</a></li>
-    <li><a href="http://localhost:1313/#books">Books</a></li>
-    <li><a href="http://localhost:1313/posts/">Writing</a></li>
-    <li><a href="http://localhost:1313/#contact">Contact</a></li>
+    <li><a href="/">Home</a></li>
+    <li><a href="/#books">Books</a></li>
+    <li><a href="/posts/">Writing</a></li>
+    <li><a href="/#contact">Contact</a></li>
     <li><a href="https://www.linkedin.com/in/theo-van-stratum-1a92022b1/" target="_blank">LinkedIn</a></li>
   </ul>
   <span class="footer-copy">© 2026 Theo van Stratum, PhD</span>
 </footer>
 
 <script>
-  
+  // Reading progress bar
   window.addEventListener('scroll', () => {
     const article = document.getElementById('article-body');
     if (!article) return;
@@ -793,7 +793,7 @@
     document.getElementById('reading-progress').style.width = pct + '%';
   });
 
-  
+  // TOC active state
   const headings = document.querySelectorAll('.article-body h2[id]');
   const tocLinks = document.querySelectorAll('.toc-list a');
 

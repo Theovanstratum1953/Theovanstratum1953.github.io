@@ -1,242 +1,1200 @@
 <!DOCTYPE html>
-<html lang="en" dir="auto" data-theme="auto">
-
+<html lang="en">
 <head>
-	<meta name="generator" content="Hugo 0.155.3"><meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="index, follow">
-<title>Probabilistic Delivery</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Theo van Stratum, PhD — Author & Researcher</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0d0d0d;
+    --paper: #f5f1ea;
+    --cream: #ede8de;
+    --rust: #b84c2b;
+    --rust-dark: #8a3520;
+    --slate: #2c3e50;
+    --gold: #c9a84c;
+    --muted: #7a7268;
+    --rule: #c8c0b0;
+  }
 
-<meta name="description" content="The Actuarial Science of Software Governance">
-<meta name="author" content="Theo van Stratum, PhD">
-<link rel="canonical" href="https://theovanstratum1953.github.io/">
-<link crossorigin="anonymous" href="https://theovanstratum1953.github.io/assets/css/stylesheet.da3211e5ef867bf2b75fd5a6515cfed7195c011e8ab735694e203810a827097b.css" integrity="sha256-2jIR5e&#43;Ge/K3X9WmUVz&#43;1xlcAR6KtzVpTiA4EKgnCXs=" rel="preload stylesheet" as="style">
-<link rel="icon" href="https://theovanstratum1953.github.io/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://theovanstratum1953.github.io/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://theovanstratum1953.github.io/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://theovanstratum1953.github.io/apple-touch-icon.png">
-<link rel="mask-icon" href="https://theovanstratum1953.github.io/safari-pinned-tab.svg">
-<meta name="theme-color" content="#2e2e33">
-<meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" type="application/rss+xml" href="https://theovanstratum1953.github.io/index.xml" title="rss">
-<link rel="alternate" hreflang="en" href="https://theovanstratum1953.github.io/">
-<noscript>
-    <style>
-        #theme-toggle,
-        .top-link {
-            display: none;
-        }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    </style>
-    <style>
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --theme: rgb(29, 30, 32);
-                --entry: rgb(46, 46, 51);
-                --primary: rgb(218, 218, 219);
-                --secondary: rgb(155, 156, 157);
-                --tertiary: rgb(65, 66, 68);
-                --content: rgb(196, 196, 197);
-                --code-block-bg: rgb(46, 46, 51);
-                --code-bg: rgb(55, 56, 62);
-                --border: rgb(51, 51, 51);
-                color-scheme: dark;
-            }
+  html { scroll-behavior: smooth; }
 
-            .list {
-                background: var(--theme);
-            }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
 
-            .toc {
-                background: var(--entry);
-            }
-        }
+  /* ── NOISE TEXTURE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.4;
+  }
 
-        @media (prefers-color-scheme: light) {
-            .list::-webkit-scrollbar-thumb {
-                border-color: var(--code-bg);
-            }
-        }
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 4rem;
+    background: rgba(245, 241, 234, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--rule);
+  }
 
-    </style>
-</noscript>
-<script>
-    if (localStorage.getItem("pref-theme") === "dark") {
-        document.querySelector("html").dataset.theme = 'dark';
-    } else if (localStorage.getItem("pref-theme") === "light") {
-       document.querySelector("html").dataset.theme = 'light';
-    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        document.querySelector("html").dataset.theme = 'dark';
-    } else {
-        document.querySelector("html").dataset.theme = 'light';
-    }
+  .nav-brand {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    font-weight: 400;
+    color: var(--muted);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-decoration: none;
+  }
 
-</script><meta property="og:url" content="https://theovanstratum1953.github.io/">
-  <meta property="og:site_name" content="Probabilistic Delivery">
-  <meta property="og:title" content="Probabilistic Delivery">
-  <meta property="og:description" content="The Actuarial Science of Software Governance">
-  <meta property="og:locale" content="en">
-  <meta property="og:type" content="website">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Probabilistic Delivery">
-<meta name="twitter:description" content="The Actuarial Science of Software Governance">
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "Probabilistic Delivery",
-  "url": "https://theovanstratum1953.github.io/",
-  "description": "The Actuarial Science of Software Governance",
-  "logo": "https://theovanstratum1953.github.io/favicon.ico",
-  "sameAs": [
-      
-  ]
-}
-</script>
+  .nav-links a {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--rust); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 6rem 4rem 6rem 6rem;
+    position: relative;
+  }
+
+  .hero-eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.2s;
+  }
+
+  .hero-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 5.5vw, 5rem);
+    font-weight: 900;
+    line-height: 1.05;
+    color: var(--ink);
+    margin-bottom: 0.4rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.4s;
+  }
+
+  .hero-name em {
+    font-style: italic;
+    color: var(--rust);
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1rem, 1.8vw, 1.35rem);
+    font-weight: 400;
+    font-style: italic;
+    color: var(--muted);
+    margin-bottom: 2.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.6s;
+  }
+
+  .hero-tagline {
+    font-size: 1.05rem;
+    font-weight: 300;
+    color: var(--slate);
+    max-width: 480px;
+    line-height: 1.8;
+    margin-bottom: 3rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.8s;
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 3rem;
+    margin-bottom: 3rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 1s;
+  }
+
+  .stat-item { display: flex; flex-direction: column; }
+
+  .stat-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--rust);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 0.3rem;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 1.2s;
+  }
+
+  .btn-primary {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.9rem 2rem;
+    background: var(--rust);
+    color: white;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+  }
+
+  .btn-primary:hover { background: var(--rust-dark); transform: translateY(-1px); }
+
+  .btn-secondary {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.9rem 2rem;
+    background: transparent;
+    color: var(--ink);
+    border: 1px solid var(--rule);
+    cursor: pointer;
+    text-decoration: none;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .btn-secondary:hover { border-color: var(--ink); }
+
+  /* ── HERO RIGHT ── */
+  .hero-right {
+    background: var(--ink);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-right::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: 
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 39px,
+        rgba(255,255,255,0.03) 39px,
+        rgba(255,255,255,0.03) 40px
+      ),
+      repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 39px,
+        rgba(255,255,255,0.03) 39px,
+        rgba(255,255,255,0.03) 40px
+      );
+  }
+
+  .hero-right-inner {
+    position: relative;
+    z-index: 2;
+    padding: 4rem;
+    max-width: 420px;
+    opacity: 0;
+    animation: fadeIn 1.2s ease forwards 1.4s;
+  }
+
+  .quote-mark {
+    font-family: 'Playfair Display', serif;
+    font-size: 8rem;
+    line-height: 0.6;
+    color: var(--rust);
+    opacity: 0.4;
+    display: block;
+    margin-bottom: 1rem;
+  }
+
+  .hero-quote {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+    font-style: italic;
+    color: rgba(255,255,255,0.9);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-quote-attr {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .credentials-list {
+    margin-top: 3rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 2rem;
+  }
+
+  .credential-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .credential-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--rust);
+    margin-top: 0.55rem;
+    flex-shrink: 0;
+  }
+
+  .credential-text {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 300;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.5;
+  }
+
+  .credential-text strong {
+    font-weight: 500;
+    color: rgba(255,255,255,0.95);
+  }
+
+  /* ── SECTION COMMON ── */
+  section { position: relative; }
+
+  .section-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 6rem 4rem;
+  }
+
+  .section-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    max-width: 40px;
+    height: 1px;
+    background: var(--rust);
+    opacity: 0.4;
+  }
+
+  .section-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 700;
+    line-height: 1.15;
+    color: var(--ink);
+    margin-bottom: 1.5rem;
+  }
+
+  .section-heading em { font-style: italic; color: var(--rust); }
+
+  /* ── ABOUT ── */
+  #about { background: var(--cream); border-top: 1px solid var(--rule); }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 6rem;
+    align-items: start;
+  }
+
+  .about-left {}
+
+  .about-body {
+    font-size: 1rem;
+    color: var(--slate);
+    line-height: 1.85;
+    margin-bottom: 1.2rem;
+  }
+
+  .about-body strong { font-weight: 500; color: var(--ink); }
+
+  .expertise-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    margin-top: 3rem;
+  }
+
+  .expertise-item {
+    background: var(--cream);
+    padding: 1.5rem;
+  }
+
+  .expertise-icon {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 1.4rem;
+    margin-bottom: 0.6rem;
+    display: block;
+    color: var(--rust);
+  }
+
+  .expertise-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin-bottom: 0.3rem;
+    color: var(--ink);
+  }
+
+  .expertise-desc {
+    font-size: 0.78rem;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* ── PYTHON TIMELINE ── */
+  .python-timeline {
+    position: relative;
+    padding-left: 2rem;
+    border-left: 2px solid var(--rule);
+    margin-top: 2rem;
+  }
+
+  .timeline-event {
+    position: relative;
+    margin-bottom: 1.8rem;
+    padding-left: 1.5rem;
+  }
+
+  .timeline-event::before {
+    content: '';
+    position: absolute;
+    left: -2.6rem;
+    top: 0.45rem;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--rust);
+    border: 2px solid var(--cream);
+  }
+
+  .timeline-year {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    color: var(--rust);
+    margin-bottom: 0.2rem;
+  }
+
+  .timeline-text {
+    font-size: 0.85rem;
+    color: var(--slate);
+    line-height: 1.6;
+  }
+
+  /* ── BOOKS ── */
+  #books { background: var(--paper); border-top: 1px solid var(--rule); }
+
+  .books-intro {
+    font-size: 1.05rem;
+    color: var(--muted);
+    max-width: 600px;
+    margin-bottom: 4rem;
+    line-height: 1.8;
+  }
+
+  .books-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+  }
+
+  .book-card {
+    background: var(--paper);
+    padding: 2.5rem;
+    position: relative;
+    transition: background 0.25s;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .book-card:hover { background: var(--cream); }
+
+  .book-status {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.7rem;
+    margin-bottom: 1.5rem;
+    display: inline-block;
+    align-self: flex-start;
+  }
+
+  .status-published { background: var(--rust); color: white; }
+  .status-progress { background: transparent; color: var(--gold); border: 1px solid var(--gold); }
+  .status-proposal { background: transparent; color: var(--muted); border: 1px solid var(--rule); }
+
+  .book-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 4rem;
+    font-weight: 900;
+    color: var(--rule);
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+
+  .book-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    line-height: 1.25;
+    color: var(--ink);
+    margin-bottom: 0.5rem;
+  }
+
+  .book-subtitle {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.88rem;
+    font-style: italic;
+    color: var(--muted);
+    margin-bottom: 1.2rem;
+    line-height: 1.4;
+  }
+
+  .book-description {
+    font-size: 0.83rem;
+    color: var(--slate);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+    flex: 1;
+  }
+
+  .book-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    border-top: 1px solid var(--rule);
+    padding-top: 1.2rem;
+    margin-top: auto;
+  }
+
+  .book-meta-item {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+  }
+
+  .book-meta-item span {
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  /* ── RESEARCH ── */
+  #research { background: var(--ink); border-top: 1px solid #222; }
+
+  #research .section-label { color: var(--gold); }
+  #research .section-label::after { background: var(--gold); }
+  #research .section-heading { color: white; }
+
+  .research-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    margin-top: 3rem;
+  }
+
+  .research-area {
+    border-left: 2px solid var(--rust);
+    padding-left: 1.5rem;
+  }
+
+  .research-area-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 0.7rem;
+  }
+
+  .research-area-desc {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.75;
+  }
+
+  .tools-section {
+    margin-top: 4rem;
+    padding-top: 3rem;
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .tools-heading {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+  }
+
+  .tools-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+  }
+
+  .tool-tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.05em;
+    padding: 0.4rem 0.9rem;
+    border: 1px solid rgba(255,255,255,0.15);
+    color: rgba(255,255,255,0.6);
+    transition: all 0.2s;
+  }
+
+  .tool-tag:hover {
+    border-color: var(--rust);
+    color: var(--rust);
+  }
+
+  .tool-tag.featured {
+    border-color: var(--rust);
+    color: var(--rust);
+    background: rgba(184,76,43,0.1);
+  }
+
+  /* ── UPCOMING ── */
+  #upcoming { background: var(--cream); border-top: 1px solid var(--rule); }
+
+  .upcoming-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    margin-top: 3rem;
+  }
+
+  .upcoming-card {
+    background: var(--cream);
+    padding: 2.5rem;
+    transition: background 0.2s;
+  }
+
+  .upcoming-card:hover { background: var(--paper); }
+
+  .upcoming-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 1rem;
+  }
+
+  .upcoming-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+  }
+
+  .upcoming-subtitle {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 0.9rem;
+    color: var(--rust);
+    margin-bottom: 1.2rem;
+  }
+
+  .upcoming-desc {
+    font-size: 0.85rem;
+    color: var(--slate);
+    line-height: 1.75;
+    margin-bottom: 1.5rem;
+  }
+
+  .upcoming-chapters {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--muted);
+    line-height: 2;
+  }
+
+  /* ── CONTACT ── */
+  #contact { background: var(--paper); border-top: 1px solid var(--rule); }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 6rem;
+    align-items: start;
+  }
+
+  .contact-body {
+    font-size: 1.05rem;
+    color: var(--slate);
+    line-height: 1.85;
+    margin-bottom: 2rem;
+  }
+
+  .contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    text-decoration: none;
+    padding: 1rem 1.2rem;
+    border: 1px solid var(--rule);
+    transition: all 0.2s;
+  }
+
+  .contact-link:hover {
+    border-color: var(--rust);
+    background: rgba(184,76,43,0.04);
+  }
+
+  .contact-link-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    flex: 1;
+  }
+
+  .contact-link-value {
+    font-size: 0.85rem;
+    color: var(--ink);
+    font-weight: 400;
+  }
+
+  .contact-link-arrow {
+    color: var(--rust);
+    font-size: 1rem;
+  }
+
+  .publisher-note {
+    background: var(--cream);
+    border: 1px solid var(--rule);
+    border-left: 3px solid var(--rust);
+    padding: 1.8rem;
+    margin-top: 2rem;
+  }
+
+  .publisher-note-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin-bottom: 0.7rem;
+  }
+
+  .publisher-note-text {
+    font-size: 0.85rem;
+    color: var(--slate);
+    line-height: 1.7;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink);
+    padding: 2.5rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #222;
+  }
+
+  .footer-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    color: white;
+  }
+
+  .footer-copy {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.3);
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { gap: 1.2rem; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-left { padding: 5rem 1.5rem 3rem; }
+    .hero-right { min-height: 400px; }
+    .about-grid, .contact-grid, .research-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .books-grid, .upcoming-grid { grid-template-columns: 1fr; }
+    .section-inner { padding: 4rem 1.5rem; }
+    footer { flex-direction: column; gap: 1rem; text-align: center; }
+  }
+</style>
 </head>
-<body class="list" id="top">
-    <header class="header">
-    <nav class="nav">
-        <div class="logo">
-            <a href="https://theovanstratum1953.github.io/" accesskey="h" title="Probabilistic Delivery (Alt + H)">Probabilistic Delivery</a>
-            <div class="logo-switches">
-                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
-                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                    </svg>
-                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="5"></circle>
-                        <line x1="12" y1="1" x2="12" y2="3"></line>
-                        <line x1="12" y1="21" x2="12" y2="23"></line>
-                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                        <line x1="1" y1="12" x2="3" y2="12"></line>
-                        <line x1="21" y1="12" x2="23" y2="12"></line>
-                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                    </svg>
-                </button>
-            </div>
-        </div>
-        <ul id="menu">
-        </ul>
-    </nav>
-</header>
-<main class="main"><div class="profile">
-    <div class="profile_inner">
-        <h1>Theo van Stratum, PhD</h1>
-        <span>The Actuarial Science of Software Governance</span><div class="social-icons" >
-</div>
+<body>
 
-        <div class="buttons">
-            <a class="button" href="https://theovanstratum1953.github.io/posts" rel="noopener" title="Read the Blog">
-                <span class="button-inner">
-                    Read the Blog
-                </span>
-            </a>
-            <a class="button" href="https://theovanstratum1953.github.io/about" rel="noopener" title="About the Book">
-                <span class="button-inner">
-                    About the Book
-                </span>
-            </a>
-            <a class="button" href="https://www.linkedin.com/in/theo-van-stratum-1a92022b1/" rel="noopener" title="LinkedIn">
-                <span class="button-inner">
-                    LinkedIn&nbsp;
-                    <svg fill="none" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round"
-                        stroke-linejoin="round" stroke-width="2.5" viewBox="0 0 24 24" height="14" width="14">
-                        <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"></path>
-                        <path d="M15 3h6v6"></path>
-                        <path d="M10 14L21 3"></path>
-                    </svg>
-                </span>
-            </a>
-        </div>
+<!-- ── NAV ── -->
+<nav>
+  <a href="#" class="nav-brand">Theo van Stratum, PhD</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#books">Books</a></li>
+    <li><a href="#research">Research</a></li>
+    <li><a href="#upcoming">Upcoming</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero" id="home">
+  <div class="hero-left">
+    <span class="hero-eyebrow">Author · Researcher · PhD</span>
+    <h1 class="hero-name">Theo van <em>Stratum</em></h1>
+    <p class="hero-title">PhD, Information Technology — Software Development &amp; Project Management</p>
+    <p class="hero-tagline">Applying probabilistic thinking, statistical rigour, and 30 years of Python expertise to the hard problems of software governance, decision-making, and academic research.</p>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <span class="stat-number">30</span>
+        <span class="stat-label">Years Python</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">4</span>
+        <span class="stat-label">Books</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">200+</span>
+        <span class="stat-label">Projects studied</span>
+      </div>
     </div>
-</div>
+    <div class="hero-cta">
+      <a href="#books" class="btn-primary">View Publications</a>
+      <a href="#contact" class="btn-secondary">Contact &amp; Proposals</a>
+    </div>
+  </div>
 
-    </main>
-    
-<footer class="footer">
-        <span>&copy; 2026 <a href="https://theovanstratum1953.github.io/">Probabilistic Delivery</a></span> · 
+  <div class="hero-right">
+    <div class="hero-right-inner">
+      <span class="quote-mark">"</span>
+      <p class="hero-quote">Dashboards showed green, stakeholders were reassured — and then, around month nine, reality arrived uninvited. What went wrong is rarely a question of effort. It is almost always a question of measurement.</p>
+      <p class="hero-quote-attr">— Probabilistic Delivery, 2026</p>
 
-    <span>
-        Powered by
-        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
-        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
-    </span>
+      <div class="credentials-list">
+        <div class="credential-item">
+          <div class="credential-dot"></div>
+          <p class="credential-text"><strong>PhD, Information Technology</strong> — Software Development &amp; Project Management</p>
+        </div>
+        <div class="credential-item">
+          <div class="credential-dot"></div>
+          <p class="credential-text"><strong>30+ years Python</strong> — from the early days of the language to modern probabilistic computing</p>
+        </div>
+        <div class="credential-item">
+          <div class="credential-dot"></div>
+          <p class="credential-text">Based in <strong>The Hague, Netherlands</strong> &amp; <strong>Manila, Philippines</strong></p>
+        </div>
+        <div class="credential-item">
+          <div class="credential-dot"></div>
+          <p class="credential-text">Empirical research grounded in data from <strong>200+ real software projects</strong></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── ABOUT ── -->
+<section id="about">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="about-left reveal">
+        <div class="section-label">About</div>
+        <h2 class="section-heading">Statistical truth<br>over <em>theatre</em></h2>
+
+        <div class="python-timeline">
+          <div class="timeline-event">
+            <div class="timeline-year">Mid-1990s</div>
+            <div class="timeline-text">First contact with Python — among the earliest adopters of the language in professional software development contexts.</div>
+          </div>
+          <div class="timeline-event">
+            <div class="timeline-year">2000s</div>
+            <div class="timeline-text">Built deep expertise in software architecture, project management, and the emerging science of software delivery forecasting.</div>
+          </div>
+          <div class="timeline-event">
+            <div class="timeline-year">2010s</div>
+            <div class="timeline-text">PhD completed. Focus on academic publishing, probabilistic Python tools, and the intersection of Bayesian reasoning with software governance.</div>
+          </div>
+          <div class="timeline-event">
+            <div class="timeline-year">2020s</div>
+            <div class="timeline-text">Developed the Probabilistic Delivery framework, drawing on actuarial science, Monte Carlo simulation, and reference class forecasting.</div>
+          </div>
+          <div class="timeline-event">
+            <div class="timeline-year">2026</div>
+            <div class="timeline-text">Two major books published. Two academic textbooks in development with a leading academic publisher.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-left reveal">
+        <p class="about-body">
+          Theo van Stratum, PhD is a researcher, author, and software practitioner with more than three decades of experience in Python and software development. His work sits at the intersection of <strong>probabilistic reasoning, statistical governance, and academic research methodology</strong> — applying the rigour of actuarial science to the messy, human reality of how software projects are planned and delivered.
+        </p>
+        <p class="about-body">
+          His empirical research is grounded in data from over 200 real-world software projects, analysed without the comfortable fictions of story-point velocity and dashboard green lights. He is one of the few practitioners who has spent his entire career watching organisations confuse the performance of confidence for the substance of it — and who has built rigorous, Python-powered frameworks to replace guesswork with statistical truth.
+        </p>
+        <p class="about-body">
+          In academic publishing, Theo is developing two textbooks for researchers: one on <strong>Pandas for Academics</strong>, bringing Python data analysis to the workflows of empirical researchers across all disciplines, and one on <strong>Probabilistic Python</strong>, introducing Bayesian reasoning and uncertainty quantification for academic use.
+        </p>
+
+        <div class="expertise-grid">
+          <div class="expertise-item">
+            <span class="expertise-icon">∿</span>
+            <div class="expertise-name">Probabilistic Modelling</div>
+            <div class="expertise-desc">Monte Carlo simulation, Bayesian inference, actuarial forecasting</div>
+          </div>
+          <div class="expertise-item">
+            <span class="expertise-icon">𝜋</span>
+            <div class="expertise-name">Python &amp; Data Science</div>
+            <div class="expertise-desc">30 years · pandas, PyMC, NumPy, ArviZ, scientific Python stack</div>
+          </div>
+          <div class="expertise-item">
+            <span class="expertise-icon">⊕</span>
+            <div class="expertise-name">Software Governance</div>
+            <div class="expertise-desc">PhD-level expertise in delivery frameworks and fiduciary risk</div>
+          </div>
+          <div class="expertise-item">
+            <span class="expertise-icon">∂</span>
+            <div class="expertise-name">Academic Research</div>
+            <div class="expertise-desc">Empirical methodology, reproducible research, statistical communication</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── BOOKS ── -->
+<section id="books">
+  <div class="section-inner">
+    <div class="section-label reveal">Publications</div>
+    <h2 class="section-heading reveal">Published <em>works</em></h2>
+    <p class="books-intro reveal">Each book is grounded in empirical data, probabilistic thinking, and the conviction that honest measurement beats comfortable theatre — every time.</p>
+
+    <div class="books-grid reveal">
+
+      <!-- Book 1 -->
+      <div class="book-card">
+        <span class="book-status status-published">Published · 2026</span>
+        <div class="book-number">01</div>
+        <h3 class="book-title">Probabilistic Delivery</h3>
+        <p class="book-subtitle">The Actuarial Science of Software Governance</p>
+        <p class="book-description">The definitive challenge to Agile theatre. Drawing on data from 200+ software projects, this book introduces the Probabilistic Delivery framework — replacing story-point velocity with actuarial rigour, Monte Carlo simulation, and the P85 standard. A fiduciary mandate for CEOs, project managers, and engineering leaders who are tired of dashboards that lie.</p>
+        <div class="book-meta">
+          <div class="book-meta-item">Chapters: <span>13 + 3 Appendices</span></div>
+          <div class="book-meta-item">Pages: <span>297</span></div>
+          <div class="book-meta-item">Topics: <span>Monte Carlo · Risk Horizon · Binary Gate Protocol · Actuarial Forecasting</span></div>
+        </div>
+      </div>
+
+      <!-- Book 2 -->
+      <div class="book-card">
+        <span class="book-status status-published">Published · 2026</span>
+        <div class="book-number">02</div>
+        <h3 class="book-title">The Gambler's Fallacy</h3>
+        <p class="book-subtitle">The Hidden Bias That Derails Projects, Teams, and Decisions</p>
+        <p class="book-description">A deep investigation into the cognitive biases and statistical misconceptions that undermine decision-making in software organisations. From the Hot Hand Fallacy and Anchoring Bias to Survivorship Bias and the Normal Distribution Myth, this book arms practitioners with Bayesian tools to recognise and systematically counter the intuitions that lead organisations astray.</p>
+        <div class="book-meta">
+          <div class="book-meta-item">Chapters: <span>20 + Epilogue</span></div>
+          <div class="book-meta-item">Topics: <span>Bayesian Updating · Sensitivity Analysis · Probabilistic Planning · Cognitive Bias</span></div>
+          <div class="book-meta-item">Audience: <span>C-level · Project Managers · Development Teams</span></div>
+        </div>
+      </div>
+
+      <!-- Book 3 -->
+      <div class="book-card">
+        <span class="book-status status-progress">In Progress</span>
+        <div class="book-number">03</div>
+        <h3 class="book-title">The Technical Debt Paradox</h3>
+        <p class="book-subtitle">Why the Code You Don't Write Today Costs More Tomorrow</p>
+        <p class="book-description">An unflinching examination of technical debt as a measurable, probabilistic risk — not a vague metaphor. This work-in-progress applies the quantitative frameworks from Probabilistic Delivery to the hidden compounding costs of deferred quality, using empirical data to show organisations how to price, manage, and strategically deploy technical debt as a fiduciary instrument.</p>
+        <div class="book-meta">
+          <div class="book-meta-item">Status: <span>Planning / Early draft</span></div>
+          <div class="book-meta-item">Format: <span>Markup / Apple Pages</span></div>
+          <div class="book-meta-item">Expected: <span>2027</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── RESEARCH ── -->
+<section id="research">
+  <div class="section-inner">
+    <div class="section-label reveal">Research Interests</div>
+    <h2 class="section-heading reveal">Where probability<br>meets <em>practice</em></h2>
+
+    <div class="research-grid reveal">
+      <div class="research-area">
+        <h3 class="research-area-title">Actuarial Software Governance</h3>
+        <p class="research-area-desc">Applying the statistical frameworks of actuarial science — P85 confidence thresholds, reference class forecasting, tail-risk quantification — to the governance of software delivery. The central thesis: software project failure is not a talent problem; it is a measurement problem.</p>
+      </div>
+      <div class="research-area">
+        <h3 class="research-area-title">Probabilistic Reasoning in Organisations</h3>
+        <p class="research-area-desc">How cognitive biases, the Gambler's Fallacy, and the misuse of statistics degrade decision-making at every level of software organisations — and how Bayesian updating and deliberate probabilistic design can systematically correct them.</p>
+      </div>
+      <div class="research-area">
+        <h3 class="research-area-title">Python for Academic Research</h3>
+        <p class="research-area-desc">Bridging the gap between the Python scientific stack and academic researchers — with a focus on reproducible workflows, pandas-based data analysis, and Bayesian inference using PyMC and ArviZ for empirical researchers across all disciplines.</p>
+      </div>
+      <div class="research-area">
+        <h3 class="research-area-title">Technical Debt as Probabilistic Risk</h3>
+        <p class="research-area-desc">Quantifying and pricing technical debt using the same frameworks applied to delivery risk — moving the conversation from metaphor to measurement, and from complaint to fiduciary accountability.</p>
+      </div>
+    </div>
+
+    <div class="tools-section reveal">
+      <div class="tools-heading">Python Expertise — 30 Years</div>
+      <div class="tools-list">
+        <span class="tool-tag featured">Python</span>
+        <span class="tool-tag featured">PyMC</span>
+        <span class="tool-tag featured">pandas</span>
+        <span class="tool-tag featured">NumPy</span>
+        <span class="tool-tag featured">ArviZ</span>
+        <span class="tool-tag">Bambi</span>
+        <span class="tool-tag featured">SciPy</span>
+        <span class="tool-tag featured">matplotlib</span>
+        <span class="tool-tag featured">seaborn</span>
+        <span class="tool-tag featured">Jupyter</span>
+        <span class="tool-tag featured">Monte Carlo Simulation</span>
+        <span class="tool-tag featured">Bayesian Inference</span>
+        <span class="tool-tag">Reference Class Forecasting</span>
+        <span class="tool-tag">MCMC</span>
+        <span class="tool-tag">Statistical Modelling</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── UPCOMING ── -->
+<section id="upcoming">
+  <div class="section-inner">
+    <div class="section-label reveal">In Development</div>
+    <h2 class="section-heading reveal">Academic <em>textbooks</em><br>under proposal</h2>
+    <p style="color:var(--muted); font-size:0.9rem; margin-bottom:0; max-width:560px;" class="reveal">Two textbooks currently under proposal with an academic publisher — filling a genuine gap in the literature for Python resources written specifically for researchers.</p>
+
+    <div class="upcoming-grid reveal">
+
+      <div class="upcoming-card">
+        <div class="upcoming-label">Academic Textbook · Proposal Stage</div>
+        <h3 class="upcoming-title">Pandas for Academics</h3>
+        <p class="upcoming-subtitle">Data Analysis and Research Workflows with Python</p>
+        <p class="upcoming-desc">The first comprehensive, discipline-neutral pandas textbook written for academic researchers rather than industry data scientists. Structured around the research lifecycle — from raw data to reproducible, publication-ready results — with examples drawn from social science, natural science, economics, and public health. Addresses the real gap: pandas resources that speak the language of researchers, not software engineers.</p>
+        <div class="upcoming-chapters">
+          Part I: Foundations &nbsp;·&nbsp; Part II: Cleaning &amp; Preparation<br>
+          Part III: Analysis &amp; Aggregation &nbsp;·&nbsp; Part IV: Reproducibility &amp; Publication<br>
+          12 Chapters + 3 Appendices &nbsp;·&nbsp; Est. 350–400 pages
+        </div>
+      </div>
+
+      <div class="upcoming-card">
+        <div class="upcoming-label">Academic Textbook · Proposal Stage</div>
+        <h3 class="upcoming-title">Probabilistic Python</h3>
+        <p class="upcoming-subtitle">Bayesian Reasoning and Uncertainty Quantification for Academic Research</p>
+        <p class="upcoming-desc">The Python answer to McElreath's Statistical Rethinking — academically rigorous, practically oriented, and written for researchers who need to apply probabilistic methods in their own disciplines. Covers PyMC, ArviZ, and Bambi in a unified workflow, with unusually strong treatment of prior selection, model criticism, and the communication of uncertainty in peer-reviewed publications.</p>
+        <div class="upcoming-chapters">
+          Part I: Foundations &nbsp;·&nbsp; Part II: Core Modelling Techniques<br>
+          Part III: Advanced Models &nbsp;·&nbsp; Part IV: Communicating Results<br>
+          12 Chapters + 4 Appendices &nbsp;·&nbsp; Est. 380–430 pages
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── CONTACT ── -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="contact-grid">
+      <div class="reveal">
+        <div class="section-label">Contact</div>
+        <h2 class="section-heading">Get in <em>touch</em></h2>
+        <p class="contact-body">Whether you are a publisher, researcher, organisation seeking advisory work, or a fellow practitioner interested in the intersection of probabilistic reasoning and software governance — I welcome thoughtful correspondence.</p>
+        <p class="contact-body" style="font-size:0.88rem;">For academic publishing enquiries, speaking engagements, or consulting on probabilistic delivery frameworks, please reach out via email or LinkedIn.</p>
+
+        <div class="publisher-note">
+          <div class="publisher-note-label">Note for Publishers</div>
+          <p class="publisher-note-text">Full book proposals for <em>Pandas for Academics</em> and <em>Probabilistic Python</em> are available on request, including detailed chapter outlines, competitive analysis, and target readership profiles. Both projects are at planning stage with strong conceptual foundations.</p>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <div class="contact-links">
+          <a href="mailto:theovanstratum1953@gmail.com" class="contact-link">
+            <span class="contact-link-label">Email</span>
+            <span class="contact-link-value">theovanstratum1953@gmail.com</span>
+            <span class="contact-link-arrow">→</span>
+          </a>
+          <a href="https://www.linkedin.com/in/theo-van-stratum-1a92022b1/" target="_blank" class="contact-link">
+            <span class="contact-link-label">LinkedIn</span>
+            <span class="contact-link-value">Theo van Stratum</span>
+            <span class="contact-link-arrow">→</span>
+          </a>
+          <a href="https://theovanstratum1953.github.io" target="_blank" class="contact-link">
+            <span class="contact-link-label">Website</span>
+            <span class="contact-link-value">theovanstratum1953.github.io</span>
+            <span class="contact-link-arrow">→</span>
+          </a>
+          <a href="https://theovanstratum1953.github.io/posts" target="_blank" class="contact-link">
+            <span class="contact-link-label">Blog</span>
+            <span class="contact-link-value">Read the Blog</span>
+            <span class="contact-link-arrow">→</span>
+          </a>
+        </div>
+
+        <div style="margin-top:2rem; padding:1.5rem; background:var(--cream); border:1px solid var(--rule);">
+          <div style="font-family:'IBM Plex Mono',monospace; font-size:0.6rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--muted); margin-bottom:0.8rem;">Location</div>
+          <div style="font-family:'Playfair Display',serif; font-size:1rem; color:var(--ink);">The Hague, Netherlands</div>
+          <div style="font-family:'Playfair Display',serif; font-size:1rem; color:var(--muted); font-style:italic;">& Manila, Philippines</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <span class="footer-brand">Theo van Stratum, PhD</span>
+  <span class="footer-copy">© 2026 · All rights reserved</span>
 </footer>
-<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
-        <path d="M12 6H0l6-6z" />
-    </svg>
-</a>
 
 <script>
-    let menu = document.getElementById('menu');
-    if (menu) {
-        
-        const scrollPosition = localStorage.getItem("menu-scroll-position");
-        if (scrollPosition) {
-            menu.scrollLeft = parseInt(scrollPosition, 10);
-        }
-        
-        menu.onscroll = function () {
-            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
-        }
-    }
-
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener("click", function (e) {
-            e.preventDefault();
-            var id = this.getAttribute("href").substr(1);
-            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
-                    behavior: "smooth"
-                });
-            } else {
-                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
-            }
-            if (id === "top") {
-                history.replaceState(null, null, " ");
-            } else {
-                history.pushState(null, null, `#${id}`);
-            }
-        });
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+      }
     });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
-</script>
-<script>
-    var mybutton = document.getElementById("top-link");
-    window.onscroll = function () {
-        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
-            mybutton.style.visibility = "visible";
-            mybutton.style.opacity = "1";
-        } else {
-            mybutton.style.visibility = "hidden";
-            mybutton.style.opacity = "0";
-        }
-    };
+  reveals.forEach(el => observer.observe(el));
 
-</script>
-<script>
-    document.getElementById("theme-toggle").addEventListener("click", () => {
-        const html = document.querySelector("html");
-        if (html.dataset.theme === "dark") {
-            html.dataset.theme = 'light';
-            localStorage.setItem("pref-theme", 'light');
-        } else {
-            html.dataset.theme = 'dark';
-            localStorage.setItem("pref-theme", 'dark');
-        }
-    })
+  // Smooth active nav highlighting
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
 
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(section => {
+      if (window.scrollY >= section.offsetTop - 120) current = section.getAttribute('id');
+    });
+    navLinks.forEach(link => {
+      link.style.color = link.getAttribute('href') === '#' + current ? 'var(--rust)' : '';
+    });
+  });
 </script>
 </body>
-
 </html>

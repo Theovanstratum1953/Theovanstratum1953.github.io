@@ -12,3 +12,9 @@ canonifyURLs = true
     # by layouts/index.html (custom author page)
 [params.profileMode]
     enabled = false
+
+[markup]
+  [markup.tableOfContents]
+    startLevel = 2
+    endLevel = 3
+    ordered = false

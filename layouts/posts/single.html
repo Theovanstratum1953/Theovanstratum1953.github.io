@@ -323,6 +323,26 @@
     margin-bottom: 1rem;
   }
 
+  /* Hugo generates #TableOfContents with nav > ul structure */
+  #TableOfContents { }
+  #TableOfContents ul { list-style: none; padding: 0; }
+  #TableOfContents li { margin-bottom: 0.6rem; }
+  #TableOfContents a {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 0.8rem;
+    color: var(--slate);
+    text-decoration: none;
+    line-height: 1.4;
+    display: block;
+    padding-left: 0.8rem;
+    border-left: 2px solid transparent;
+    transition: all 0.2s;
+  }
+  #TableOfContents a:hover,
+  #TableOfContents a.active {
+    color: var(--rust);
+    border-left-color: var(--rust);
+  }
   .toc-list { list-style: none; }
   .toc-list li { margin-bottom: 0.6rem; }
 

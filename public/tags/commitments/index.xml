@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Commitments on Theo van Stratum, PhD</title>
+    <link>http://localhost:1313/tags/commitments/</link>
+    <description>Recent content in Commitments on Theo van Stratum, PhD</description>
+    <generator>Hugo -- 0.155.3</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 10 Feb 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/commitments/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The P85 Standard</title>
+      <link>http://localhost:1313/posts/the-p85-standard/</link>
+      <pubDate>Tue, 10 Feb 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/the-p85-standard/</guid>
+      <description>What actuaries have known for a century that software organisations are only now beginning to discover — and why anything below P85 is an unhedged gamble.</description>
+    </item>
+  </channel>
+</rss>

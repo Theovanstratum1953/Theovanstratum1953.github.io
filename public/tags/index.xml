@@ -6,6 +6,182 @@
     <description>Recent content in Tags on Theo van Stratum, PhD</description>
     <generator>Hugo -- 0.155.3</generator>
     <language>en</language>
+    <lastBuildDate>Fri, 20 Feb 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Bayesian</title>
+      <link>http://localhost:1313/tags/bayesian/</link>
+      <pubDate>Fri, 20 Feb 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tags/bayesian/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Decision-Making</title>
+      <link>http://localhost:1313/tags/decision-making/</link>
+      <pubDate>Fri, 20 Feb 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tags/decision-making/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Probability</title>
+      <link>http://localhost:1313/tags/probability/</link>
+      <pubDate>Fri, 20 Feb 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tags/probability/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Python</title>
+      <link>http://localhost:1313/tags/python/</link>
+      <pubDate>Fri, 20 Feb 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tags/python/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Statistics</title>
+      <link>http://localhost:1313/tags/statistics/</link>
+      <pubDate>Fri, 20 Feb 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tags/statistics/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Fiduciary</title>
+      <link>http://localhost:1313/tags/fiduciary/</link>
+      <pubDate>Sun, 15 Feb 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tags/fiduciary/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Measurement</title>
+      <link>http://localhost:1313/tags/measurement/</link>
+      <pubDate>Sun, 15 Feb 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tags/measurement/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Risk</title>
+      <link>http://localhost:1313/tags/risk/</link>
+      <pubDate>Sun, 15 Feb 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tags/risk/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Software Governance</title>
+      <link>http://localhost:1313/tags/software-governance/</link>
+      <pubDate>Sun, 15 Feb 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tags/software-governance/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Technical Debt</title>
+      <link>http://localhost:1313/tags/technical-debt/</link>
+      <pubDate>Sun, 15 Feb 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tags/technical-debt/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Actuarial</title>
+      <link>http://localhost:1313/tags/actuarial/</link>
+      <pubDate>Tue, 10 Feb 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tags/actuarial/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Commitments</title>
+      <link>http://localhost:1313/tags/commitments/</link>
+      <pubDate>Tue, 10 Feb 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tags/commitments/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Forecasting</title>
+      <link>http://localhost:1313/tags/forecasting/</link>
+      <pubDate>Tue, 10 Feb 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tags/forecasting/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>P85</title>
+      <link>http://localhost:1313/tags/p85/</link>
+      <pubDate>Tue, 10 Feb 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tags/p85/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Academic Research</title>
+      <link>http://localhost:1313/tags/academic-research/</link>
+      <pubDate>Thu, 05 Feb 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tags/academic-research/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Data Analysis</title>
+      <link>http://localhost:1313/tags/data-analysis/</link>
+      <pubDate>Thu, 05 Feb 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tags/data-analysis/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Pandas</title>
+      <link>http://localhost:1313/tags/pandas/</link>
+      <pubDate>Thu, 05 Feb 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tags/pandas/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Reproducibility</title>
+      <link>http://localhost:1313/tags/reproducibility/</link>
+      <pubDate>Thu, 05 Feb 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tags/reproducibility/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Cognitive Bias</title>
+      <link>http://localhost:1313/tags/cognitive-bias/</link>
+      <pubDate>Sun, 01 Feb 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tags/cognitive-bias/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Estimation</title>
+      <link>http://localhost:1313/tags/estimation/</link>
+      <pubDate>Sun, 01 Feb 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tags/estimation/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Gambler&#39;s Fallacy</title>
+      <link>http://localhost:1313/tags/gamblers-fallacy/</link>
+      <pubDate>Sun, 01 Feb 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tags/gamblers-fallacy/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Sprint Planning</title>
+      <link>http://localhost:1313/tags/sprint-planning/</link>
+      <pubDate>Sun, 01 Feb 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tags/sprint-planning/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Agile</title>
+      <link>http://localhost:1313/tags/agile/</link>
+      <pubDate>Thu, 15 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tags/agile/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Monte Carlo</title>
+      <link>http://localhost:1313/tags/monte-carlo/</link>
+      <pubDate>Thu, 15 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tags/monte-carlo/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Probabilistic Delivery</title>
+      <link>http://localhost:1313/tags/probabilistic-delivery/</link>
+      <pubDate>Thu, 15 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tags/probabilistic-delivery/</guid>
+      <description></description>
+    </item>
   </channel>
 </rss>

@@ -6,22 +6,55 @@
     <description>Recent content on Theo van Stratum, PhD</description>
     <generator>Hugo -- 0.155.3</generator>
     <language>en</language>
+    <lastBuildDate>Fri, 20 Feb 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>An Introduction to Bayesian Updating</title>
+      <link>http://localhost:1313/posts/an-introduction-to-bayesian-updating/</link>
+      <pubDate>Fri, 20 Feb 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/an-introduction-to-bayesian-updating/</guid>
+      <description>A practical introduction to revising beliefs in the face of evidence — with real examples and none of the condescension of most statistics writing.</description>
+    </item>
+    <item>
+      <title>Technical Debt Is Not a Metaphor</title>
+      <link>http://localhost:1313/posts/technical-debt-is-not-a-metaphor/</link>
+      <pubDate>Sun, 15 Feb 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/technical-debt-is-not-a-metaphor/</guid>
+      <description>The case for treating deferred quality decisions with the same fiduciary seriousness as any other form of organisational liability.</description>
+    </item>
+    <item>
+      <title>The P85 Standard</title>
+      <link>http://localhost:1313/posts/the-p85-standard/</link>
+      <pubDate>Tue, 10 Feb 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/the-p85-standard/</guid>
+      <description>What actuaries have known for a century that software organisations are only now beginning to discover — and why anything below P85 is an unhedged gamble.</description>
+    </item>
+    <item>
+      <title>Why Researchers Should Learn Pandas</title>
+      <link>http://localhost:1313/posts/why-researchers-should-learn-pandas/</link>
+      <pubDate>Thu, 05 Feb 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/why-researchers-should-learn-pandas/</guid>
+      <description>The gap between how pandas is taught and how academic researchers actually work — and what a genuinely research-oriented textbook would look like.</description>
+    </item>
+    <item>
+      <title>The Gambler in the Sprint Room</title>
+      <link>http://localhost:1313/posts/the-gambler-in-the-sprint-room/</link>
+      <pubDate>Sun, 01 Feb 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/the-gambler-in-the-sprint-room/</guid>
+      <description>Why teams keep believing the next sprint will be different — and the statistical reason it almost never is.</description>
+    </item>
+    <item>
+      <title>What Is Probabilistic Delivery?</title>
+      <link>http://localhost:1313/posts/what-is-probabilistic-delivery/</link>
+      <pubDate>Thu, 15 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/what-is-probabilistic-delivery/</guid>
+      <description>Why dashboards lie, story points fail, and actuarial science is the only honest alternative to the comfortable fiction of sprint velocity.</description>
+    </item>
     <item>
       <title></title>
       <link>http://localhost:1313/about/about/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/about/about/</guid>
-      <description>&lt;h1 id=&#34;what-is-probabilistic-delivery-a-new-operating-system-for-software-governance&#34;&gt;What Is Probabilistic Delivery? A New Operating System for Software Governance&lt;/h1&gt;
-&lt;p&gt;&lt;em&gt;By Theo van Stratum, PhD&lt;/em&gt;&lt;/p&gt;
-&lt;hr&gt;
-&lt;p&gt;Every year, organisations collectively spend hundreds of billions of dollars on software projects that arrive late, over budget, or simply fail to deliver. The post-mortems invariably describe the same sequence: dashboards showed green, stakeholders were reassured, and then — somewhere around month nine or eleven — reality arrived uninvited. What went wrong is rarely a question of effort or talent. It is almost always a question of measurement.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title></title>
-      <link>http://localhost:1313/posts/post01/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/post01/</guid>
       <description>&lt;h1 id=&#34;what-is-probabilistic-delivery-a-new-operating-system-for-software-governance&#34;&gt;What Is Probabilistic Delivery? A New Operating System for Software Governance&lt;/h1&gt;
 &lt;p&gt;&lt;em&gt;By Theo van Stratum, PhD&lt;/em&gt;&lt;/p&gt;
 &lt;hr&gt;

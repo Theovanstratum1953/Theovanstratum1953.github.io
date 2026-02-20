@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Python on Theo van Stratum, PhD</title>
+    <link>http://localhost:1313/tags/python/</link>
+    <description>Recent content in Python on Theo van Stratum, PhD</description>
+    <generator>Hugo -- 0.155.3</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 20 Feb 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>An Introduction to Bayesian Updating</title>
+      <link>http://localhost:1313/posts/an-introduction-to-bayesian-updating/</link>
+      <pubDate>Fri, 20 Feb 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/an-introduction-to-bayesian-updating/</guid>
+      <description>A practical introduction to revising beliefs in the face of evidence — with real examples and none of the condescension of most statistics writing.</description>
+    </item>
+    <item>
+      <title>Why Researchers Should Learn Pandas</title>
+      <link>http://localhost:1313/posts/why-researchers-should-learn-pandas/</link>
+      <pubDate>Thu, 05 Feb 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/why-researchers-should-learn-pandas/</guid>
+      <description>The gap between how pandas is taught and how academic researchers actually work — and what a genuinely research-oriented textbook would look like.</description>
+    </item>
+  </channel>
+</rss>

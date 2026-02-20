@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Technical Debt Is Not a Metaphor — Theo van Stratum, PhD</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0d0d0d;
+    --paper: #f5f1ea;
+    --cream: #ede8de;
+    --rust: #b84c2b;
+    --rust-dark: #8a3520;
+    --slate: #2c3e50;
+    --gold: #c9a84c;
+    --muted: #7a7268;
+    --rule: #c8c0b0;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.4;
+  }
+
+   
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 4rem;
+    background: rgba(245, 241, 234, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .nav-brand {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    font-weight: 400;
+    color: var(--muted);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-brand:hover { color: var(--rust); }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover, .nav-links a.active { color: var(--rust); }
+
+   
+  .reading-progress {
+    position: fixed;
+    top: 0; left: 0;
+    height: 2px;
+    background: var(--rust);
+    z-index: 200;
+    width: 0%;
+    transition: width 0.1s linear;
+  }
+
+   
+  .article-header {
+    padding: 10rem 4rem 5rem;
+    max-width: 820px;
+    margin: 0 auto;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.2s;
+  }
+
+  .article-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 2.5rem;
+  }
+
+  .article-breadcrumb a {
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .article-breadcrumb a:hover { color: var(--rust); }
+  .article-breadcrumb span { color: var(--rust); }
+
+  .article-category {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin-bottom: 1.2rem;
+  }
+
+  .article-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 4vw, 3.5rem);
+    font-weight: 900;
+    line-height: 1.1;
+    color: var(--ink);
+    margin-bottom: 1rem;
+  }
+
+  .article-subtitle {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: clamp(1rem, 1.5vw, 1.3rem);
+    color: var(--muted);
+    line-height: 1.5;
+    margin-bottom: 2.5rem;
+  }
+
+  .article-meta-bar {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    padding: 1.5rem 0;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    flex-wrap: wrap;
+  }
+
+  .article-author { display: flex; flex-direction: column; }
+
+  .article-author-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--ink);
+  }
+
+  .article-author-title {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin-top: 0.15rem;
+  }
+
+  .article-meta-divider {
+    width: 1px;
+    height: 30px;
+    background: var(--rule);
+  }
+
+  .article-meta-item {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+
+  .article-meta-item strong {
+    font-weight: 500;
+    color: var(--ink);
+  }
+
+   
+  .article-layout {
+    display: grid;
+    grid-template-columns: 1fr 260px;
+    gap: 5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 4rem 4rem 6rem;
+    align-items: start;
+  }
+
+   
+  .article-body { min-width: 0; }
+
+  .article-body p {
+    font-size: 1.05rem;
+    color: var(--slate);
+    line-height: 1.9;
+    margin-bottom: 1.6rem;
+  }
+
+  .article-body h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.7rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin: 3rem 0 1rem;
+    line-height: 1.2;
+  }
+
+  .article-body h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin: 2.5rem 0 0.8rem;
+    font-style: italic;
+  }
+
+  .article-body strong { font-weight: 500; color: var(--ink); }
+  .article-body em { font-style: italic; }
+
+  .article-body blockquote {
+    border-left: 3px solid var(--rust);
+    padding: 1rem 1.5rem;
+    margin: 2rem 0;
+    background: var(--cream);
+  }
+
+  .article-body blockquote p {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--slate);
+    margin-bottom: 0;
+    line-height: 1.7;
+  }
+
+  .article-body code {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.85em;
+    background: var(--cream);
+    padding: 0.15em 0.4em;
+    color: var(--rust-dark);
+    border: 1px solid var(--rule);
+  }
+
+  .article-body pre {
+    background: var(--ink);
+    padding: 1.5rem;
+    overflow-x: auto;
+    margin: 2rem 0;
+    border-left: 3px solid var(--rust);
+  }
+
+  .article-body pre code {
+    background: transparent;
+    border: none;
+    padding: 0;
+    color: rgba(255,255,255,0.85);
+    font-size: 0.85rem;
+    line-height: 1.7;
+  }
+
+  .article-body hr {
+    border: none;
+    border-top: 1px solid var(--rule);
+    margin: 3rem 0;
+  }
+
+  .article-body ul, .article-body ol {
+    padding-left: 1.5rem;
+    margin-bottom: 1.6rem;
+  }
+
+  .article-body li {
+    font-size: 1.05rem;
+    color: var(--slate);
+    line-height: 1.9;
+    margin-bottom: 0.4rem;
+  }
+
+   
+  .article-sidebar {
+    position: sticky;
+    top: 100px;
+  }
+
+  .sidebar-block {
+    padding: 1.5rem;
+    border: 1px solid var(--rule);
+    margin-bottom: 1.5rem;
+    background: var(--cream);
+  }
+
+  .sidebar-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 1rem;
+  }
+
+   
+  #TableOfContents { }
+  #TableOfContents ul { list-style: none; padding: 0; }
+  #TableOfContents li { margin-bottom: 0.6rem; }
+  #TableOfContents a {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 0.8rem;
+    color: var(--slate);
+    text-decoration: none;
+    line-height: 1.4;
+    display: block;
+    padding-left: 0.8rem;
+    border-left: 2px solid transparent;
+    transition: all 0.2s;
+  }
+  #TableOfContents a:hover,
+  #TableOfContents a.active {
+    color: var(--rust);
+    border-left-color: var(--rust);
+  }
+  .toc-list { list-style: none; }
+  .toc-list li { margin-bottom: 0.6rem; }
+
+  .toc-list a {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 0.8rem;
+    color: var(--slate);
+    text-decoration: none;
+    line-height: 1.4;
+    display: block;
+    padding-left: 0.8rem;
+    border-left: 2px solid transparent;
+    transition: all 0.2s;
+  }
+
+  .toc-list a:hover, .toc-list a.active {
+    color: var(--rust);
+    border-left-color: var(--rust);
+  }
+
+  .sidebar-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .sidebar-tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.6rem;
+    border: 1px solid var(--rule);
+    color: var(--muted);
+  }
+
+  .sidebar-book {
+    border-left: 3px solid var(--rust);
+    padding: 1.2rem;
+    background: white;
+    text-decoration: none;
+    display: block;
+    transition: background 0.2s;
+  }
+  .sidebar-book:hover { background: var(--cream); }
+
+  .sidebar-book-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin-bottom: 0.5rem;
+  }
+
+  .sidebar-book-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.3;
+    margin-bottom: 0.4rem;
+  }
+
+  .sidebar-book-desc {
+    font-size: 0.75rem;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+   
+  .article-footer {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 3rem 4rem 6rem;
+    border-top: 1px solid var(--rule);
+  }
+
+  .author-card {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+    padding: 2rem;
+    background: var(--cream);
+    border: 1px solid var(--rule);
+    margin-bottom: 3rem;
+  }
+
+  .author-card-initials {
+    width: 56px;
+    height: 56px;
+    background: var(--rust);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .author-card-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 0.3rem;
+  }
+
+  .author-card-title {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.08em;
+    color: var(--rust);
+    margin-bottom: 0.7rem;
+  }
+
+  .author-card-bio {
+    font-size: 0.85rem;
+    color: var(--slate);
+    line-height: 1.7;
+  }
+
+  .related-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .related-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--rule);
+  }
+
+  .related-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+  }
+
+  .related-card {
+    background: var(--paper);
+    padding: 1.8rem;
+    text-decoration: none;
+    display: block;
+    transition: background 0.2s;
+  }
+  .related-card:hover { background: var(--cream); }
+
+  .related-card-category {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin-bottom: 0.6rem;
+  }
+
+  .related-card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.3;
+    margin-bottom: 0.4rem;
+  }
+
+  .related-card-arrow {
+    font-size: 0.85rem;
+    color: var(--rust);
+    margin-top: 0.8rem;
+    display: block;
+  }
+
+   
+  footer {
+    background: var(--ink);
+    padding: 2.5rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #333;
+  }
+
+  .footer-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    color: white;
+    text-decoration: none;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .footer-links a {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--rust); }
+
+  .footer-copy {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.62rem;
+    color: rgba(255,255,255,0.25);
+  }
+
+   
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+   
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .article-header { padding: 8rem 1.5rem 3rem; }
+    .article-layout { grid-template-columns: 1fr; padding: 3rem 1.5rem 4rem; gap: 3rem; }
+    .article-sidebar { position: static; }
+    .article-footer { padding: 2rem 1.5rem 4rem; }
+    .related-grid { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 1.2rem; padding: 2rem 1.5rem; text-align: center; }
+    .footer-links { flex-wrap: wrap; justify-content: center; }
+  }
+</style>
+</head>
+<body>
+
+<div class="reading-progress" id="reading-progress"></div>
+
+
+<nav>
+  <a href="http://localhost:1313/" class="nav-brand">Theo van Stratum, PhD</a>
+  <ul class="nav-links">
+    <li><a href="http://localhost:1313/">Home</a></li>
+    <li><a href="http://localhost:1313/#books">Books</a></li>
+    <li><a href="http://localhost:1313/#research">Research</a></li>
+    <li><a href="http://localhost:1313/posts/" class="active">Writing</a></li>
+    <li><a href="http://localhost:1313/#contact">Contact</a></li>
+  </ul>
+</nav>
+
+
+<header class="article-header">
+  <div class="article-breadcrumb">
+    <a href="http://localhost:1313/posts/">Writing</a>
+    <span>/</span>
+    <span>Governance</span>
+  </div>
+
+  <div class="article-category">
+    Governance · Essay
+  </div>
+
+  <h1 class="article-title">Technical Debt Is Not a Metaphor</h1>
+
+  
+  <p class="article-subtitle">It Is a Measurable, Compounding Financial Risk</p>
+  
+
+  <div class="article-meta-bar">
+    <div class="article-author">
+      <span class="article-author-name">Theo van Stratum, PhD</span>
+      <span class="article-author-title">PhD, Information Technology · 30+ years Python</span>
+    </div>
+    <div class="article-meta-divider"></div>
+    <div class="article-meta-item">
+      <strong>2026</strong>
+      <span>Published</span>
+    </div>
+    <div class="article-meta-divider"></div>
+    <div class="article-meta-item">
+      <strong>4 min</strong>
+      <span>Reading time</span>
+    </div>
+    <div class="article-meta-divider"></div>
+    <div class="article-meta-item">
+      <strong>200+</strong>
+      <span>Projects studied</span>
+    </div>
+  </div>
+</header>
+
+
+<div class="article-layout">
+
+  <article class="article-body" id="article-body">
+    <p>Ward Cunningham introduced the term &ldquo;technical debt&rdquo; in 1992 as a metaphor — a way of explaining to non-technical stakeholders why cutting corners today creates extra work tomorrow. It was a good metaphor. It was clear, intuitive, and memorable.</p>
+<p>It has also allowed organisations to treat a quantifiable financial liability as a vague feeling.</p>
+<p>&ldquo;We have a lot of technical debt&rdquo; has become the software equivalent of &ldquo;we should really tidy the garage.&rdquo; Everyone agrees it is true. Everyone agrees it is a problem. Nobody measures it, prices it, or treats it with the seriousness that any other liability of comparable magnitude would demand.</p>
+<h2 id="debt-that-does-not-appear-on-the-balance-sheet">Debt That Does Not Appear on the Balance Sheet</h2>
+<p>Consider what technical debt actually represents. It is the accumulated cost of decisions made to deliver faster at the expense of quality — shortcuts in architecture, deferred refactoring, tests not written, documentation not maintained. Each of those decisions transferred a future cost from the present to some unspecified later date, in exchange for delivery speed today.</p>
+<p>This is a financial transaction. It has a principal — the cost of the work deferred. It has interest — the compounding cost of working around the deferred work, the increased time to make changes, the higher probability of production incidents. It has a maturity risk — the possibility that the debt becomes unserviceable, that the system becomes too entangled to modify without catastrophic risk.</p>
+<p>None of this appears on any balance sheet. None of it is reported to boards or auditors. None of it is factored into the valuations that underpin investment decisions, acquisition pricing, or strategic planning.</p>
+<p>An organisation that borrowed fifty million dollars would have that liability disclosed, monitored, and managed. An organisation that has accumulated the equivalent in deferred engineering quality almost certainly does not know it has done so, let alone what it owes.</p>
+<h2 id="the-compounding-problem">The Compounding Problem</h2>
+<p>Financial debt compounds because interest accrues on the outstanding principal. Technical debt compounds for a different reason: the more of it you have, the slower every subsequent piece of work becomes.</p>
+<p>A codebase with significant technical debt is not simply a codebase where some things need to be cleaned up. It is a codebase where every new feature takes longer, every bug fix carries higher risk of introducing new bugs, every deployment requires more manual intervention, and every engineer who joins takes longer to become productive because the system they are learning is harder to understand.</p>
+<p>The interest rate on technical debt is not fixed. It increases as the debt grows. A team with moderate debt might work at 80% of their potential speed. A team with severe debt might work at 40%. The compounding is non-linear, and by the time it becomes visible in delivery metrics, it has typically been accumulating for years.</p>
+<h2 id="measurement-is-not-optional">Measurement Is Not Optional</h2>
+<p>The standard objection to measuring technical debt is that it is too complex to quantify. The codebase is too large. The interactions are too subtle. The future costs are too uncertain to price.</p>
+<p>This argument would be immediately rejected in any other domain of risk management. Insurance companies price far more complex and uncertain risks every day. The uncertainty does not make measurement impossible — it makes measurement probabilistic. You do not need to know exactly what the debt will cost. You need to know its distribution.</p>
+<p>The tools exist. Cycle time data — the actual elapsed time for work items — captures the debt&rsquo;s effect even when its cause is opaque. If your cycle times are increasing quarter over quarter without a corresponding increase in work complexity, the technical debt is compounding. That is a measurable signal. It has a dollar value attached to it: the difference between what your team could deliver in a debt-free system and what they are actually delivering.</p>
+<h2 id="the-fiduciary-question">The Fiduciary Question</h2>
+<p>Here is the question that organisations consistently avoid: if the board of a company knew that a liability of this magnitude existed on the engineering balance sheet, and that it was compounding at this rate, and that it was not being managed or even disclosed — what would they say?</p>
+<p>Technical debt is not a development team problem. It is a governance problem. The decisions that created it were often made at the request of leadership, under pressure to ship faster, in the name of business priorities that seemed urgent at the time. The responsibility for managing it belongs at the same level.</p>
+<p>Treating technical debt as a vague feeling, a developer complaint, a thing to be addressed &ldquo;when we have time&rdquo; — which means never — is a fiduciary failure. It is the acceptance of a compounding liability without disclosure, measurement, or a plan for repayment.</p>
+<p>The garage is not going to tidy itself. And unlike the garage, it is getting messier every week you leave it.</p>
+<hr>
+<p><em>This post draws on ongoing research for</em> The Technical Debt Paradox <em>(forthcoming).</em></p>
+
+  </article>
+
+  
+  <aside class="article-sidebar">
+
+    
+    <div class="sidebar-block">
+      <div class="sidebar-label">In this essay</div>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#debt-that-does-not-appear-on-the-balance-sheet">Debt That Does Not Appear on the Balance Sheet</a></li>
+    <li><a href="#the-compounding-problem">The Compounding Problem</a></li>
+    <li><a href="#measurement-is-not-optional">Measurement Is Not Optional</a></li>
+    <li><a href="#the-fiduciary-question">The Fiduciary Question</a></li>
+  </ul>
+</nav>
+    </div>
+    
+
+    
+    <div class="sidebar-block">
+      <div class="sidebar-label">Tags</div>
+      <div class="sidebar-tags">
+        
+        <span class="sidebar-tag">Technical Debt</span>
+        
+        <span class="sidebar-tag">Software Governance</span>
+        
+        <span class="sidebar-tag">Risk</span>
+        
+        <span class="sidebar-tag">Fiduciary</span>
+        
+        <span class="sidebar-tag">Measurement</span>
+        
+      </div>
+    </div>
+    
+
+    <a href="http://localhost:1313/#books" class="sidebar-book">
+      <div class="sidebar-book-label">Related work</div>
+      <div class="sidebar-book-title">View all books</div>
+      <div class="sidebar-book-desc">Probabilistic Delivery · The Gambler's Fallacy · and more</div>
+    </a>
+
+  </aside>
+</div>
+
+
+<div class="article-footer">
+
+  <div class="author-card">
+    <div class="author-card-initials">TV</div>
+    <div>
+      <div class="author-card-name">Theo van Stratum, PhD</div>
+      <div class="author-card-title">Software Governance · Probabilistic Reasoning · 30+ Years Python</div>
+      <p class="author-card-bio">Researcher and author based in The Hague and Manila. PhD in Information Technology. His work applies actuarial science and Bayesian reasoning to the hard problems of software delivery, decision-making, and academic research methodology.</p>
+    </div>
+  </div>
+
+  <div class="related-posts">
+    <div class="related-label">Continue reading</div>
+    <div class="related-grid">
+      
+      <a href="http://localhost:1313/posts/an-introduction-to-bayesian-updating/" class="related-card">
+        <div class="related-card-category">Probability</div>
+        <div class="related-card-title">An Introduction to Bayesian Updating</div>
+        <span class="related-card-arrow">Read essay →</span>
+      </a>
+      
+      <a href="http://localhost:1313/posts/the-p85-standard/" class="related-card">
+        <div class="related-card-category">Probability</div>
+        <div class="related-card-title">The P85 Standard</div>
+        <span class="related-card-arrow">Read essay →</span>
+      </a>
+      
+    </div>
+  </div>
+
+</div>
+
+
+<footer>
+  <a href="http://localhost:1313/" class="footer-brand">Theo van Stratum, PhD</a>
+  <ul class="footer-links">
+    <li><a href="http://localhost:1313/">Home</a></li>
+    <li><a href="http://localhost:1313/#books">Books</a></li>
+    <li><a href="http://localhost:1313/posts/">Writing</a></li>
+    <li><a href="http://localhost:1313/#contact">Contact</a></li>
+    <li><a href="https://www.linkedin.com/in/theo-van-stratum-1a92022b1/" target="_blank">LinkedIn</a></li>
+  </ul>
+  <span class="footer-copy">© 2026 Theo van Stratum, PhD</span>
+</footer>
+
+<script>
+  
+  window.addEventListener('scroll', () => {
+    const article = document.getElementById('article-body');
+    if (!article) return;
+    const total = article.offsetHeight;
+    const scrolled = Math.max(0, window.scrollY - article.offsetTop);
+    const pct = Math.min(100, (scrolled / total) * 100);
+    document.getElementById('reading-progress').style.width = pct + '%';
+  });
+
+  
+  const headings = document.querySelectorAll('.article-body h2[id]');
+  const tocLinks = document.querySelectorAll('#TableOfContents a');
+
+  window.addEventListener('scroll', () => {
+    let current = '';
+    headings.forEach(h => {
+      if (window.scrollY >= h.offsetTop - 140) current = h.id;
+    });
+    tocLinks.forEach(link => {
+      link.classList.toggle('active', link.getAttribute('href') === '#' + current);
+    });
+  });
+</script>
+</body>
+</html>

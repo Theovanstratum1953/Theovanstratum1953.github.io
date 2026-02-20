@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The P85 Standard — Theo van Stratum, PhD</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0d0d0d;
+    --paper: #f5f1ea;
+    --cream: #ede8de;
+    --rust: #b84c2b;
+    --rust-dark: #8a3520;
+    --slate: #2c3e50;
+    --gold: #c9a84c;
+    --muted: #7a7268;
+    --rule: #c8c0b0;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.4;
+  }
+
+   
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 4rem;
+    background: rgba(245, 241, 234, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .nav-brand {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    font-weight: 400;
+    color: var(--muted);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-brand:hover { color: var(--rust); }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover, .nav-links a.active { color: var(--rust); }
+
+   
+  .reading-progress {
+    position: fixed;
+    top: 0; left: 0;
+    height: 2px;
+    background: var(--rust);
+    z-index: 200;
+    width: 0%;
+    transition: width 0.1s linear;
+  }
+
+   
+  .article-header {
+    padding: 10rem 4rem 5rem;
+    max-width: 820px;
+    margin: 0 auto;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.2s;
+  }
+
+  .article-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 2.5rem;
+  }
+
+  .article-breadcrumb a {
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .article-breadcrumb a:hover { color: var(--rust); }
+  .article-breadcrumb span { color: var(--rust); }
+
+  .article-category {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin-bottom: 1.2rem;
+  }
+
+  .article-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 4vw, 3.5rem);
+    font-weight: 900;
+    line-height: 1.1;
+    color: var(--ink);
+    margin-bottom: 1rem;
+  }
+
+  .article-subtitle {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: clamp(1rem, 1.5vw, 1.3rem);
+    color: var(--muted);
+    line-height: 1.5;
+    margin-bottom: 2.5rem;
+  }
+
+  .article-meta-bar {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    padding: 1.5rem 0;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    flex-wrap: wrap;
+  }
+
+  .article-author { display: flex; flex-direction: column; }
+
+  .article-author-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--ink);
+  }
+
+  .article-author-title {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin-top: 0.15rem;
+  }
+
+  .article-meta-divider {
+    width: 1px;
+    height: 30px;
+    background: var(--rule);
+  }
+
+  .article-meta-item {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+
+  .article-meta-item strong {
+    font-weight: 500;
+    color: var(--ink);
+  }
+
+   
+  .article-layout {
+    display: grid;
+    grid-template-columns: 1fr 260px;
+    gap: 5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 4rem 4rem 6rem;
+    align-items: start;
+  }
+
+   
+  .article-body { min-width: 0; }
+
+  .article-body p {
+    font-size: 1.05rem;
+    color: var(--slate);
+    line-height: 1.9;
+    margin-bottom: 1.6rem;
+  }
+
+  .article-body h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.7rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin: 3rem 0 1rem;
+    line-height: 1.2;
+  }
+
+  .article-body h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin: 2.5rem 0 0.8rem;
+    font-style: italic;
+  }
+
+  .article-body strong { font-weight: 500; color: var(--ink); }
+  .article-body em { font-style: italic; }
+
+  .article-body blockquote {
+    border-left: 3px solid var(--rust);
+    padding: 1rem 1.5rem;
+    margin: 2rem 0;
+    background: var(--cream);
+  }
+
+  .article-body blockquote p {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--slate);
+    margin-bottom: 0;
+    line-height: 1.7;
+  }
+
+  .article-body code {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.85em;
+    background: var(--cream);
+    padding: 0.15em 0.4em;
+    color: var(--rust-dark);
+    border: 1px solid var(--rule);
+  }
+
+  .article-body pre {
+    background: var(--ink);
+    padding: 1.5rem;
+    overflow-x: auto;
+    margin: 2rem 0;
+    border-left: 3px solid var(--rust);
+  }
+
+  .article-body pre code {
+    background: transparent;
+    border: none;
+    padding: 0;
+    color: rgba(255,255,255,0.85);
+    font-size: 0.85rem;
+    line-height: 1.7;
+  }
+
+  .article-body hr {
+    border: none;
+    border-top: 1px solid var(--rule);
+    margin: 3rem 0;
+  }
+
+  .article-body ul, .article-body ol {
+    padding-left: 1.5rem;
+    margin-bottom: 1.6rem;
+  }
+
+  .article-body li {
+    font-size: 1.05rem;
+    color: var(--slate);
+    line-height: 1.9;
+    margin-bottom: 0.4rem;
+  }
+
+   
+  .article-sidebar {
+    position: sticky;
+    top: 100px;
+  }
+
+  .sidebar-block {
+    padding: 1.5rem;
+    border: 1px solid var(--rule);
+    margin-bottom: 1.5rem;
+    background: var(--cream);
+  }
+
+  .sidebar-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 1rem;
+  }
+
+   
+  #TableOfContents { }
+  #TableOfContents ul { list-style: none; padding: 0; }
+  #TableOfContents li { margin-bottom: 0.6rem; }
+  #TableOfContents a {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 0.8rem;
+    color: var(--slate);
+    text-decoration: none;
+    line-height: 1.4;
+    display: block;
+    padding-left: 0.8rem;
+    border-left: 2px solid transparent;
+    transition: all 0.2s;
+  }
+  #TableOfContents a:hover,
+  #TableOfContents a.active {
+    color: var(--rust);
+    border-left-color: var(--rust);
+  }
+  .toc-list { list-style: none; }
+  .toc-list li { margin-bottom: 0.6rem; }
+
+  .toc-list a {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 0.8rem;
+    color: var(--slate);
+    text-decoration: none;
+    line-height: 1.4;
+    display: block;
+    padding-left: 0.8rem;
+    border-left: 2px solid transparent;
+    transition: all 0.2s;
+  }
+
+  .toc-list a:hover, .toc-list a.active {
+    color: var(--rust);
+    border-left-color: var(--rust);
+  }
+
+  .sidebar-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .sidebar-tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.6rem;
+    border: 1px solid var(--rule);
+    color: var(--muted);
+  }
+
+  .sidebar-book {
+    border-left: 3px solid var(--rust);
+    padding: 1.2rem;
+    background: white;
+    text-decoration: none;
+    display: block;
+    transition: background 0.2s;
+  }
+  .sidebar-book:hover { background: var(--cream); }
+
+  .sidebar-book-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin-bottom: 0.5rem;
+  }
+
+  .sidebar-book-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.3;
+    margin-bottom: 0.4rem;
+  }
+
+  .sidebar-book-desc {
+    font-size: 0.75rem;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+   
+  .article-footer {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 3rem 4rem 6rem;
+    border-top: 1px solid var(--rule);
+  }
+
+  .author-card {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+    padding: 2rem;
+    background: var(--cream);
+    border: 1px solid var(--rule);
+    margin-bottom: 3rem;
+  }
+
+  .author-card-initials {
+    width: 56px;
+    height: 56px;
+    background: var(--rust);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .author-card-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 0.3rem;
+  }
+
+  .author-card-title {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.08em;
+    color: var(--rust);
+    margin-bottom: 0.7rem;
+  }
+
+  .author-card-bio {
+    font-size: 0.85rem;
+    color: var(--slate);
+    line-height: 1.7;
+  }
+
+  .related-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .related-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--rule);
+  }
+
+  .related-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+  }
+
+  .related-card {
+    background: var(--paper);
+    padding: 1.8rem;
+    text-decoration: none;
+    display: block;
+    transition: background 0.2s;
+  }
+  .related-card:hover { background: var(--cream); }
+
+  .related-card-category {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin-bottom: 0.6rem;
+  }
+
+  .related-card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.3;
+    margin-bottom: 0.4rem;
+  }
+
+  .related-card-arrow {
+    font-size: 0.85rem;
+    color: var(--rust);
+    margin-top: 0.8rem;
+    display: block;
+  }
+
+   
+  footer {
+    background: var(--ink);
+    padding: 2.5rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #333;
+  }
+
+  .footer-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    color: white;
+    text-decoration: none;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .footer-links a {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--rust); }
+
+  .footer-copy {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.62rem;
+    color: rgba(255,255,255,0.25);
+  }
+
+   
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+   
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .article-header { padding: 8rem 1.5rem 3rem; }
+    .article-layout { grid-template-columns: 1fr; padding: 3rem 1.5rem 4rem; gap: 3rem; }
+    .article-sidebar { position: static; }
+    .article-footer { padding: 2rem 1.5rem 4rem; }
+    .related-grid { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 1.2rem; padding: 2rem 1.5rem; text-align: center; }
+    .footer-links { flex-wrap: wrap; justify-content: center; }
+  }
+</style>
+</head>
+<body>
+
+<div class="reading-progress" id="reading-progress"></div>
+
+
+<nav>
+  <a href="http://localhost:1313/" class="nav-brand">Theo van Stratum, PhD</a>
+  <ul class="nav-links">
+    <li><a href="http://localhost:1313/">Home</a></li>
+    <li><a href="http://localhost:1313/#books">Books</a></li>
+    <li><a href="http://localhost:1313/#research">Research</a></li>
+    <li><a href="http://localhost:1313/posts/" class="active">Writing</a></li>
+    <li><a href="http://localhost:1313/#contact">Contact</a></li>
+  </ul>
+</nav>
+
+
+<header class="article-header">
+  <div class="article-breadcrumb">
+    <a href="http://localhost:1313/posts/">Writing</a>
+    <span>/</span>
+    <span>Probability</span>
+  </div>
+
+  <div class="article-category">
+    Probability · Essay
+  </div>
+
+  <h1 class="article-title">The P85 Standard</h1>
+
+  
+  <p class="article-subtitle">Why 85% Confidence Is the Only Honest Commitment</p>
+  
+
+  <div class="article-meta-bar">
+    <div class="article-author">
+      <span class="article-author-name">Theo van Stratum, PhD</span>
+      <span class="article-author-title">PhD, Information Technology · 30+ years Python</span>
+    </div>
+    <div class="article-meta-divider"></div>
+    <div class="article-meta-item">
+      <strong>2026</strong>
+      <span>Published</span>
+    </div>
+    <div class="article-meta-divider"></div>
+    <div class="article-meta-item">
+      <strong>4 min</strong>
+      <span>Reading time</span>
+    </div>
+    <div class="article-meta-divider"></div>
+    <div class="article-meta-item">
+      <strong>200+</strong>
+      <span>Projects studied</span>
+    </div>
+  </div>
+</header>
+
+
+<div class="article-layout">
+
+  <article class="article-body" id="article-body">
+    <p>Every commitment you have ever made about a software delivery date has been a number without a probability attached to it.</p>
+<p>&ldquo;We will ship by March 14th.&rdquo; Full stop. No confidence level. No distribution. No acknowledgment that March 14th is one point on a range of outcomes, some earlier, most later, a few catastrophically so.</p>
+<p>This is not how professionals who take risk seriously communicate. It is not how actuaries work, or insurers, or anyone whose career depends on the accuracy of their forecasts rather than the confidence of their presentation.</p>
+<p>It is, however, how almost every software organisation in the world makes its commitments. And it is why those commitments are wrong so consistently that experienced practitioners have developed a private mental correction factor — take whatever the project manager says and add eight weeks.</p>
+<h2 id="what-p85-means">What P85 Means</h2>
+<p>P85 is the date at which, given your historical delivery data and a Monte Carlo simulation of your system, 85% of modelled outcomes complete successfully.</p>
+<p>It is not a guarantee. Nothing in a stochastic system is a guarantee. It is a defensible probability, derived from evidence, communicated honestly.</p>
+<p>The choice of 85% is not arbitrary. It mirrors the standard used in actuarial science for insurable commitments — the threshold at which a risk can be underwritten without being considered reckless. Below P85, you are not making a commitment. You are making a bet, and asking your stakeholders to absorb the downside without knowing they have accepted it.</p>
+<h2 id="the-commitment-you-are-actually-making">The Commitment You Are Actually Making</h2>
+<p>When a project manager presents a delivery date with no confidence level attached, they are implicitly presenting their P50 — the date by which roughly half of plausible outcomes complete.</p>
+<p>Think about that. The standard practice in software governance is to make commitments that have approximately a fifty percent chance of being met. This is not a cynical observation. It is a mathematical description of what a point estimate without a probability distribution actually means.</p>
+<p>A P50 commitment is a coin flip dressed in a Gantt chart.</p>
+<p>The reason organisations use P50 without knowing it is not malice. It is that estimators anchor on the most likely scenario — the one where everything goes approximately to plan — and then present that scenario as the plan. The tail of the distribution, where the interesting and painful things live, is edited out of the presentation before it reaches the stakeholder.</p>
+<p>The stakeholder, reasonably, assumes they have been given a realistic date. They plan around it. They make their own commitments based on it. When the tail arrives — as tails do, reliably, in roughly half of all projects — the consequences cascade.</p>
+<h2 id="what-changes-when-you-use-p85">What Changes When You Use P85</h2>
+<p>The first thing that changes is the date. A P85 commitment is almost always later than a P50 commitment. Sometimes by days. Often by weeks. Occasionally by months, particularly in high-variance systems.</p>
+<p>This is uncomfortable. Leadership does not want a later date. The market does not want a later date. The sales team has already told the customer a date that was optimistic even at the time.</p>
+<p>The discomfort is the point. The P85 standard does not create the uncertainty — it reveals it. The risk was always there, accumulating in the tail of the distribution, invisible in the dashboard, unacknowledged in the standup. P85 makes the honesty explicit.</p>
+<p>The second thing that changes is accountability. When you commit to a P85 date and miss it, you have encountered a genuine one-in-seven event. You can analyse it, learn from it, and update your model. When you commit to a P50 date and miss it, you have encountered Tuesday. There is nothing to learn. The failure was priced in.</p>
+<h2 id="the-organisation-that-cannot-handle-truth">The Organisation That Cannot Handle Truth</h2>
+<p>Some organisations, when presented with P85 dates, reject them. The dates are too conservative. The market will not accept them. The CEO has already promised the board a date and that date is not changing.</p>
+<p>This is a governance failure, not a statistical one. The probability does not negotiate. The distribution does not adjust itself to meet the board&rsquo;s expectations. The tail will arrive on its own schedule, indifferent to the commitments that were made in its absence.</p>
+<p>The choice is not between a comfortable date and an uncomfortable date. The choice is between an honest date and a dishonest one. The consequences arrive either way. Only one approach gives you the chance to prepare for them.</p>
+<hr>
+<p><em>This post draws on research from</em> Probabilistic Delivery: The Actuarial Science of Software Governance <em>(2026).</em></p>
+
+  </article>
+
+  
+  <aside class="article-sidebar">
+
+    
+    <div class="sidebar-block">
+      <div class="sidebar-label">In this essay</div>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#what-p85-means">What P85 Means</a></li>
+    <li><a href="#the-commitment-you-are-actually-making">The Commitment You Are Actually Making</a></li>
+    <li><a href="#what-changes-when-you-use-p85">What Changes When You Use P85</a></li>
+    <li><a href="#the-organisation-that-cannot-handle-truth">The Organisation That Cannot Handle Truth</a></li>
+  </ul>
+</nav>
+    </div>
+    
+
+    
+    <div class="sidebar-block">
+      <div class="sidebar-label">Tags</div>
+      <div class="sidebar-tags">
+        
+        <span class="sidebar-tag">P85</span>
+        
+        <span class="sidebar-tag">Probability</span>
+        
+        <span class="sidebar-tag">Actuarial</span>
+        
+        <span class="sidebar-tag">Forecasting</span>
+        
+        <span class="sidebar-tag">Commitments</span>
+        
+      </div>
+    </div>
+    
+
+    <a href="http://localhost:1313/#books" class="sidebar-book">
+      <div class="sidebar-book-label">Related work</div>
+      <div class="sidebar-book-title">View all books</div>
+      <div class="sidebar-book-desc">Probabilistic Delivery · The Gambler's Fallacy · and more</div>
+    </a>
+
+  </aside>
+</div>
+
+
+<div class="article-footer">
+
+  <div class="author-card">
+    <div class="author-card-initials">TV</div>
+    <div>
+      <div class="author-card-name">Theo van Stratum, PhD</div>
+      <div class="author-card-title">Software Governance · Probabilistic Reasoning · 30+ Years Python</div>
+      <p class="author-card-bio">Researcher and author based in The Hague and Manila. PhD in Information Technology. His work applies actuarial science and Bayesian reasoning to the hard problems of software delivery, decision-making, and academic research methodology.</p>
+    </div>
+  </div>
+
+  <div class="related-posts">
+    <div class="related-label">Continue reading</div>
+    <div class="related-grid">
+      
+      <a href="http://localhost:1313/posts/an-introduction-to-bayesian-updating/" class="related-card">
+        <div class="related-card-category">Probability</div>
+        <div class="related-card-title">An Introduction to Bayesian Updating</div>
+        <span class="related-card-arrow">Read essay →</span>
+      </a>
+      
+      <a href="http://localhost:1313/posts/technical-debt-is-not-a-metaphor/" class="related-card">
+        <div class="related-card-category">Governance</div>
+        <div class="related-card-title">Technical Debt Is Not a Metaphor</div>
+        <span class="related-card-arrow">Read essay →</span>
+      </a>
+      
+    </div>
+  </div>
+
+</div>
+
+
+<footer>
+  <a href="http://localhost:1313/" class="footer-brand">Theo van Stratum, PhD</a>
+  <ul class="footer-links">
+    <li><a href="http://localhost:1313/">Home</a></li>
+    <li><a href="http://localhost:1313/#books">Books</a></li>
+    <li><a href="http://localhost:1313/posts/">Writing</a></li>
+    <li><a href="http://localhost:1313/#contact">Contact</a></li>
+    <li><a href="https://www.linkedin.com/in/theo-van-stratum-1a92022b1/" target="_blank">LinkedIn</a></li>
+  </ul>
+  <span class="footer-copy">© 2026 Theo van Stratum, PhD</span>
+</footer>
+
+<script>
+  
+  window.addEventListener('scroll', () => {
+    const article = document.getElementById('article-body');
+    if (!article) return;
+    const total = article.offsetHeight;
+    const scrolled = Math.max(0, window.scrollY - article.offsetTop);
+    const pct = Math.min(100, (scrolled / total) * 100);
+    document.getElementById('reading-progress').style.width = pct + '%';
+  });
+
+  
+  const headings = document.querySelectorAll('.article-body h2[id]');
+  const tocLinks = document.querySelectorAll('#TableOfContents a');
+
+  window.addEventListener('scroll', () => {
+    let current = '';
+    headings.forEach(h => {
+      if (window.scrollY >= h.offsetTop - 140) current = h.id;
+    });
+    tocLinks.forEach(link => {
+      link.classList.toggle('active', link.getAttribute('href') === '#' + current);
+    });
+  });
+</script>
+</body>
+</html>

@@ -5,11 +5,14 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="noindex, nofollow">
-<title>Tags | Probabilistic Delivery</title>
+<title>Probabilistic Delivery</title>
 <meta name="keywords" content="">
-<meta name="description" content="The Actuarial Science of Software Governance">
+<meta name="description" content="What Is Probabilistic Delivery? A New Operating System for Software Governance
+By Theo van Stratum, PhD
+
+Every year, organisations collectively spend hundreds of billions of dollars on software projects that arrive late, over budget, or simply fail to deliver. The post-mortems invariably describe the same sequence: dashboards showed green, stakeholders were reassured, and then — somewhere around month nine or eleven — reality arrived uninvited. What went wrong is rarely a question of effort or talent. It is almost always a question of measurement.">
 <meta name="author" content="Theo van Stratum, PhD">
-<link rel="canonical" href="http://localhost:1313/tags/">
+<link rel="canonical" href="http://localhost:1313/about/about/">
 <link crossorigin="anonymous" href="http://localhost:1313/assets/css/stylesheet.da3211e5ef867bf2b75fd5a6515cfed7195c011e8ab735694e203810a827097b.css" integrity="sha256-2jIR5e&#43;Ge/K3X9WmUVz&#43;1xlcAR6KtzVpTiA4EKgnCXs=" rel="preload stylesheet" as="style">
 <link rel="icon" href="http://localhost:1313/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
@@ -18,8 +21,7 @@
 <link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" type="application/rss+xml" href="http://localhost:1313/tags/index.xml" title="rss">
-<link rel="alternate" hreflang="en" href="http://localhost:1313/tags/">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/about/about/">
 <noscript>
     <style>
         #theme-toggle,
@@ -73,7 +75,7 @@
 
 </script>
 </head>
-<body class="list" id="top">
+<body id="top">
     <header class="header">
     <nav class="nav">
         <div class="logo">
@@ -106,12 +108,32 @@
     </nav>
 </header>
 <main class="main">
-<header class="page-header">
-    <h1>Tags</h1>
-</header>
 
-<ul class="terms-tags">
-</ul>
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      
+    </h1>
+    <div class="post-meta"><span>Theo van Stratum, PhD</span>
+
+</div>
+  </header> 
+  <div class="post-content"><h1 id="what-is-probabilistic-delivery-a-new-operating-system-for-software-governance">What Is Probabilistic Delivery? A New Operating System for Software Governance<a hidden class="anchor" aria-hidden="true" href="#what-is-probabilistic-delivery-a-new-operating-system-for-software-governance">#</a></h1>
+<p><em>By Theo van Stratum, PhD</em></p>
+<hr>
+<p>Every year, organisations collectively spend hundreds of billions of dollars on software projects that arrive late, over budget, or simply fail to deliver. The post-mortems invariably describe the same sequence: dashboards showed green, stakeholders were reassured, and then — somewhere around month nine or eleven — reality arrived uninvited. What went wrong is rarely a question of effort or talent. It is almost always a question of measurement.</p>
+<p>Probabilistic Delivery is a framework designed to solve that measurement problem. It applies the statistical rigour of actuarial science — the same discipline that underwrites insurance policies and manages financial risk portfolios — to the governance of software projects. The result is not a new flavour of methodology. It is a fundamentally different relationship between organisations and the uncertainty that is inherent to all complex technical work.</p>
+<p><a href="https://leanpub.com/probabilisticdelivery"><img alt="Probabilistic Delivery" loading="lazy" src="http://localhost:1313/images/cover-web.png"></a></p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+  </footer>
+</article>
     </main>
     
 <footer class="footer">
@@ -188,6 +210,53 @@
         }
     })
 
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
 </script>
 </body>
 

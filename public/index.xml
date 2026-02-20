@@ -2,16 +2,26 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Probabilistic Delivery</title>
-    <link>https://theovanstratum1953.github.io/</link>
+    <link>http://localhost:1313/</link>
     <description>Recent content on Probabilistic Delivery</description>
     <generator>Hugo -- 0.155.3</generator>
     <language>en</language>
-    <atom:link href="https://theovanstratum1953.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title></title>
-      <link>https://theovanstratum1953.github.io/posts/post01/</link>
+      <link>http://localhost:1313/about/about/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://theovanstratum1953.github.io/posts/post01/</guid>
+      <guid>http://localhost:1313/about/about/</guid>
+      <description>&lt;h1 id=&#34;what-is-probabilistic-delivery-a-new-operating-system-for-software-governance&#34;&gt;What Is Probabilistic Delivery? A New Operating System for Software Governance&lt;/h1&gt;
+&lt;p&gt;&lt;em&gt;By Theo van Stratum, PhD&lt;/em&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;Every year, organisations collectively spend hundreds of billions of dollars on software projects that arrive late, over budget, or simply fail to deliver. The post-mortems invariably describe the same sequence: dashboards showed green, stakeholders were reassured, and then — somewhere around month nine or eleven — reality arrived uninvited. What went wrong is rarely a question of effort or talent. It is almost always a question of measurement.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title></title>
+      <link>http://localhost:1313/posts/post01/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/post01/</guid>
       <description>&lt;h1 id=&#34;what-is-probabilistic-delivery-a-new-operating-system-for-software-governance&#34;&gt;What Is Probabilistic Delivery? A New Operating System for Software Governance&lt;/h1&gt;
 &lt;p&gt;&lt;em&gt;By Theo van Stratum, PhD&lt;/em&gt;&lt;/p&gt;
 &lt;hr&gt;

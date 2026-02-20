@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta name="generator" content="Hugo 0.155.3"><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Theo van Stratum, PhD — Author & Researcher</title>
@@ -33,7 +32,7 @@
     overflow-x: hidden;
   }
 
-   
+  /* ── NOISE TEXTURE OVERLAY ── */
   body::before {
     content: '';
     position: fixed;
@@ -44,7 +43,7 @@
     opacity: 0.4;
   }
 
-   
+  /* ── NAV ── */
   nav {
     position: fixed;
     top: 0; left: 0; right: 0;
@@ -86,7 +85,7 @@
 
   .nav-links a:hover { color: var(--rust); }
 
-   
+  /* ── HERO ── */
   .hero {
     min-height: 100vh;
     display: grid;
@@ -219,7 +218,7 @@
 
   .btn-secondary:hover { border-color: var(--ink); }
 
-   
+  /* ── HERO RIGHT ── */
   .hero-right {
     background: var(--ink);
     display: flex;
@@ -321,7 +320,7 @@
     color: rgba(255,255,255,0.95);
   }
 
-   
+  /* ── SECTION COMMON ── */
   section { position: relative; }
 
   .section-inner {
@@ -362,7 +361,7 @@
 
   .section-heading em { font-style: italic; color: var(--rust); }
 
-   
+  /* ── ABOUT ── */
   #about { background: var(--cream); border-top: 1px solid var(--rule); }
 
   .about-grid {
@@ -419,7 +418,7 @@
     line-height: 1.6;
   }
 
-   
+  /* ── PYTHON TIMELINE ── */
   .python-timeline {
     position: relative;
     padding-left: 2rem;
@@ -459,7 +458,7 @@
     line-height: 1.6;
   }
 
-   
+  /* ── BOOKS ── */
   #books { background: var(--paper); border-top: 1px solid var(--rule); }
 
   .books-intro {
@@ -560,7 +559,7 @@
     font-weight: 500;
   }
 
-   
+  /* ── RESEARCH ── */
   #research { background: var(--ink); border-top: 1px solid #222; }
 
   #research .section-label { color: var(--gold); }
@@ -635,7 +634,7 @@
     background: rgba(184,76,43,0.1);
   }
 
-   
+  /* ── UPCOMING ── */
   #upcoming { background: var(--cream); border-top: 1px solid var(--rule); }
 
   .upcoming-grid {
@@ -695,7 +694,7 @@
     line-height: 2;
   }
 
-   
+  /* ── CONTACT ── */
   #contact { background: var(--paper); border-top: 1px solid var(--rule); }
 
   .contact-grid {
@@ -776,7 +775,7 @@
     line-height: 1.7;
   }
 
-   
+  /* ── FOOTER ── */
   footer {
     background: var(--ink);
     padding: 2.5rem 4rem;
@@ -799,7 +798,7 @@
     color: rgba(255,255,255,0.3);
   }
 
-   
+  /* ── ANIMATIONS ── */
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(20px); }
     to   { opacity: 1; transform: translateY(0); }
@@ -821,7 +820,7 @@
     transform: translateY(0);
   }
 
-   
+  /* ── RESPONSIVE ── */
   @media (max-width: 900px) {
     nav { padding: 1rem 1.5rem; }
     .nav-links { gap: 1.2rem; }
@@ -837,7 +836,7 @@
 </head>
 <body>
 
-
+<!-- ── NAV ── -->
 <nav>
   <a href="#" class="nav-brand">Theo van Stratum, PhD</a>
   <ul class="nav-links">
@@ -849,7 +848,7 @@
   </ul>
 </nav>
 
-
+<!-- ── HERO ── -->
 <section class="hero" id="home">
   <div class="hero-left">
     <span class="hero-eyebrow">Author · Researcher · PhD</span>
@@ -904,7 +903,7 @@
   </div>
 </section>
 
-
+<!-- ── ABOUT ── -->
 <section id="about">
   <div class="section-inner">
     <div class="about-grid">
@@ -974,7 +973,7 @@
   </div>
 </section>
 
-
+<!-- ── BOOKS ── -->
 <section id="books">
   <div class="section-inner">
     <div class="section-label reveal">Publications</div>
@@ -983,7 +982,7 @@
 
     <div class="books-grid reveal">
 
-      
+      <!-- Book 1 -->
       <div class="book-card">
         <span class="book-status status-published">Published · 2026</span>
         <div class="book-number">01</div>
@@ -997,7 +996,7 @@
         </div>
       </div>
 
-      
+      <!-- Book 2 -->
       <div class="book-card">
         <span class="book-status status-published">Published · 2026</span>
         <div class="book-number">02</div>
@@ -1011,7 +1010,7 @@
         </div>
       </div>
 
-      
+      <!-- Book 3 -->
       <div class="book-card">
         <span class="book-status status-progress">In Progress</span>
         <div class="book-number">03</div>
@@ -1029,7 +1028,7 @@
   </div>
 </section>
 
-
+<!-- ── RESEARCH ── -->
 <section id="research">
   <div class="section-inner">
     <div class="section-label reveal">Research Interests</div>
@@ -1077,7 +1076,7 @@
   </div>
 </section>
 
-
+<!-- ── UPCOMING ── -->
 <section id="upcoming">
   <div class="section-inner">
     <div class="section-label reveal">In Development</div>
@@ -1114,7 +1113,7 @@
   </div>
 </section>
 
-
+<!-- ── CONTACT ── -->
 <section id="contact">
   <div class="section-inner">
     <div class="contact-grid">
@@ -1164,14 +1163,14 @@
   </div>
 </section>
 
-
+<!-- ── FOOTER ── -->
 <footer>
   <span class="footer-brand">Theo van Stratum, PhD</span>
   <span class="footer-copy">© 2026 · All rights reserved</span>
 </footer>
 
 <script>
-  
+  // Scroll reveal
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry, i) => {
@@ -1183,7 +1182,7 @@
 
   reveals.forEach(el => observer.observe(el));
 
-  
+  // Smooth active nav highlighting
   const sections = document.querySelectorAll('section[id]');
   const navLinks = document.querySelectorAll('.nav-links a');
 

@@ -12,8 +12,8 @@
   <section class="book-hero">
     <div class="container book-hero__inner">
       <div class="book-hero__cover">
-        {{ if .Params.cover }}
-        <img src="{{ .Params.cover }}" alt="{{ .Title }} cover">
+        {{ if .Params.cover.image }}
+        <img src="{{ .Params.cover.image }}" alt="{{ .Title }} cover">
         {{ end }}
       </div>
       <div class="book-hero__info">

@@ -22,8 +22,8 @@
       <article class="book-card book-card--published">
         <a href="{{ .RelPermalink }}" class="book-card__cover-link">
           <div class="book-card__cover">
-            {{ if .Params.cover }}
-            <img src="{{ .Params.cover }}" alt="{{ .Title }} cover" loading="lazy">
+            {{ if .Params.cover.image }}
+            <img src="{{ .Params.cover.image }}" alt="{{ .Title }} cover" loading="lazy">
             {{ end }}
             <div class="book-card__cover-overlay">
               <span>Read more →</span>
@@ -70,8 +70,8 @@
       <article class="book-card book-card--proposal">
         <a href="{{ .RelPermalink }}" class="book-card__cover-link">
           <div class="book-card__cover">
-            {{ if .Params.cover }}
-            <img src="{{ .Params.cover }}" alt="{{ .Title }} cover" loading="lazy">
+            {{ if .Params.cover.image }}
+            <img src="{{ .Params.cover.image }}" alt="{{ .Title }} cover" loading="lazy">
             {{ end }}
             <div class="book-card__cover-overlay">
               <span>Read more →</span>

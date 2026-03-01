@@ -3,7 +3,8 @@ title: "The Gambler's Fallacy"
 subtitle: "The Hidden Bias That Derails Projects, Teams, and Decisions"
 status: "published"
 year: 2026
-cover: "/images/gamblers.png"
+cover:
+  image: "/images/gamblers.png"
 leanpub_url: "https://leanpub.com/thegamblersfallacy"
 chapters: "20 + Epilogue"
 topics: ["Bayesian Updating", "Sensitivity Analysis", "Probabilistic Planning", "Cognitive Bias", "Decision Science"]

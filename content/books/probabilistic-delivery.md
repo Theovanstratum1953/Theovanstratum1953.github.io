@@ -3,7 +3,8 @@ title: "Probabilistic Delivery"
 subtitle: "The Actuarial Science of Software Governance"
 status: "published"
 year: 2026
-cover: "/images/probabilistic.png"
+cover:
+  image: "/images/probabilistic.png"
 leanpub_url: "https://leanpub.com/probabilisticdelivery"
 pages: 297
 chapters: "13 + 3 Appendices"

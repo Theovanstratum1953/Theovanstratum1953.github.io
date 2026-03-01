@@ -3,7 +3,8 @@ title: "Pandas for Academics"
 subtitle: "A Researcher's Guide to Clean Data, Reproducible Analysis, and Publication-Ready Results"
 status: "published"
 year: 2026
-cover: "/images/pandas.png"
+cover:
+  image: "/images/pandas.png"
 leanpub_url: "https://leanpub.com/pandasforacademics"
 chapters: "12 + 3 Appendices"
 pages_est: "350–400"

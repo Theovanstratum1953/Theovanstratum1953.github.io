@@ -3,7 +3,8 @@ title: "Probabilistic Python"
 subtitle: "Bayesian Reasoning and Uncertainty Quantification for Academic Research"
 status: "proposal"
 expected: "Q3 2026"
-cover: "/images/python.png"
+cover:
+  image: "/images/python.png"
 chapters: "12 + 4 Appendices"
 pages_est: "380–430"
 topics: ["PyMC", "ArviZ", "Bambi", "Bayesian Inference", "MCMC", "Prior Selection", "Model Criticism"]

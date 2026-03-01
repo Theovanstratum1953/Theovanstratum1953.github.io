@@ -3,7 +3,8 @@ title: "The Technical Debt Paradox"
 subtitle: "Why the Code You Don't Write Today Costs More Tomorrow"
 status: "published"
 year: 2026
-cover: "/images/debt.png"
+cover:
+  image: "/images/debt.png"
 leanpub_url: "https://leanpub.com/thetechnicaldebtparadox"
 pages: 284
 chapters: "21 + 1 Appendix"

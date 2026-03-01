@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto" data-theme="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>AI in Software Development | Theo van Stratum, PhD</title>
+<meta name="keywords" content="">
+<meta name="description" content="A rigorous synthesis of independent research on AI coding tools — finding a substantial gap between vendor marketing claims and measured outcomes, with serious structural risks that organisations are systematically underreporting.">
+<meta name="author" content="Theo van Stratum, PhD">
+<link rel="canonical" href="http://localhost:1313/whitepapers/ai-in-software-development/">
+<link crossorigin="anonymous" href="http://localhost:1313/assets/css/stylesheet.da3211e5ef867bf2b75fd5a6515cfed7195c011e8ab735694e203810a827097b.css" integrity="sha256-2jIR5e&#43;Ge/K3X9WmUVz&#43;1xlcAR6KtzVpTiA4EKgnCXs=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/whitepapers/ai-in-software-development/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+        @media (prefers-color-scheme: light) {
+            .list::-webkit-scrollbar-thumb {
+                border-color: var(--code-bg);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Theo van Stratum, PhD (Alt + H)">Theo van Stratum, PhD</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      AI in Software Development
+    </h1>
+    <div class="post-meta"><span title='2026-03-01 00:00:00 +0000 UTC'>March 1, 2026</span>&nbsp;·&nbsp;<span>Theo van Stratum, PhD</span>
+
+</div>
+  </header> 
+  <div class="post-content"><p>The software development industry is currently experiencing one of the most significant hype cycles in its history. LinkedIn, conference talks, and vendor marketing are saturated with stories of AI coding tools delivering 50%+ productivity gains, teams shipping in days what used to take months, and companies achieving transformative ROI.</p>
+<p>The evidence tells a more complicated story.</p>
+<h2 id="research-note">Research Note<a hidden class="anchor" aria-hidden="true" href="#research-note">#</a></h2>
+<p>This paper synthesises findings from peer-reviewed studies, independent research organisations, and large-scale industry surveys. It deliberately prioritises evidence that contradicts the dominant narrative of AI as an unqualified productivity revolution. The goal is not pessimism, but accuracy. Organisations making multi-million dollar decisions deserve an honest picture.</p>
+<h2 id="key-findings">Key Findings<a hidden class="anchor" aria-hidden="true" href="#key-findings">#</a></h2>
+<p><strong>The productivity evidence is far weaker than reported.</strong> The most rigorous independent study (METR, 2025) found that experienced developers took 19% <em>longer</em> to complete tasks with AI — while simultaneously believing AI had made them 20% faster. BlueOptima&rsquo;s independent study of 218,000 developers found productivity gains of approximately 4%, against vendor claims of 20–55%.</p>
+<p><strong>Organisational delivery performance degrades with AI adoption.</strong> Google&rsquo;s DORA report (2024, 39,000+ respondents) found that every 25% increase in AI adoption correlated with a 7.2% decrease in software delivery stability and a 1.5% decrease in throughput.</p>
+<p><strong>The failure rate is unprecedented.</strong> 42% of companies abandoned the majority of their AI initiatives in 2025, up from 17% in 2024. MIT&rsquo;s analysis of 300+ AI initiatives found 95% delivered zero measurable return on investment.</p>
+<p><strong>Security and technical debt costs are systematically underreported.</strong> Security vulnerabilities in AI-generated code increased by 10x in Fortune 50 enterprises over six months. Veracode&rsquo;s study of 100+ LLMs found 45% of coding tasks introduced critical security flaws. The true total cost of ownership is 3–5x the license fee in year one.</p>
+<p><strong>The skills pipeline is being disrupted.</strong> Developers using AI scored 17 percentage points lower on skill comprehension tests (Anthropic, 2026). Junior developer employment for ages 22–25 has fallen nearly 20% since 2022. The pipeline problem will compound: the AI-generated code accumulating today will require expert remediation from a shrinking pool of developers capable of providing it.</p>
+<h2 id="where-ai-genuinely-succeeds">Where AI Genuinely Succeeds<a hidden class="anchor" aria-hidden="true" href="#where-ai-genuinely-succeeds">#</a></h2>
+<p>The evidence is not uniformly negative. Consistent productivity benefits appear in specific contexts: less experienced developers on unfamiliar codebases, boilerplate-heavy tasks (unit test generation, documentation, CRUD scaffolding), greenfield projects without accumulated legacy context, and onboarding to unfamiliar technology.</p>
+<p>The consistent pattern across credible research: AI helps where developers lack knowledge, and adds friction where developers are experts. This is the inverse of how most organisations are deploying it.</p>
+<h2 id="recommendations">Recommendations<a hidden class="anchor" aria-hidden="true" href="#recommendations">#</a></h2>
+<p>For organisations evaluating AI tools: run controlled internal pilots before committing to organisation-wide rollout, budget the full total cost of ownership (not the license fee), and define measurable business outcomes — not activity metrics — before deployment.</p>
+<p>For teams already using AI: distinguish tasks where AI is genuinely faster from tasks where it creates overhead, invest in the skill of evaluating AI output (not just generating it), and maintain deliberate practice of coding without AI assistance.</p>
+<p>For the research community: demand independent replication of vendor-funded productivity studies and invest in longitudinal research tracking technical debt, security incidents, and team capability changes over 2–5 year horizons.</p>
+<h2 id="primary-sources">Primary Sources<a hidden class="anchor" aria-hidden="true" href="#primary-sources">#</a></h2>
+<ul>
+<li>METR (2025). <em>Measuring the Impact of Early-2025 AI on Experienced Open-Source Developer Productivity.</em> arXiv:2507.09089</li>
+<li>Google / DORA (2024). <em>2024 Accelerate State of DevOps Report.</em> N=39,000+</li>
+<li>Anthropic (2026). <em>How AI Assistance Impacts the Formation of Coding Skills.</em></li>
+<li>BlueOptima (2024). <em>Debunking GitHub&rsquo;s Claims: A Data-Driven Critique of Their Copilot Study.</em> N=218,000 developers</li>
+<li>GitClear (2024–2025). <em>AI Copilot Code Quality Report.</em> N=211M+ changed lines of code</li>
+<li>S&amp;P Global (2025). <em>Enterprise AI Initiative Survey.</em> N=1,000+ enterprises</li>
+<li>MIT NANDA (2025). <em>The GenAI Divide: State of AI in Business 2025.</em> N=300+ initiatives</li>
+<li>Veracode (2025). <em>GenAI Code Security Report.</em> N=100+ LLMs, 80 coding tasks</li>
+<li>Apiiro (2025). <em>4x Velocity, 10x Vulnerabilities: AI Coding Assistants Are Shipping More Risks.</em></li>
+</ul>
+<hr>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="http://localhost:1313/">Theo van Stratum, PhD</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

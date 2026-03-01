@@ -21,7 +21,6 @@
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   html { scroll-behavior: smooth; }
 
   body {
@@ -33,7 +32,6 @@
     overflow-x: hidden;
   }
 
-   
   body::before {
     content: '';
     position: fixed;
@@ -66,12 +64,15 @@
     letter-spacing: 0.15em;
     text-transform: uppercase;
     text-decoration: none;
+    transition: color 0.2s;
   }
+  .nav-brand:hover { color: var(--ink); }
 
   .nav-links {
     display: flex;
     gap: 2.5rem;
     list-style: none;
+    align-items: center;
   }
 
   .nav-links a {
@@ -85,6 +86,16 @@
   }
 
   .nav-links a:hover { color: var(--rust); }
+  .nav-links a.nav-active { color: var(--rust); }
+
+  .nav-links .nav-cta a {
+    background: var(--rust);
+    color: white;
+    padding: 0.5rem 1.1rem;
+    letter-spacing: 0.1em;
+    transition: background 0.2s;
+  }
+  .nav-links .nav-cta a:hover { background: var(--rust-dark); color: white; }
 
    
   .hero {
@@ -101,7 +112,6 @@
     flex-direction: column;
     justify-content: center;
     padding: 6rem 4rem 6rem 6rem;
-    position: relative;
   }
 
   .hero-eyebrow {
@@ -126,10 +136,7 @@
     animation: fadeUp 0.8s ease forwards 0.4s;
   }
 
-  .hero-name em {
-    font-style: italic;
-    color: var(--rust);
-  }
+  .hero-name em { font-style: italic; color: var(--rust); }
 
   .hero-title {
     font-family: 'Playfair Display', serif;
@@ -199,8 +206,8 @@
     cursor: pointer;
     text-decoration: none;
     transition: background 0.2s, transform 0.15s;
+    display: inline-block;
   }
-
   .btn-primary:hover { background: var(--rust-dark); transform: translateY(-1px); }
 
   .btn-secondary {
@@ -215,8 +222,8 @@
     cursor: pointer;
     text-decoration: none;
     transition: border-color 0.2s, color 0.2s;
+    display: inline-block;
   }
-
   .btn-secondary:hover { border-color: var(--ink); }
 
    
@@ -233,21 +240,9 @@
     content: '';
     position: absolute;
     inset: 0;
-    background: 
-      repeating-linear-gradient(
-        0deg,
-        transparent,
-        transparent 39px,
-        rgba(255,255,255,0.03) 39px,
-        rgba(255,255,255,0.03) 40px
-      ),
-      repeating-linear-gradient(
-        90deg,
-        transparent,
-        transparent 39px,
-        rgba(255,255,255,0.03) 39px,
-        rgba(255,255,255,0.03) 40px
-      );
+    background:
+      repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(255,255,255,0.03) 39px, rgba(255,255,255,0.03) 40px),
+      repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(255,255,255,0.03) 39px, rgba(255,255,255,0.03) 40px);
   }
 
   .hero-right-inner {
@@ -300,8 +295,7 @@
   }
 
   .credential-dot {
-    width: 6px;
-    height: 6px;
+    width: 6px; height: 6px;
     border-radius: 50%;
     background: var(--rust);
     margin-top: 0.55rem;
@@ -315,11 +309,7 @@
     color: rgba(255,255,255,0.7);
     line-height: 1.5;
   }
-
-  .credential-text strong {
-    font-weight: 500;
-    color: rgba(255,255,255,0.95);
-  }
+  .credential-text strong { font-weight: 500; color: rgba(255,255,255,0.95); }
 
    
   section { position: relative; }
@@ -359,7 +349,6 @@
     color: var(--ink);
     margin-bottom: 1.5rem;
   }
-
   .section-heading em { font-style: italic; color: var(--rust); }
 
    
@@ -372,15 +361,12 @@
     align-items: start;
   }
 
-  .about-left {}
-
   .about-body {
     font-size: 1rem;
     color: var(--slate);
     line-height: 1.85;
     margin-bottom: 1.2rem;
   }
-
   .about-body strong { font-weight: 500; color: var(--ink); }
 
   .expertise-grid {
@@ -392,10 +378,7 @@
     margin-top: 3rem;
   }
 
-  .expertise-item {
-    background: var(--cream);
-    padding: 1.5rem;
-  }
+  .expertise-item { background: var(--cream); padding: 1.5rem; }
 
   .expertise-icon {
     font-family: 'IBM Plex Mono', monospace;
@@ -413,13 +396,8 @@
     color: var(--ink);
   }
 
-  .expertise-desc {
-    font-size: 0.78rem;
-    color: var(--muted);
-    line-height: 1.6;
-  }
+  .expertise-desc { font-size: 0.78rem; color: var(--muted); line-height: 1.6; }
 
-   
   .python-timeline {
     position: relative;
     padding-left: 2rem;
@@ -438,8 +416,7 @@
     position: absolute;
     left: -2.6rem;
     top: 0.45rem;
-    width: 9px;
-    height: 9px;
+    width: 9px; height: 9px;
     border-radius: 50%;
     background: var(--rust);
     border: 2px solid var(--cream);
@@ -453,11 +430,7 @@
     margin-bottom: 0.2rem;
   }
 
-  .timeline-text {
-    font-size: 0.85rem;
-    color: var(--slate);
-    line-height: 1.6;
-  }
+  .timeline-text { font-size: 0.85rem; color: var(--slate); line-height: 1.6; }
 
    
   #books { background: var(--paper); border-top: 1px solid var(--rule); }
@@ -466,28 +439,67 @@
     font-size: 1.05rem;
     color: var(--muted);
     max-width: 600px;
-    margin-bottom: 4rem;
+    margin-bottom: 1.5rem;
     line-height: 1.8;
   }
 
+  .books-section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 2.5rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .books-view-all {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--rust);
+    text-decoration: none;
+    border-bottom: 1px solid var(--rust);
+    padding-bottom: 0.1rem;
+    transition: opacity 0.2s;
+  }
+  .books-view-all:hover { opacity: 0.7; }
+
   .books-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 2px;
     background: var(--rule);
     border: 1px solid var(--rule);
+    margin-bottom: 2px;
+  }
+
+  .books-grid-row2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    border-top: none;
   }
 
   .book-card {
     background: var(--paper);
-    padding: 2.5rem;
+    padding: 2rem;
     position: relative;
     transition: background 0.25s;
     display: flex;
     flex-direction: column;
   }
-
   .book-card:hover { background: var(--cream); }
+
+  .book-card-link {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
 
   .book-status {
     font-family: 'IBM Plex Mono', monospace;
@@ -495,77 +507,318 @@
     letter-spacing: 0.15em;
     text-transform: uppercase;
     padding: 0.3rem 0.7rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.2rem;
     display: inline-block;
     align-self: flex-start;
   }
-
   .status-published { background: var(--rust); color: white; }
-  .status-progress { background: transparent; color: var(--gold); border: 1px solid var(--gold); }
   .status-proposal { background: transparent; color: var(--muted); border: 1px solid var(--rule); }
 
   .book-number {
     font-family: 'Playfair Display', serif;
-    font-size: 4rem;
+    font-size: 3rem;
     font-weight: 900;
     color: var(--rule);
     line-height: 1;
-    margin-bottom: 1rem;
+    margin-bottom: 0.8rem;
   }
+
+  .book-cover {
+    width: 100%;
+    max-width: 200px;
+    border: 1px solid var(--rule);
+    margin-bottom: 1.2rem;
+    display: block;
+    object-fit: cover;
+    transition: opacity 0.2s;
+  }
+  .book-card:hover .book-cover { opacity: 0.9; }
 
   .book-title {
     font-family: 'Playfair Display', serif;
-    font-size: 1.3rem;
+    font-size: 1.15rem;
     font-weight: 700;
     line-height: 1.25;
     color: var(--ink);
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.4rem;
   }
 
   .book-subtitle {
     font-family: 'Playfair Display', serif;
-    font-size: 0.88rem;
+    font-size: 0.82rem;
     font-style: italic;
     color: var(--muted);
-    margin-bottom: 1.2rem;
+    margin-bottom: 1rem;
     line-height: 1.4;
   }
 
   .book-description {
-    font-size: 0.83rem;
+    font-size: 0.8rem;
     color: var(--slate);
     line-height: 1.7;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.2rem;
     flex: 1;
   }
 
   .book-meta {
+    border-top: 1px solid var(--rule);
+    padding-top: 1rem;
+    margin-top: auto;
     display: flex;
     flex-direction: column;
-    gap: 0.4rem;
-    border-top: 1px solid var(--rule);
-    padding-top: 1.2rem;
-    margin-top: auto;
+    gap: 0.35rem;
   }
 
   .book-meta-item {
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.62rem;
-    letter-spacing: 0.08em;
+    font-size: 0.6rem;
+    letter-spacing: 0.06em;
     color: var(--muted);
   }
+  .book-meta-item span { color: var(--ink); font-weight: 500; }
 
-  .book-meta-item span {
-    color: var(--ink);
-    font-weight: 500;
+  .book-actions {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin-top: 1.2rem;
+    border-top: 1px solid var(--rule);
+    padding-top: 1.2rem;
+    align-items: center;
   }
 
-   
-  #research { background: var(--ink); border-top: 1px solid #222; }
+  .book-link-primary {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--rust);
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+  .book-link-primary:hover { opacity: 0.7; }
 
-  #research .section-label { color: var(--gold); }
-  #research .section-label::after { background: var(--gold); }
-  #research .section-heading { color: white; }
+  .book-link-secondary {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 0.1rem;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .book-link-secondary:hover { color: var(--ink); border-color: var(--ink); }
+
+   
+  #whitepapers { background: var(--ink); border-top: 1px solid #1a1a1a; }
+
+  #whitepapers .section-label { color: var(--gold); }
+  #whitepapers .section-label::after { background: var(--gold); }
+  #whitepapers .section-heading { color: white; }
+
+  .wp-intro {
+    font-size: 1rem;
+    color: rgba(255,255,255,0.5);
+    max-width: 580px;
+    line-height: 1.8;
+    margin-bottom: 3rem;
+  }
+
+  .wp-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .wp-card {
+    background: var(--ink);
+    padding: 2.5rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 3rem;
+    align-items: start;
+    transition: background 0.2s;
+  }
+  .wp-card:hover { background: #131313; }
+
+  .wp-card-body {}
+
+  .wp-type-date {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .wp-type {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    border: 1px solid rgba(201,168,76,0.3);
+    padding: 0.25rem 0.6rem;
+  }
+
+  .wp-date {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
+    color: rgba(255,255,255,0.3);
+  }
+
+  .wp-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: white;
+    line-height: 1.2;
+    margin-bottom: 0.4rem;
+    text-decoration: none;
+    display: block;
+    transition: color 0.2s;
+  }
+  .wp-title:hover { color: var(--gold); }
+
+  .wp-subtitle {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 0.95rem;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 1.2rem;
+  }
+
+  .wp-summary {
+    font-size: 0.88rem;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.8;
+    max-width: 68ch;
+    margin-bottom: 1.5rem;
+  }
+
+  .wp-topics {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .wp-topic {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.06em;
+    padding: 0.2rem 0.6rem;
+    border: 1px solid rgba(255,255,255,0.1);
+    color: rgba(255,255,255,0.4);
+  }
+
+  .wp-actions {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+  }
+
+  .wp-link-primary {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: white;
+    text-decoration: none;
+    background: var(--rust);
+    padding: 0.6rem 1.2rem;
+    transition: background 0.2s;
+  }
+  .wp-link-primary:hover { background: var(--rust-dark); }
+
+  .wp-link-secondary {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+    padding-bottom: 0.1rem;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .wp-link-secondary:hover { color: white; border-color: white; }
+
+  .wp-card-aside {}
+
+  .wp-key-findings {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.07);
+    padding: 1.5rem;
+    min-width: 260px;
+  }
+
+  .wp-findings-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+    opacity: 0.7;
+  }
+
+  .wp-finding {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    margin-bottom: 0.9rem;
+  }
+
+  .wp-finding-stat {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--rust);
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  .wp-finding-text {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.5;
+  }
+
+  .wp-more-coming {
+    margin-top: 2.5rem;
+    padding: 2rem;
+    border: 1px dashed rgba(255,255,255,0.1);
+    text-align: center;
+  }
+
+  .wp-more-coming p {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.3);
+    margin-bottom: 0.75rem;
+  }
+
+  .wp-more-coming a {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-decoration: none;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+  }
+  .wp-more-coming a:hover { opacity: 1; }
+
+   
+  #research { background: var(--cream); border-top: 1px solid var(--rule); }
 
   .research-grid {
     display: grid;
@@ -583,20 +836,20 @@
     font-family: 'Playfair Display', serif;
     font-size: 1.15rem;
     font-weight: 700;
-    color: white;
+    color: var(--ink);
     margin-bottom: 0.7rem;
   }
 
   .research-area-desc {
     font-size: 0.85rem;
-    color: rgba(255,255,255,0.55);
+    color: var(--muted);
     line-height: 1.75;
   }
 
   .tools-section {
     margin-top: 4rem;
     padding-top: 3rem;
-    border-top: 1px solid rgba(255,255,255,0.08);
+    border-top: 1px solid var(--rule);
   }
 
   .tools-heading {
@@ -604,55 +857,41 @@
     font-size: 0.65rem;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--gold);
+    color: var(--muted);
     margin-bottom: 1.5rem;
   }
 
-  .tools-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.6rem;
-  }
+  .tools-list { display: flex; flex-wrap: wrap; gap: 0.6rem; }
 
   .tool-tag {
     font-family: 'IBM Plex Mono', monospace;
     font-size: 0.7rem;
     letter-spacing: 0.05em;
     padding: 0.4rem 0.9rem;
-    border: 1px solid rgba(255,255,255,0.15);
-    color: rgba(255,255,255,0.6);
+    border: 1px solid var(--rule);
+    color: var(--muted);
     transition: all 0.2s;
   }
 
-  .tool-tag:hover {
-    border-color: var(--rust);
-    color: var(--rust);
-  }
+  .tool-tag:hover { border-color: var(--rust); color: var(--rust); }
 
   .tool-tag.featured {
-    border-color: var(--rust);
+    border-color: rgba(184,76,43,0.3);
     color: var(--rust);
-    background: rgba(184,76,43,0.1);
+    background: rgba(184,76,43,0.06);
   }
 
    
-  #upcoming { background: var(--cream); border-top: 1px solid var(--rule); }
-
-  .upcoming-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2px;
-    background: var(--rule);
-    border: 1px solid var(--rule);
-    margin-top: 3rem;
-  }
+  #upcoming { background: var(--paper); border-top: 1px solid var(--rule); }
 
   .upcoming-card {
     background: var(--cream);
+    border: 1px solid var(--rule);
     padding: 2.5rem;
+    max-width: 680px;
+    margin-top: 3rem;
     transition: background 0.2s;
   }
-
   .upcoming-card:hover { background: var(--paper); }
 
   .upcoming-label {
@@ -666,25 +905,25 @@
 
   .upcoming-title {
     font-family: 'Playfair Display', serif;
-    font-size: 1.35rem;
+    font-size: 1.5rem;
     font-weight: 700;
     color: var(--ink);
     line-height: 1.2;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.4rem;
   }
 
   .upcoming-subtitle {
     font-family: 'Playfair Display', serif;
     font-style: italic;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     color: var(--rust);
     margin-bottom: 1.2rem;
   }
 
   .upcoming-desc {
-    font-size: 0.85rem;
+    font-size: 0.88rem;
     color: var(--slate);
-    line-height: 1.75;
+    line-height: 1.8;
     margin-bottom: 1.5rem;
   }
 
@@ -693,10 +932,13 @@
     font-size: 0.65rem;
     color: var(--muted);
     line-height: 2;
+    border-top: 1px solid var(--rule);
+    padding-top: 1rem;
+    margin-bottom: 1.5rem;
   }
 
    
-  #contact { background: var(--paper); border-top: 1px solid var(--rule); }
+  #contact { background: var(--cream); border-top: 1px solid var(--rule); }
 
   .contact-grid {
     display: grid;
@@ -712,11 +954,7 @@
     margin-bottom: 2rem;
   }
 
-  .contact-links {
-    display: flex;
-    flex-direction: column;
-    gap: 0.8rem;
-  }
+  .contact-links { display: flex; flex-direction: column; gap: 0.8rem; }
 
   .contact-link {
     display: flex;
@@ -726,12 +964,9 @@
     padding: 1rem 1.2rem;
     border: 1px solid var(--rule);
     transition: all 0.2s;
+    background: var(--paper);
   }
-
-  .contact-link:hover {
-    border-color: var(--rust);
-    background: rgba(184,76,43,0.04);
-  }
+  .contact-link:hover { border-color: var(--rust); background: rgba(184,76,43,0.04); }
 
   .contact-link-label {
     font-family: 'IBM Plex Mono', monospace;
@@ -742,19 +977,11 @@
     flex: 1;
   }
 
-  .contact-link-value {
-    font-size: 0.85rem;
-    color: var(--ink);
-    font-weight: 400;
-  }
-
-  .contact-link-arrow {
-    color: var(--rust);
-    font-size: 1rem;
-  }
+  .contact-link-value { font-size: 0.85rem; color: var(--ink); font-weight: 400; }
+  .contact-link-arrow { color: var(--rust); font-size: 1rem; }
 
   .publisher-note {
-    background: var(--cream);
+    background: var(--paper);
     border: 1px solid var(--rule);
     border-left: 3px solid var(--rust);
     padding: 1.8rem;
@@ -770,68 +997,76 @@
     margin-bottom: 0.7rem;
   }
 
-  .publisher-note-text {
-    font-size: 0.85rem;
-    color: var(--slate);
-    line-height: 1.7;
-  }
+  .publisher-note-text { font-size: 0.85rem; color: var(--slate); line-height: 1.7; }
 
    
   footer {
     background: var(--ink);
-    padding: 2.5rem 4rem;
+    color: rgba(255,255,255,0.4);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-top: 1px solid #222;
-  }
-
-  .footer-brand {
-    font-family: 'Playfair Display', serif;
-    font-size: 1rem;
-    color: white;
-  }
-
-  .footer-copy {
+    padding: 2rem 4rem;
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.62rem;
+    font-size: 0.65rem;
     letter-spacing: 0.1em;
-    color: rgba(255,255,255,0.3);
   }
+
+  .footer-brand { color: rgba(255,255,255,0.6); }
+
+  .footer-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .footer-links a {
+    color: rgba(255,255,255,0.35);
+    text-decoration: none;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: rgba(255,255,255,0.7); }
 
    
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(20px); }
-    to   { opacity: 1; transform: translateY(0); }
+    to { opacity: 1; transform: translateY(0); }
   }
-
   @keyframes fadeIn {
     from { opacity: 0; }
-    to   { opacity: 1; }
+    to { opacity: 1; }
   }
 
-  .reveal {
-    opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
-  }
-
-  .reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
 
    
+  @media (max-width: 1100px) {
+    .books-grid { grid-template-columns: repeat(2, 1fr); }
+    .books-grid-row2 { grid-template-columns: 1fr; }
+  }
+
   @media (max-width: 900px) {
     nav { padding: 1rem 1.5rem; }
     .nav-links { gap: 1.2rem; }
+    .nav-links .nav-cta { display: none; }
     .hero { grid-template-columns: 1fr; }
     .hero-left { padding: 5rem 1.5rem 3rem; }
-    .hero-right { min-height: 400px; }
+    .hero-right { min-height: 380px; }
     .about-grid, .contact-grid, .research-grid { grid-template-columns: 1fr; gap: 3rem; }
-    .books-grid, .upcoming-grid { grid-template-columns: 1fr; }
+    .books-grid, .books-grid-row2 { grid-template-columns: 1fr; }
     .section-inner { padding: 4rem 1.5rem; }
-    footer { flex-direction: column; gap: 1rem; text-align: center; }
+    footer { flex-direction: column; gap: 1.5rem; text-align: center; }
+    .footer-links { flex-wrap: wrap; justify-content: center; }
+    .wp-card { grid-template-columns: 1fr; gap: 2rem; }
+    .wp-key-findings { min-width: auto; }
+  }
+
+  @media (max-width: 600px) {
+    .nav-links { gap: 0.8rem; }
+    .nav-links li:not(:last-child):not(:nth-last-child(2)) { display: none; }
   }
 </style>
 </head>
@@ -839,13 +1074,13 @@
 
 
 <nav>
-  <a href="#" class="nav-brand">Theo van Stratum, PhD</a>
+  <a href="http://localhost:1313/" class="nav-brand">Theo van Stratum, PhD</a>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
-    <li><a href="#books">Books</a></li>
-    <li><a href="#research">Research</a></li>
-    <li><a href="#upcoming">Upcoming</a></li>
+    <li><a href="http://localhost:1313/books/">Books</a></li>
+    <li><a href="http://localhost:1313/whitepapers/">Research</a></li>
     <li><a href="#contact">Contact</a></li>
+    <li class="nav-cta"><a href="mailto:theovanstratum1953@gmail.com">Get in touch</a></li>
   </ul>
 </nav>
 
@@ -871,7 +1106,7 @@
       </div>
     </div>
     <div class="hero-cta">
-      <a href="#books" class="btn-primary">View Publications</a>
+      <a href="http://localhost:1313/books/" class="btn-primary">View Publications</a>
       <a href="#contact" class="btn-secondary">Contact &amp; Proposals</a>
     </div>
   </div>
@@ -881,7 +1116,6 @@
       <span class="quote-mark">"</span>
       <p class="hero-quote">Dashboards showed green, stakeholders were reassured — and then, around month nine, reality arrived uninvited. What went wrong is rarely a question of effort. It is almost always a question of measurement.</p>
       <p class="hero-quote-attr">— Probabilistic Delivery, 2026</p>
-
       <div class="credentials-list">
         <div class="credential-item">
           <div class="credential-dot"></div>
@@ -911,7 +1145,6 @@
       <div class="about-left reveal">
         <div class="section-label">About</div>
         <h2 class="section-heading">Statistical truth<br>over <em>theatre</em></h2>
-
         <div class="python-timeline">
           <div class="timeline-event">
             <div class="timeline-year">Mid-1990s</div>
@@ -931,22 +1164,15 @@
           </div>
           <div class="timeline-event">
             <div class="timeline-year">2026</div>
-            <div class="timeline-text">Two major books published. Two academic textbooks in development with a leading academic publisher.</div>
+            <div class="timeline-text">Four books published. One academic textbook in development with a leading academic publisher.</div>
           </div>
         </div>
       </div>
 
-      <div class="about-left reveal">
-        <p class="about-body">
-          Theo van Stratum, PhD is a researcher, author, and software practitioner with more than three decades of experience in Python and software development. His work sits at the intersection of <strong>probabilistic reasoning, statistical governance, and academic research methodology</strong> — applying the rigour of actuarial science to the messy, human reality of how software projects are planned and delivered.
-        </p>
-        <p class="about-body">
-          His empirical research is grounded in data from over 200 real-world software projects, analysed without the comfortable fictions of story-point velocity and dashboard green lights. He is one of the few practitioners who has spent his entire career watching organisations confuse the performance of confidence for the substance of it — and who has built rigorous, Python-powered frameworks to replace guesswork with statistical truth.
-        </p>
-        <p class="about-body">
-          In academic publishing, Theo is developing two textbooks for researchers: one on <strong>Pandas for Academics</strong>, bringing Python data analysis to the workflows of empirical researchers across all disciplines, and one on <strong>Probabilistic Python</strong>, introducing Bayesian reasoning and uncertainty quantification for academic use.
-        </p>
-
+      <div class="reveal">
+        <p class="about-body">Theo van Stratum, PhD is a researcher, author, and software practitioner with more than three decades of experience in Python and software development. His work sits at the intersection of <strong>probabilistic reasoning, statistical governance, and academic research methodology</strong> — applying the rigour of actuarial science to the messy, human reality of how software projects are planned and delivered.</p>
+        <p class="about-body">His empirical research is grounded in data from over 200 real-world software projects, analysed without the comfortable fictions of story-point velocity and dashboard green lights. He is one of the few practitioners who has spent his entire career watching organisations confuse the performance of confidence for the substance of it — and who has built rigorous, Python-powered frameworks to replace guesswork with statistical truth.</p>
+        <p class="about-body">In academic publishing, Theo has published <strong>Pandas for Academics</strong>, bringing Python data analysis to the workflows of empirical researchers across all disciplines, and is developing <strong>Probabilistic Python</strong>, introducing Bayesian reasoning and uncertainty quantification for academic use.</p>
         <div class="expertise-grid">
           <div class="expertise-item">
             <span class="expertise-icon">∿</span>
@@ -978,75 +1204,175 @@
 <section id="books">
   <div class="section-inner">
     <div class="section-label reveal">Publications</div>
-    <h2 class="section-heading reveal">Published <em>works</em></h2>
+    <div class="books-section-header reveal">
+      <h2 class="section-heading" style="margin-bottom:0;">Published <em>works</em></h2>
+      <a href="http://localhost:1313/books/" class="books-view-all">View all books &amp; details →</a>
+    </div>
     <p class="books-intro reveal">Each book is grounded in empirical data, probabilistic thinking, and the conviction that honest measurement beats comfortable theatre — every time.</p>
 
+    
     <div class="books-grid reveal">
 
-      
       <div class="book-card">
         <span class="book-status status-published">Published · 2026</span>
         <div class="book-number">01</div>
-        <img src="http://localhost:1313/images/probabilistic.png" alt="The Technical Debt Paradox cover" 
-             style="width:240px; object-fit:cover; border:1px solid var(--rule); margin-bottom:1.5rem; display:block;">
+        <img src="http://localhost:1313/images/probabilistic.png" alt="Probabilistic Delivery cover" class="book-cover">
         <h3 class="book-title">Probabilistic Delivery</h3>
         <p class="book-subtitle">The Actuarial Science of Software Governance</p>
-        <p class="book-description">The definitive challenge to Agile theatre. Drawing on data from 200+ software projects, this book introduces the Probabilistic Delivery framework — replacing story-point velocity with actuarial rigour, Monte Carlo simulation, and the P85 standard. A fiduciary mandate for CEOs, project managers, and engineering leaders who are tired of dashboards that lie.</p>
+        <p class="book-description">The definitive challenge to Agile theatre. Drawing on data from 200+ software projects, this book introduces the Probabilistic Delivery framework — replacing story-point velocity with actuarial rigour, Monte Carlo simulation, and the P85 standard.</p>
         <div class="book-meta">
           <div class="book-meta-item">Chapters: <span>13 + 3 Appendices</span></div>
           <div class="book-meta-item">Pages: <span>297</span></div>
-          <div class="book-meta-item">Topics: <span>Monte Carlo · Risk Horizon · Binary Gate Protocol · Actuarial Forecasting</span></div>
-          <a href="https://leanpub.com/probabilisticdelivery" target="_blank" 
-          style="font-family:'IBM Plex Mono',monospace; font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase; font-weight:700; color:var(--rust); text-decoration:none; display:inline-flex; align-items:center; gap:0.5rem; margin-top:1.5rem; border-top:1px solid var(--rule); padding-top:1.5rem; width:100%;">
-          Buy on Leanpub →
-        </a>
+        </div>
+        <div class="book-actions">
+          <a href="https://leanpub.com/probabilisticdelivery" target="_blank" class="book-link-primary">Buy on Leanpub →</a>
+          <a href="http://localhost:1313/books/probabilistic-delivery/" class="book-link-secondary">Full details</a>
         </div>
       </div>
 
-      
       <div class="book-card">
         <span class="book-status status-published">Published · 2026</span>
         <div class="book-number">02</div>
-        <img src="http://localhost:1313/images/gamblers.png" alt="The Technical Debt Paradox cover" 
-             style="width:240px; object-fit:cover; border:1px solid var(--rule); margin-bottom:1.5rem; display:block;">
+        <img src="http://localhost:1313/images/gamblers.png" alt="The Gambler's Fallacy cover" class="book-cover">
         <h3 class="book-title">The Gambler's Fallacy</h3>
         <p class="book-subtitle">The Hidden Bias That Derails Projects, Teams, and Decisions</p>
-        <p class="book-description">A deep investigation into the cognitive biases and statistical misconceptions that undermine decision-making in software organisations. From the Hot Hand Fallacy and Anchoring Bias to Survivorship Bias and the Normal Distribution Myth, this book arms practitioners with Bayesian tools to recognise and systematically counter the intuitions that lead organisations astray.</p>
+        <p class="book-description">A deep investigation into the cognitive biases and statistical misconceptions that undermine decision-making in software organisations — and how Bayesian tools can systematically correct them.</p>
         <div class="book-meta">
           <div class="book-meta-item">Chapters: <span>20 + Epilogue</span></div>
-          <div class="book-meta-item">Topics: <span>Bayesian Updating · Sensitivity Analysis · Probabilistic Planning · Cognitive Bias</span></div>
-          <div class="book-meta-item">Audience: <span>C-level · Project Managers · Development Teams</span></div>
-          <a href="https://leanpub.com/thegamblersfallacy" target="_blank" 
-          style="font-family:'IBM Plex Mono',monospace; font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase; font-weight:700; color:var(--rust); text-decoration:none; display:inline-flex; align-items:center; gap:0.5rem; margin-top:1.5rem; border-top:1px solid var(--rule); padding-top:1.5rem; width:100%;">
-          Buy on Leanpub →
-        </a>
+        </div>
+        <div class="book-actions">
+          <a href="https://leanpub.com/thegamblersfallacy" target="_blank" class="book-link-primary">Buy on Leanpub →</a>
+          <a href="http://localhost:1313/books/gamblers-fallacy/" class="book-link-secondary">Full details</a>
         </div>
       </div>
 
-      
       <div class="book-card">
-        <span class="book-status status-progress">In Progress</span>
+        <span class="book-status status-published">Published · 2026</span>
         <div class="book-number">03</div>
-          <img src="http://localhost:1313/images/debt.png" alt="The Technical Debt Paradox cover" 
-             style="width:240px; object-fit:cover; border:1px solid var(--rule); margin-bottom:1.5rem; display:block;">
+        <img src="http://localhost:1313/images/debt.png" alt="The Technical Debt Paradox cover" class="book-cover">
         <h3 class="book-title">The Technical Debt Paradox</h3>
         <p class="book-subtitle">Why the Code You Don't Write Today Costs More Tomorrow</p>
-        <p class="book-description">An unflinching examination of technical debt as a measurable, 
-          probabilistic risk — not a vague metaphor. This work-in-progress applies the quantitative
-           frameworks from Probabilistic Delivery to the hidden compounding costs of deferred quality, 
-           using empirical data to show organisations how to price, manage, and strategically deploy 
-           technical debt as a fiduciary instrument.</p>
+        <p class="book-description">An unflinching examination of technical debt as a measurable, probabilistic risk — applying quantitative frameworks to the hidden compounding costs of deferred quality.</p>
         <div class="book-meta">
-          <div class="book-meta-item">Status: <span>In progress</span></div>
-          <div class="book-meta-item">Format: <span>Markup / Apple Pages</span></div>
-          <div class="book-meta-item">Expected: <span>2026</span></div>
-          <a href="https://leanpub.com/thetechnicaldebtparadox" target="_blank" 
-          style="font-family:'IBM Plex Mono',monospace; font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase; font-weight:700; color:var(--rust); text-decoration:none; display:inline-flex; align-items:center; gap:0.5rem; margin-top:1.5rem; border-top:1px solid var(--rule); padding-top:1.5rem; width:100%;">
-          Buy on Leanpub →
-        </a>
+          <div class="book-meta-item">Chapters: <span>21 + 1 Appendix</span></div>
+          <div class="book-meta-item">Pages: <span>284</span></div>
+        </div>
+        <div class="book-actions">
+          <a href="https://leanpub.com/thetechnicaldebtparadox" target="_blank" class="book-link-primary">Buy on Leanpub →</a>
+          <a href="http://localhost:1313/books/technical-debt-paradox/" class="book-link-secondary">Full details</a>
         </div>
       </div>
 
+      <div class="book-card">
+        <span class="book-status status-published">Published · 2026</span>
+        <div class="book-number">04</div>
+        <img src="http://localhost:1313/images/pandas.png" alt="Pandas for Academics cover" class="book-cover">
+        <h3 class="book-title">Pandas for Academics</h3>
+        <p class="book-subtitle">A Researcher's Guide to Clean Data, Reproducible Analysis, and Publication-Ready Results</p>
+        <p class="book-description">The first comprehensive, discipline-neutral pandas textbook written for academic researchers — covering the full research lifecycle from raw data to publication-ready results.</p>
+        <div class="book-meta">
+          <div class="book-meta-item">Chapters: <span>12 + 3 Appendices</span></div>
+          <div class="book-meta-item">Pages: <span>Est. 350–400</span></div>
+        </div>
+        <div class="book-actions">
+          <a href="https://leanpub.com/pandasforacademics" target="_blank" class="book-link-primary">Buy on Leanpub →</a>
+          <a href="http://localhost:1313/books/pandas-for-academics/" class="book-link-secondary">Full details</a>
+        </div>
+      </div>
+
+    </div>
+
+    
+    <div class="books-grid-row2 reveal">
+      <div class="book-card">
+        <span class="book-status status-proposal">Proposal · Expected Q3 2026</span>
+        <div class="book-number">05</div>
+        <img src="http://localhost:1313/images/python.png" alt="Probabilistic Python cover" class="book-cover">
+        <h3 class="book-title">Probabilistic Python</h3>
+        <p class="book-subtitle">Bayesian Reasoning and Uncertainty Quantification for Academic Research</p>
+        <p class="book-description">The Python answer to McElreath's Statistical Rethinking — academically rigorous, practically oriented, and written for researchers who need to apply probabilistic methods in their own disciplines. Covers PyMC, ArviZ, and Bambi in a unified workflow.</p>
+        <div class="book-meta">
+          <div class="book-meta-item">Chapters: <span>12 + 4 Appendices</span></div>
+          <div class="book-meta-item">Pages: <span>Est. 380–430</span></div>
+        </div>
+        <div class="book-actions">
+          <a href="mailto:theovanstratum1953@gmail.com?subject=Notify me: Probabilistic Python" class="book-link-primary">Notify me on release →</a>
+          <a href="http://localhost:1313/books/probabilistic-python/" class="book-link-secondary">Full details</a>
+        </div>
+      </div>
+    </div>
+
+    
+    <div style="margin-top:3rem; padding-top:2rem; border-top:1px solid var(--rule);" class="reveal">
+      <form action="https://formspree.io/f/mqedblnv" method="POST" style="display:flex; align-items:center; gap:1rem; flex-wrap:wrap;">
+        <span style="font-family:'IBM Plex Mono',monospace; font-size:0.65rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--muted);">Keep me informed →</span>
+        <input type="email" name="email" placeholder="your@email.com" required
+          style="font-family:'IBM Plex Mono',monospace; font-size:0.75rem; letter-spacing:0.08em; padding:0.75rem 1rem; border:1px solid var(--rule); background:white; color:var(--ink); outline:none; width:240px;">
+        <button type="submit"
+          style="font-family:'IBM Plex Mono',monospace; font-size:0.68rem; letter-spacing:0.1em; text-transform:uppercase; padding:0.75rem 1.5rem; background:var(--rust); color:white; border:none; cursor:pointer; transition:background 0.2s;">
+          Subscribe
+        </button>
+      </form>
+    </div>
+
+  </div>
+</section>
+
+
+<section id="whitepapers">
+  <div class="section-inner">
+    <div class="section-label reveal">Research</div>
+    <h2 class="section-heading reveal">Whitepapers &amp; <em>research</em></h2>
+    <p class="wp-intro reveal">Independent research synthesising evidence from peer-reviewed studies, large-scale surveys, and empirical data — prioritising accuracy over narrative.</p>
+
+    <div class="wp-grid reveal">
+
+      <div class="wp-card">
+        <div class="wp-card-body">
+          <div class="wp-type-date">
+            <span class="wp-type">White Paper</span>
+            <span class="wp-date">March 2026</span>
+          </div>
+          <a href="http://localhost:1313/whitepapers/ai-in-software-development/" class="wp-title">AI in Software Development</a>
+          <p class="wp-subtitle">Costs, Successes, and Failures: What the Evidence Actually Shows</p>
+          <p class="wp-summary">The software development industry is experiencing one of the most significant hype cycles in its history. This paper synthesises findings from randomised controlled trials, large-scale industry surveys, and independent code quality audits — finding a substantial gap between vendor marketing claims and measured outcomes, with serious structural risks that organisations are systematically underreporting.</p>
+          <div class="wp-topics">
+            <span class="wp-topic">AI</span>
+            <span class="wp-topic">Software Development</span>
+            <span class="wp-topic">Productivity</span>
+            <span class="wp-topic">Evidence-Based Research</span>
+            <span class="wp-topic">Technical Debt</span>
+            <span class="wp-topic">Security</span>
+          </div>
+          <div class="wp-actions">
+            <a href="https://drive.google.com/file/d/1kKpGEsQxmcCG4c1HjnwaUt0YjUUVsfnC/view?usp=sharing" target="_blank" class="wp-link-primary">Download PDF →</a>
+            <a href="http://localhost:1313/whitepapers/ai-in-software-development/" class="wp-link-secondary">Read abstract</a>
+          </div>
+        </div>
+        <div class="wp-card-aside">
+          <div class="wp-key-findings">
+            <div class="wp-findings-label">Key findings</div>
+            <div class="wp-finding">
+              <span class="wp-finding-stat">19%</span>
+              <span class="wp-finding-text">slower task completion with AI tools — while developers believed they were 20% faster (METR, 2025)</span>
+            </div>
+            <div class="wp-finding">
+              <span class="wp-finding-stat">95%</span>
+              <span class="wp-finding-text">of enterprise AI initiatives delivered zero measurable ROI (MIT, 2025)</span>
+            </div>
+            <div class="wp-finding">
+              <span class="wp-finding-stat">10×</span>
+              <span class="wp-finding-text">increase in security vulnerabilities from AI-generated code in Fortune 50 firms</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="wp-more-coming reveal">
+      <p>Additional research papers forthcoming</p>
+      <a href="mailto:theovanstratum1953@gmail.com?subject=Research enquiry">Contact for preprints and working papers →</a>
     </div>
   </div>
 </section>
@@ -1103,35 +1429,23 @@
 <section id="upcoming">
   <div class="section-inner">
     <div class="section-label reveal">In Development</div>
-    <h2 class="section-heading reveal">Academic <em>textbooks</em><br>under proposal</h2>
-    <p style="color:var(--muted); font-size:0.9rem; margin-bottom:0; max-width:560px;" class="reveal">Two textbooks currently under proposal with an academic publisher — filling a genuine gap in the literature for Python resources written specifically for researchers.</p>
+    <h2 class="section-heading reveal">Academic <em>textbook</em><br>under proposal</h2>
+    <p style="color:var(--muted); font-size:0.9rem; max-width:560px;" class="reveal">One textbook currently under proposal with an academic publisher — filling a genuine gap in the literature for Python resources written specifically for researchers.</p>
 
-    <div class="upcoming-grid reveal">
-
-      <div class="upcoming-card">
-        <div class="upcoming-label">Academic Textbook · Proposal Stage</div>
-        <h3 class="upcoming-title">Pandas for Academics</h3>
-        <p class="upcoming-subtitle">Data Analysis and Research Workflows with Python</p>
-        <p class="upcoming-desc">The first comprehensive, discipline-neutral pandas textbook written for academic researchers rather than industry data scientists. Structured around the research lifecycle — from raw data to reproducible, publication-ready results — with examples drawn from social science, natural science, economics, and public health. Addresses the real gap: pandas resources that speak the language of researchers, not software engineers.</p>
-        <div class="upcoming-chapters">
-          Part I: Foundations &nbsp;·&nbsp; Part II: Cleaning &amp; Preparation<br>
-          Part III: Analysis &amp; Aggregation &nbsp;·&nbsp; Part IV: Reproducibility &amp; Publication<br>
-          12 Chapters + 3 Appendices &nbsp;·&nbsp; Est. 350–400 pages
-        </div>
+    <div class="upcoming-card reveal">
+      <div class="upcoming-label">Academic Textbook · Proposal Stage · Expected Q3 2026</div>
+      <h3 class="upcoming-title">Probabilistic Python</h3>
+      <p class="upcoming-subtitle">Bayesian Reasoning and Uncertainty Quantification for Academic Research</p>
+      <p class="upcoming-desc">The Python answer to McElreath's Statistical Rethinking — academically rigorous, practically oriented, and written for researchers who need to apply probabilistic methods in their own disciplines. Covers PyMC, ArviZ, and Bambi in a unified workflow, with unusually strong treatment of prior selection, model criticism, and the communication of uncertainty in peer-reviewed publications.</p>
+      <div class="upcoming-chapters">
+        Part I: Foundations &nbsp;·&nbsp; Part II: Core Modelling Techniques<br>
+        Part III: Advanced Models &nbsp;·&nbsp; Part IV: Communicating Results<br>
+        12 Chapters + 4 Appendices &nbsp;·&nbsp; Est. 380–430 pages
       </div>
-
-      <div class="upcoming-card">
-        <div class="upcoming-label">Academic Textbook · Proposal Stage</div>
-        <h3 class="upcoming-title">Probabilistic Python</h3>
-        <p class="upcoming-subtitle">Bayesian Reasoning and Uncertainty Quantification for Academic Research</p>
-        <p class="upcoming-desc">The Python answer to McElreath's Statistical Rethinking — academically rigorous, practically oriented, and written for researchers who need to apply probabilistic methods in their own disciplines. Covers PyMC, ArviZ, and Bambi in a unified workflow, with unusually strong treatment of prior selection, model criticism, and the communication of uncertainty in peer-reviewed publications.</p>
-        <div class="upcoming-chapters">
-          Part I: Foundations &nbsp;·&nbsp; Part II: Core Modelling Techniques<br>
-          Part III: Advanced Models &nbsp;·&nbsp; Part IV: Communicating Results<br>
-          12 Chapters + 4 Appendices &nbsp;·&nbsp; Est. 380–430 pages
-        </div>
+      <div style="display:flex; gap:1rem; flex-wrap:wrap;">
+        <a href="http://localhost:1313/books/probabilistic-python/" class="btn-secondary" style="font-size:0.68rem; padding:0.65rem 1.2rem;">Full details →</a>
+        <a href="mailto:theovanstratum1953@gmail.com?subject=Notify me: Probabilistic Python" class="btn-primary" style="font-size:0.68rem; padding:0.65rem 1.2rem;">Notify me on release</a>
       </div>
-
     </div>
   </div>
 </section>
@@ -1148,7 +1462,7 @@
 
         <div class="publisher-note">
           <div class="publisher-note-label">Note for Publishers</div>
-          <p class="publisher-note-text">Full book proposals for <em>Pandas for Academics</em> and <em>Probabilistic Python</em> are available on request, including detailed chapter outlines, competitive analysis, and target readership profiles. Both projects are at planning stage with strong conceptual foundations.</p>
+          <p class="publisher-note-text">A full book proposal for <em>Probabilistic Python</em> is available on request, including detailed chapter outlines, competitive analysis, and target readership profiles.</p>
         </div>
       </div>
 
@@ -1164,11 +1478,6 @@
             <span class="contact-link-value">Theo van Stratum</span>
             <span class="contact-link-arrow">→</span>
           </a>
-          <a href="https://theovanstratum1953.github.io" target="_blank" class="contact-link">
-            <span class="contact-link-label">Website</span>
-            <span class="contact-link-value">theovanstratum1953.github.io</span>
-            <span class="contact-link-arrow">→</span>
-          </a>
           <a href="https://theovanstratum1953.github.io/posts" target="_blank" class="contact-link">
             <span class="contact-link-label">Blog</span>
             <span class="contact-link-value">Read the Blog</span>
@@ -1180,7 +1489,7 @@
               style="font-family:'IBM Plex Mono',monospace; font-size:0.75rem; letter-spacing:0.08em; padding:0.4rem 0.8rem; border:none; border-bottom:1px solid var(--rule); background:transparent; color:var(--ink); outline:none; flex:1;">
             <button type="submit"
               style="font-family:'IBM Plex Mono',monospace; font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase; background:none; border:none; color:var(--rust); cursor:pointer; padding:0;">
-              → 
+              →
             </button>
           </form>
         </div>
@@ -1188,7 +1497,7 @@
         <div style="margin-top:2rem; padding:1.5rem; background:var(--cream); border:1px solid var(--rule);">
           <div style="font-family:'IBM Plex Mono',monospace; font-size:0.6rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--muted); margin-bottom:0.8rem;">Location</div>
           <div style="font-family:'Playfair Display',serif; font-size:1rem; color:var(--ink);">The Hague, Netherlands</div>
-          <div style="font-family:'Playfair Display',serif; font-size:1rem; color:var(--muted); font-style:italic;">& Manila, Philippines</div>
+          <div style="font-family:'Playfair Display',serif; font-size:1rem; color:var(--muted); font-style:italic;">&amp; Manila, Philippines</div>
         </div>
       </div>
     </div>
@@ -1198,6 +1507,12 @@
 
 <footer>
   <span class="footer-brand">Theo van Stratum, PhD</span>
+  <ul class="footer-links">
+    <li><a href="http://localhost:1313/books/">Books</a></li>
+    <li><a href="http://localhost:1313/whitepapers/">Research</a></li>
+    <li><a href="https://theovanstratum1953.github.io/posts">Blog</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
   <span class="footer-copy">© 2026 · All rights reserved</span>
 </footer>
 
@@ -1211,22 +1526,27 @@
       }
     });
   }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-
   reveals.forEach(el => observer.observe(el));
 
   
   const sections = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll('.nav-links a');
+  const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
 
   window.addEventListener('scroll', () => {
     let current = '';
     sections.forEach(section => {
-      if (window.scrollY >= section.offsetTop - 120) current = section.getAttribute('id');
+      if (window.scrollY >= section.offsetTop - 120) {
+        current = section.getAttribute('id');
+      }
     });
     navLinks.forEach(link => {
-      link.style.color = link.getAttribute('href') === '#' + current ? 'var(--rust)' : '';
+      link.classList.remove('nav-active');
+      if (link.getAttribute('href') === '#' + current) {
+        link.classList.add('nav-active');
+      }
     });
   });
 </script>
+
 </body>
 </html>

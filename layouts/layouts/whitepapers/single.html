@@ -1,0 +1,255 @@
+{{ define "main" }}
+<article class="wp-single">
+
+  <div class="wp-breadcrumb">
+    <div class="container">
+      <a href="/whitepapers/">← All research</a>
+    </div>
+  </div>
+
+  <section class="wp-hero">
+    <div class="container">
+      <div class="wp-hero__meta">
+        <span class="badge badge--wp">{{ .Params.type | default "White Paper" }}</span>
+        <span class="wp-date">{{ .Params.date | time.Format "January 2006" }}</span>
+      </div>
+      <h1>{{ .Title }}</h1>
+      <p class="wp-hero__subtitle">{{ .Params.subtitle }}</p>
+
+      {{ if .Params.topics }}
+      <div class="wp-hero__topics">
+        {{ range .Params.topics }}
+        <span class="topic-tag">{{ . }}</span>
+        {{ end }}
+      </div>
+      {{ end }}
+
+      <div class="wp-hero__actions">
+        {{ if .Params.pdf_url }}
+        <a href="{{ .Params.pdf_url }}" class="btn btn--primary btn--large" target="_blank" rel="noopener">Download PDF →</a>
+        {{ end }}
+        <a href="mailto:theovanstratum1953@gmail.com?subject=RE: {{ .Title }}" class="btn btn--ghost btn--large">Contact the author →</a>
+      </div>
+
+      {{ if .Params.citation }}
+      <div class="wp-citation">
+        <span class="citation-label">Cite as:</span>
+        <code>{{ .Params.citation }}</code>
+      </div>
+      {{ end }}
+    </div>
+  </section>
+
+  <section class="wp-content">
+    <div class="container wp-content__inner">
+      <div class="wp-body prose">
+        {{ .Content }}
+      </div>
+      <aside class="wp-sidebar">
+        {{ if .Params.pdf_url }}
+        <div class="sidebar-block">
+          <h4>Download</h4>
+          <a href="{{ .Params.pdf_url }}" class="btn btn--primary btn--full" target="_blank" rel="noopener">Download PDF →</a>
+        </div>
+        {{ end }}
+        {{ if .Params.citation }}
+        <div class="sidebar-block">
+          <h4>Citation</h4>
+          <p class="sidebar-citation">{{ .Params.citation }}</p>
+        </div>
+        {{ end }}
+        <div class="sidebar-block">
+          <h4>Related books</h4>
+          <ul class="sidebar-book-list">
+            {{ range (where .Site.Pages "Section" "books") }}
+            <li><a href="{{ .RelPermalink }}">{{ .Title }}</a>
+              {{ if eq .Params.status "proposal" }}<span class="sidebar-badge">Forthcoming</span>{{ end }}
+            </li>
+            {{ end }}
+          </ul>
+        </div>
+        <div class="sidebar-block">
+          <h4>Other research</h4>
+          {{ $current := . }}
+          {{ $others := where .Site.Pages "Section" "whitepapers" }}
+          {{ if gt (len $others) 1 }}
+          <ul class="sidebar-book-list">
+            {{ range $others }}
+            {{ if ne .RelPermalink $current.RelPermalink }}
+            <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+            {{ end }}
+            {{ end }}
+          </ul>
+          {{ else }}
+          <p class="sidebar-empty">More papers forthcoming.</p>
+          {{ end }}
+        </div>
+      </aside>
+    </div>
+  </section>
+
+</article>
+
+<style>
+.wp-breadcrumb {
+  padding: 1.5rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.wp-breadcrumb a {
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  opacity: 0.45;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+.wp-breadcrumb a:hover { opacity: 0.8; }
+
+.wp-hero {
+  padding: 4rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.wp-hero__meta {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+.wp-date { font-size: 0.75rem; opacity: 0.35; letter-spacing: 0.06em; }
+.wp-hero h1 {
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  line-height: 1.1;
+  margin-bottom: 0.5rem;
+  max-width: 22ch;
+}
+.wp-hero__subtitle {
+  font-size: 1.05rem;
+  font-style: italic;
+  opacity: 0.5;
+  margin-bottom: 1.5rem;
+}
+.wp-hero__topics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 1.5rem;
+}
+.wp-hero__actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+.wp-citation {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.07);
+  padding: 0.85rem 1rem;
+  border-radius: 2px;
+  max-width: 72ch;
+}
+.citation-label {
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.35;
+  white-space: nowrap;
+}
+.wp-citation code {
+  font-family: 'Courier New', monospace;
+  font-size: 0.8rem;
+  opacity: 0.6;
+  line-height: 1.5;
+}
+
+.wp-content { padding: 4rem 0; }
+.wp-content__inner {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 4rem;
+  align-items: start;
+}
+.wp-body.prose {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: rgba(255,255,255,0.75);
+}
+.wp-body.prose h2 {
+  font-size: 1.3rem;
+  color: rgba(255,255,255,0.9);
+  margin-top: 2.5rem;
+  margin-bottom: 0.75rem;
+}
+.wp-body.prose p { margin-bottom: 1.2rem; }
+.wp-body.prose strong { color: rgba(255,255,255,0.9); }
+.wp-body.prose ul { padding-left: 1.5rem; margin-bottom: 1.2rem; }
+.wp-body.prose li { margin-bottom: 0.4rem; }
+
+/* Sidebar */
+.wp-sidebar {
+  position: sticky;
+  top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.sidebar-block {
+  border: 1px solid rgba(255,255,255,0.07);
+  padding: 1.25rem;
+  border-radius: 2px;
+}
+.sidebar-block h4 {
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  opacity: 0.35;
+  margin-bottom: 0.85rem;
+}
+.sidebar-citation {
+  font-size: 0.78rem;
+  line-height: 1.6;
+  opacity: 0.5;
+  font-style: italic;
+}
+.sidebar-book-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+.sidebar-book-list a {
+  font-size: 0.85rem;
+  opacity: 0.65;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+.sidebar-book-list a:hover { opacity: 1; }
+.sidebar-badge {
+  font-size: 0.6rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.35;
+  margin-left: 0.35rem;
+}
+.sidebar-empty { font-size: 0.82rem; opacity: 0.35; font-style: italic; }
+
+.badge { font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.25rem 0.6rem; border-radius: 2px; }
+.badge--wp { background: rgba(100,180,200,0.08); color: rgba(100,180,200,0.7); border: 1px solid rgba(100,180,200,0.2); }
+.topic-tag { font-size: 0.65rem; letter-spacing: 0.08em; padding: 0.2rem 0.5rem; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 1px; opacity: 0.6; }
+.btn { display: inline-block; padding: 0.5rem 1rem; font-size: 0.8rem; letter-spacing: 0.06em; text-decoration: none; border-radius: 1px; transition: all 0.2s; }
+.btn--large { padding: 0.75rem 1.5rem; font-size: 0.9rem; }
+.btn--full { width: 100%; text-align: center; }
+.btn--ghost { border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.7); }
+.btn--ghost:hover { border-color: rgba(255,255,255,0.4); color: #fff; }
+.btn--primary { background: rgba(255,255,255,0.9); color: #111; border: 1px solid transparent; }
+.btn--primary:hover { background: #fff; }
+
+@media (max-width: 900px) {
+  .wp-content__inner { grid-template-columns: 1fr; }
+  .wp-sidebar { position: static; }
+}
+</style>
+{{ end }}

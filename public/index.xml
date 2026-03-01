@@ -6,8 +6,50 @@
     <description>Recent content on Theo van Stratum, PhD</description>
     <generator>Hugo -- 0.155.3</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 20 Feb 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 01 Mar 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>AI in Software Development</title>
+      <link>http://localhost:1313/whitepapers/ai-in-software-development/</link>
+      <pubDate>Sun, 01 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/whitepapers/ai-in-software-development/</guid>
+      <description>A rigorous synthesis of independent research on AI coding tools — finding a substantial gap between vendor marketing claims and measured outcomes, with serious structural risks that organisations are systematically underreporting.</description>
+    </item>
+    <item>
+      <title>Probabilistic Delivery</title>
+      <link>http://localhost:1313/books/probabilistic-delivery/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/books/probabilistic-delivery/</guid>
+      <description>The definitive challenge to Agile theatre. Drawing on data from 200+ software projects, this book introduces the Probabilistic Delivery framework — replacing story-point velocity with actuarial rigour.</description>
+    </item>
+    <item>
+      <title>The Gambler&#39;s Fallacy</title>
+      <link>http://localhost:1313/books/gamblers-fallacy/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/books/gamblers-fallacy/</guid>
+      <description>A deep investigation into the cognitive biases and statistical misconceptions that undermine decision-making in software organisations — and how Bayesian tools can systematically correct them.</description>
+    </item>
+    <item>
+      <title>The Technical Debt Paradox</title>
+      <link>http://localhost:1313/books/technical-debt-paradox/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/books/technical-debt-paradox/</guid>
+      <description>An unflinching examination of technical debt as a measurable, probabilistic risk — not a vague metaphor — with empirical data showing organisations how to price, manage, and strategically deploy it as a fiduciary instrument.</description>
+    </item>
+    <item>
+      <title>Pandas for Academics</title>
+      <link>http://localhost:1313/books/pandas-for-academics/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/books/pandas-for-academics/</guid>
+      <description>The first comprehensive, discipline-neutral pandas textbook written for academic researchers — covering the full research lifecycle from raw data to publication-ready results.</description>
+    </item>
+    <item>
+      <title>Probabilistic Python</title>
+      <link>http://localhost:1313/books/probabilistic-python/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/books/probabilistic-python/</guid>
+      <description>The Python answer to McElreath&amp;rsquo;s Statistical Rethinking — academically rigorous, practically oriented, written for researchers who need probabilistic methods in their own disciplines.</description>
+    </item>
     <item>
       <title>An Introduction to Bayesian Updating</title>
       <link>http://localhost:1313/posts/an-introduction-to-bayesian-updating/</link>

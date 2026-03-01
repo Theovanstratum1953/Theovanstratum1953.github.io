@@ -1,0 +1,319 @@
+{{ define "main" }}
+<article class="book-single">
+
+  <!-- Breadcrumb -->
+  <div class="book-breadcrumb">
+    <div class="container">
+      <a href="/books/">← All books</a>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <section class="book-hero">
+    <div class="container book-hero__inner">
+      <div class="book-hero__cover">
+        {{ if .Params.cover }}
+        <img src="{{ .Params.cover }}" alt="{{ .Title }} cover">
+        {{ end }}
+      </div>
+      <div class="book-hero__info">
+        <div class="book-hero__badges">
+          {{ if eq .Params.status "published" }}
+          <span class="badge badge--published">Published · {{ .Params.year }}</span>
+          {{ else }}
+          <span class="badge badge--proposal">{{ .Params.type | default "Proposal" }} · Expected {{ .Params.expected }}</span>
+          {{ end }}
+        </div>
+        <h1>{{ .Title }}</h1>
+        <p class="book-hero__subtitle">{{ .Params.subtitle }}</p>
+
+        <div class="book-stats">
+          {{ if .Params.pages }}<div class="book-stat"><span class="book-stat__val">{{ .Params.pages }}</span><span class="book-stat__label">Pages</span></div>{{ end }}
+          {{ if .Params.pages_est }}<div class="book-stat"><span class="book-stat__val">{{ .Params.pages_est }}</span><span class="book-stat__label">Est. pages</span></div>{{ end }}
+          {{ if .Params.chapters }}<div class="book-stat"><span class="book-stat__val">{{ .Params.chapters }}</span><span class="book-stat__label">Chapters</span></div>{{ end }}
+        </div>
+
+        {{ if .Params.topics }}
+        <div class="book-hero__topics">
+          {{ range .Params.topics }}
+          <span class="topic-tag">{{ . }}</span>
+          {{ end }}
+        </div>
+        {{ end }}
+
+        <div class="book-hero__actions">
+          {{ if .Params.leanpub_url }}
+          <a href="{{ .Params.leanpub_url }}" class="btn btn--primary btn--large" target="_blank" rel="noopener">Buy on Leanpub →</a>
+          {{ else }}
+          <a href="mailto:theovanstratum1953@gmail.com?subject=Notify me: {{ .Title }}" class="btn btn--ghost btn--large">Notify me on release →</a>
+          {{ end }}
+        </div>
+
+        {{ if .Params.audience }}
+        <p class="book-audience"><strong>Audience:</strong> {{ .Params.audience }}</p>
+        {{ end }}
+      </div>
+    </div>
+  </section>
+
+  <!-- Content -->
+  <section class="book-content">
+    <div class="container book-content__inner">
+      <div class="book-body prose">
+        {{ .Content }}
+      </div>
+      <aside class="book-sidebar">
+        <div class="sidebar-block">
+          <h4>Book details</h4>
+          <dl class="book-details-list">
+            <dt>Status</dt>
+            <dd>{{ if eq .Params.status "published" }}Published {{ .Params.year }}{{ else }}{{ .Params.expected | default "In development" }}{{ end }}</dd>
+            {{ if .Params.pages }}<dt>Pages</dt><dd>{{ .Params.pages }}</dd>{{ end }}
+            {{ if .Params.pages_est }}<dt>Est. pages</dt><dd>{{ .Params.pages_est }}</dd>{{ end }}
+            {{ if .Params.chapters }}<dt>Chapters</dt><dd>{{ .Params.chapters }}</dd>{{ end }}
+          </dl>
+        </div>
+        {{ if .Params.leanpub_url }}
+        <div class="sidebar-block">
+          <h4>Get the book</h4>
+          <a href="{{ .Params.leanpub_url }}" class="btn btn--primary btn--full" target="_blank" rel="noopener">Buy on Leanpub →</a>
+        </div>
+        {{ end }}
+        <div class="sidebar-block">
+          <h4>Other books</h4>
+          <ul class="sidebar-book-list">
+            {{ $current := . }}
+            {{ range (where .Site.Pages "Section" "books") }}
+            {{ if ne .RelPermalink $current.RelPermalink }}
+            <li><a href="{{ .RelPermalink }}">{{ .Title }}</a>
+              {{ if eq .Params.status "proposal" }}<span class="sidebar-badge">Proposal</span>{{ end }}
+            </li>
+            {{ end }}
+            {{ end }}
+          </ul>
+        </div>
+        <div class="sidebar-block">
+          <h4>Research</h4>
+          <ul class="sidebar-book-list">
+            {{ range (where .Site.Pages "Section" "whitepapers") }}
+            <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+            {{ end }}
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </section>
+</article>
+
+<style>
+/* ── Book Single Page ──────────────────────────────────────── */
+.book-breadcrumb {
+  padding: 1.5rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.book-breadcrumb a {
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  opacity: 0.45;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+.book-breadcrumb a:hover { opacity: 0.8; }
+
+/* Hero */
+.book-hero {
+  padding: 4rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.book-hero__inner {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+.book-hero__cover {
+  position: sticky;
+  top: 2rem;
+}
+.book-hero__cover img {
+  width: 100%;
+  border-radius: 2px;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.5);
+}
+.book-hero__badges {
+  margin-bottom: 1rem;
+}
+.book-hero__info h1 {
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  line-height: 1.1;
+  margin-bottom: 0.5rem;
+}
+.book-hero__subtitle {
+  font-size: 1.05rem;
+  font-style: italic;
+  opacity: 0.5;
+  margin-bottom: 2rem;
+  line-height: 1.5;
+}
+
+/* Stats row */
+.book-stats {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 1.5rem;
+  padding: 1.25rem 0;
+  border-top: 1px solid rgba(255,255,255,0.07);
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+.book-stat { text-align: left; }
+.book-stat__val {
+  display: block;
+  font-size: 1.4rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  margin-bottom: 0.2rem;
+}
+.book-stat__label {
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.4;
+}
+
+/* Topics */
+.book-hero__topics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Actions */
+.book-hero__actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+.btn--large { padding: 0.75rem 1.5rem; font-size: 0.9rem; }
+.btn--full { width: 100%; text-align: center; }
+
+/* Audience */
+.book-audience {
+  font-size: 0.85rem;
+  line-height: 1.6;
+  opacity: 0.55;
+  max-width: 52ch;
+  border-left: 2px solid rgba(255,255,255,0.1);
+  padding-left: 1rem;
+}
+
+/* Content area */
+.book-content { padding: 4rem 0; }
+.book-content__inner {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 4rem;
+  align-items: start;
+}
+.book-body.prose {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: rgba(255,255,255,0.75);
+}
+.book-body.prose h2 {
+  font-size: 1.4rem;
+  color: rgba(255,255,255,0.9);
+  margin-top: 2.5rem;
+  margin-bottom: 0.75rem;
+}
+.book-body.prose h3 {
+  font-size: 1.05rem;
+  color: rgba(255,255,255,0.85);
+  margin-top: 1.75rem;
+  margin-bottom: 0.5rem;
+}
+.book-body.prose p { margin-bottom: 1.2rem; }
+.book-body.prose strong { color: rgba(255,255,255,0.9); }
+.book-body.prose ul, .book-body.prose ol {
+  padding-left: 1.5rem;
+  margin-bottom: 1.2rem;
+}
+.book-body.prose li { margin-bottom: 0.4rem; }
+.book-body.prose hr {
+  border: none;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  margin: 2.5rem 0;
+}
+
+/* Sidebar */
+.book-sidebar {
+  position: sticky;
+  top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.sidebar-block {
+  border: 1px solid rgba(255,255,255,0.07);
+  padding: 1.25rem;
+  border-radius: 2px;
+}
+.sidebar-block h4 {
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  opacity: 0.35;
+  margin-bottom: 0.85rem;
+}
+.book-details-list {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.35rem 1rem;
+  font-size: 0.82rem;
+}
+.book-details-list dt { opacity: 0.4; }
+.book-details-list dd { opacity: 0.8; margin: 0; }
+.sidebar-book-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+.sidebar-book-list a {
+  font-size: 0.85rem;
+  opacity: 0.65;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+.sidebar-book-list a:hover { opacity: 1; }
+.sidebar-badge {
+  font-size: 0.6rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.35;
+  margin-left: 0.35rem;
+}
+
+/* Reusable */
+.badge { font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.25rem 0.6rem; border-radius: 2px; }
+.badge--published { background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.7); border: 1px solid rgba(255,255,255,0.12); }
+.badge--proposal { background: rgba(200,170,100,0.08); color: rgba(200,170,100,0.7); border: 1px solid rgba(200,170,100,0.2); }
+.topic-tag { font-size: 0.65rem; letter-spacing: 0.08em; padding: 0.2rem 0.5rem; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 1px; opacity: 0.6; }
+.btn { display: inline-block; padding: 0.5rem 1rem; font-size: 0.8rem; letter-spacing: 0.06em; text-decoration: none; border-radius: 1px; transition: all 0.2s; }
+.btn--ghost { border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.7); }
+.btn--ghost:hover { border-color: rgba(255,255,255,0.4); color: #fff; }
+.btn--primary { background: rgba(255,255,255,0.9); color: #111; border: 1px solid transparent; }
+.btn--primary:hover { background: #fff; }
+
+@media (max-width: 900px) {
+  .book-hero__inner { grid-template-columns: 1fr; gap: 2rem; }
+  .book-hero__cover { position: static; max-width: 220px; }
+  .book-content__inner { grid-template-columns: 1fr; }
+  .book-sidebar { position: static; }
+}
+</style>
+{{ end }}

@@ -1,0 +1,105 @@
+{{ define "main" }}
+<section class="wp-hero">
+  <div class="container">
+    <p class="section-label">Research</p>
+    <h1>Whitepapers &amp; <em>research</em></h1>
+    <p class="hero-sub">Independent research synthesising evidence from peer-reviewed studies, large-scale surveys, and empirical data — prioritising accuracy over narrative.</p>
+  </div>
+</section>
+
+<section class="wp-section">
+  <div class="container">
+    {{ range .Pages }}
+    <article class="wp-card">
+      <div class="wp-card__body">
+        <div class="wp-card__meta">
+          <span class="badge badge--wp">{{ .Params.type | default "White Paper" }}</span>
+          <span class="wp-date">{{ .Params.date | time.Format "January 2006" }}</span>
+        </div>
+        <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+        <p class="wp-subtitle">{{ .Params.subtitle }}</p>
+        <p class="wp-summary">{{ .Params.summary }}</p>
+        <div class="wp-topics">
+          {{ range .Params.topics }}
+          <span class="topic-tag">{{ . }}</span>
+          {{ end }}
+        </div>
+        <div class="wp-actions">
+          <a href="{{ .RelPermalink }}" class="btn btn--ghost">Read abstract →</a>
+          {{ if .Params.pdf_url }}
+          <a href="{{ .Params.pdf_url }}" class="btn btn--primary" target="_blank" rel="noopener">Download PDF →</a>
+          {{ end }}
+        </div>
+      </div>
+    </article>
+    {{ end }}
+
+    {{ if eq (len .Pages) 0 }}
+    <p class="wp-empty">Research papers forthcoming. <a href="mailto:theovanstratum1953@gmail.com">Contact Theo</a> for preprints and working papers.</p>
+    {{ end }}
+  </div>
+</section>
+
+<style>
+.wp-hero {
+  padding: 5rem 0 3rem;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.wp-hero .section-label {
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  opacity: 0.5;
+  margin-bottom: 1rem;
+}
+.wp-hero h1 {
+  font-size: clamp(2.2rem, 5vw, 3.5rem);
+  margin-bottom: 1rem;
+  line-height: 1.1;
+}
+.wp-hero .hero-sub {
+  max-width: 54ch;
+  opacity: 0.65;
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+.wp-section { padding: 4rem 0; }
+.wp-card {
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 2px;
+  padding: 2rem;
+  margin-bottom: 1.5rem;
+  background: rgba(255,255,255,0.02);
+  transition: border-color 0.25s;
+}
+.wp-card:hover { border-color: rgba(255,255,255,0.2); }
+.wp-card__meta {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.wp-date {
+  font-size: 0.75rem;
+  opacity: 0.35;
+  letter-spacing: 0.06em;
+}
+.wp-card h2 { font-size: 1.5rem; margin-bottom: 0.35rem; }
+.wp-card h2 a { color: inherit; text-decoration: none; }
+.wp-card h2 a:hover { opacity: 0.8; }
+.wp-subtitle { font-size: 0.9rem; font-style: italic; opacity: 0.45; margin-bottom: 0.85rem; }
+.wp-summary { font-size: 0.95rem; line-height: 1.7; opacity: 0.65; max-width: 72ch; margin-bottom: 1rem; }
+.wp-topics { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.25rem; }
+.wp-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+.wp-empty { opacity: 0.4; font-style: italic; }
+
+.badge { font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.25rem 0.6rem; border-radius: 2px; }
+.badge--wp { background: rgba(100,180,200,0.08); color: rgba(100,180,200,0.7); border: 1px solid rgba(100,180,200,0.2); }
+.topic-tag { font-size: 0.65rem; letter-spacing: 0.08em; padding: 0.2rem 0.5rem; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 1px; opacity: 0.6; }
+.btn { display: inline-block; padding: 0.5rem 1rem; font-size: 0.8rem; letter-spacing: 0.06em; text-decoration: none; border-radius: 1px; transition: all 0.2s; }
+.btn--ghost { border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.7); }
+.btn--ghost:hover { border-color: rgba(255,255,255,0.4); color: #fff; }
+.btn--primary { background: rgba(255,255,255,0.9); color: #111; border: 1px solid transparent; }
+.btn--primary:hover { background: #fff; }
+</style>
+{{ end }}

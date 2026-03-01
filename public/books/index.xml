@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Books on Theo van Stratum, PhD</title>
+    <link>http://localhost:1313/books/</link>
+    <description>Recent content in Books on Theo van Stratum, PhD</description>
+    <generator>Hugo -- 0.155.3</generator>
+    <language>en</language>
+    <atom:link href="http://localhost:1313/books/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Probabilistic Delivery</title>
+      <link>http://localhost:1313/books/probabilistic-delivery/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/books/probabilistic-delivery/</guid>
+      <description>The definitive challenge to Agile theatre. Drawing on data from 200+ software projects, this book introduces the Probabilistic Delivery framework — replacing story-point velocity with actuarial rigour.</description>
+    </item>
+    <item>
+      <title>The Gambler&#39;s Fallacy</title>
+      <link>http://localhost:1313/books/gamblers-fallacy/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/books/gamblers-fallacy/</guid>
+      <description>A deep investigation into the cognitive biases and statistical misconceptions that undermine decision-making in software organisations — and how Bayesian tools can systematically correct them.</description>
+    </item>
+    <item>
+      <title>The Technical Debt Paradox</title>
+      <link>http://localhost:1313/books/technical-debt-paradox/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/books/technical-debt-paradox/</guid>
+      <description>An unflinching examination of technical debt as a measurable, probabilistic risk — not a vague metaphor — with empirical data showing organisations how to price, manage, and strategically deploy it as a fiduciary instrument.</description>
+    </item>
+    <item>
+      <title>Pandas for Academics</title>
+      <link>http://localhost:1313/books/pandas-for-academics/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/books/pandas-for-academics/</guid>
+      <description>The first comprehensive, discipline-neutral pandas textbook written for academic researchers — covering the full research lifecycle from raw data to publication-ready results.</description>
+    </item>
+    <item>
+      <title>Probabilistic Python</title>
+      <link>http://localhost:1313/books/probabilistic-python/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/books/probabilistic-python/</guid>
+      <description>The Python answer to McElreath&amp;rsquo;s Statistical Rethinking — academically rigorous, practically oriented, written for researchers who need probabilistic methods in their own disciplines.</description>
+    </item>
+  </channel>
+</rss>

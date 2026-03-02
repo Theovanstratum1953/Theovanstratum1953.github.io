@@ -105,29 +105,364 @@
     </nav>
 </header>
 <main class="main">
-<article class="book-single">
+
+<style>
+  :root {
+    --ink: #0d0d0d;
+    --paper: #f5f1ea;
+    --cream: #ede8de;
+    --rust: #b84c2b;
+    --rust-dark: #8a3520;
+    --slate: #2c3e50;
+    --gold: #c9a84c;
+    --muted: #7a7268;
+    --rule: #c8c0b0;
+  }
+
+   
+  .book-breadcrumb {
+    padding: 1.2rem 4rem;
+    border-bottom: 1px solid var(--rule);
+    background: var(--cream);
+  }
+  .book-breadcrumb a {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .book-breadcrumb a:hover { color: var(--rust); }
+
+   
+  .book-hero {
+    background: var(--paper);
+    border-bottom: 1px solid var(--rule);
+    padding: 4rem 4rem;
+  }
+
+  .book-hero__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .book-hero__cover {
+    position: sticky;
+    top: 5rem;
+  }
+
+  .book-hero__cover img {
+    width: 100%;
+    display: block;
+    border: 1px solid var(--rule);
+    box-shadow: 6px 6px 0 var(--rule);
+  }
+
+   
+  .book-hero__badges { margin-bottom: 1.2rem; }
+
+  .badge {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.7rem;
+    display: inline-block;
+  }
+  .badge--published { background: var(--rust); color: white; }
+  .badge--proposal { background: transparent; color: var(--muted); border: 1px solid var(--rule); }
+
+  .book-hero__info h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    font-weight: 900;
+    line-height: 1.08;
+    color: var(--ink);
+    margin-bottom: 0.5rem;
+  }
+
+  .book-hero__subtitle {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-style: italic;
+    color: var(--muted);
+    margin-bottom: 2rem;
+    line-height: 1.5;
+  }
+
+   
+  .book-stats {
+    display: flex;
+    gap: 0;
+    margin-bottom: 2rem;
+    border: 1px solid var(--rule);
+    background: var(--cream);
+  }
+
+  .book-stat {
+    padding: 1rem 1.5rem;
+    border-right: 1px solid var(--rule);
+    flex: 0 0 auto;
+  }
+  .book-stat:last-child { border-right: none; }
+
+  .book-stat__val {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--rust);
+    line-height: 1;
+    margin-bottom: 0.25rem;
+  }
+
+  .book-stat__label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+   
+  .book-hero__topics {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-bottom: 2rem;
+  }
+
+  .topic-tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.08em;
+    padding: 0.25rem 0.6rem;
+    border: 1px solid var(--rule);
+    color: var(--muted);
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .topic-tag:hover { border-color: var(--rust); color: var(--rust); }
+
+   
+  .book-hero__actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+  }
+
+  .btn {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.85rem 1.8rem;
+    text-decoration: none;
+    transition: all 0.2s;
+    display: inline-block;
+    cursor: pointer;
+    border: none;
+  }
+  .btn--primary { background: var(--rust); color: white; }
+  .btn--primary:hover { background: var(--rust-dark); }
+  .btn--secondary { background: transparent; color: var(--ink); border: 1px solid var(--rule); }
+  .btn--secondary:hover { border-color: var(--ink); }
+
+   
+  .book-audience {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 300;
+    color: var(--slate);
+    line-height: 1.7;
+    max-width: 52ch;
+    padding-left: 1rem;
+    border-left: 2px solid var(--rust);
+    opacity: 0.8;
+  }
+  .book-audience strong { font-weight: 500; color: var(--ink); }
+
+   
+  .book-content {
+    background: var(--paper);
+    padding: 4rem 4rem;
+  }
+
+  .book-content__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 260px;
+    gap: 5rem;
+    align-items: start;
+  }
+
+   
+  .book-body {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 300;
+    font-size: 1rem;
+    line-height: 1.85;
+    color: var(--slate);
+  }
+
+  .book-body h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-top: 2.5rem;
+    margin-bottom: 0.75rem;
+    line-height: 1.2;
+  }
+  .book-body h2 em { font-style: italic; color: var(--rust); }
+
+  .book-body h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-top: 1.8rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .book-body p { margin-bottom: 1.2rem; }
+
+  .book-body strong { font-weight: 500; color: var(--ink); }
+
+  .book-body ul, .book-body ol {
+    padding-left: 1.5rem;
+    margin-bottom: 1.2rem;
+  }
+  .book-body li { margin-bottom: 0.4rem; }
+
+  .book-body hr {
+    border: none;
+    border-top: 1px solid var(--rule);
+    margin: 2.5rem 0;
+  }
+
+   
+  .book-sidebar {
+    position: sticky;
+    top: 5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    align-self: start;
+  }
+
+  .sidebar-block {
+    background: var(--cream);
+    padding: 1.4rem;
+  }
+
+  .sidebar-block h4 {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin-bottom: 1rem;
+  }
+
+  .book-details-list {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.4rem 1rem;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+  }
+  .book-details-list dt { color: var(--muted); }
+  .book-details-list dd { color: var(--ink); font-weight: 500; margin: 0; }
+
+  .btn--full {
+    width: 100%;
+    text-align: center;
+    display: block;
+    padding: 0.75rem 1rem;
+    font-size: 0.68rem;
+  }
+
+  .sidebar-book-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+  .sidebar-book-list li {
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 0.6rem;
+  }
+  .sidebar-book-list li:last-child { border-bottom: none; padding-bottom: 0; }
+
+  .sidebar-book-list a {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 0.83rem;
+    font-weight: 300;
+    color: var(--slate);
+    text-decoration: none;
+    transition: color 0.2s;
+    display: block;
+  }
+  .sidebar-book-list a:hover { color: var(--rust); }
+
+  .sidebar-badge {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: block;
+    margin-top: 0.1rem;
+  }
+
+   
+  @media (max-width: 900px) {
+    .book-breadcrumb { padding: 1rem 1.5rem; }
+    .book-hero { padding: 3rem 1.5rem; }
+    .book-hero__inner { grid-template-columns: 1fr; gap: 2rem; }
+    .book-hero__cover { position: static; max-width: 200px; }
+    .book-content { padding: 3rem 1.5rem; }
+    .book-content__inner { grid-template-columns: 1fr; gap: 3rem; }
+    .book-sidebar { position: static; }
+  }
+</style>
+
+<article>
 
   
   <div class="book-breadcrumb">
-    <div class="container">
-      <a href="http://localhost:1313/books/">← All books</a>
-    </div>
+    <a href="http://localhost:1313/books/">← All books</a>
   </div>
 
   
-  <section class="book-hero">
-    <div class="container book-hero__inner">
+  <div class="book-hero">
+    <div class="book-hero__inner">
+
       <div class="book-hero__cover">
         
         <img src="http://localhost:1313/images/python.png" alt="Probabilistic Python cover">
         
       </div>
+
       <div class="book-hero__info">
         <div class="book-hero__badges">
           
           <span class="badge badge--proposal">Proposal · Expected Q3 2026</span>
           
         </div>
+
         <h1>Probabilistic Python</h1>
         <p class="book-hero__subtitle">Bayesian Reasoning and Uncertainty Quantification for Academic Research</p>
 
@@ -139,27 +474,13 @@
 
         
         <div class="book-hero__topics">
-          
-          <span class="topic-tag">PyMC</span>
-          
-          <span class="topic-tag">ArviZ</span>
-          
-          <span class="topic-tag">Bambi</span>
-          
-          <span class="topic-tag">Bayesian Inference</span>
-          
-          <span class="topic-tag">MCMC</span>
-          
-          <span class="topic-tag">Prior Selection</span>
-          
-          <span class="topic-tag">Model Criticism</span>
-          
+          <span class="topic-tag">PyMC</span><span class="topic-tag">ArviZ</span><span class="topic-tag">Bambi</span><span class="topic-tag">Bayesian Inference</span><span class="topic-tag">MCMC</span><span class="topic-tag">Prior Selection</span><span class="topic-tag">Model Criticism</span>
         </div>
         
 
         <div class="book-hero__actions">
           
-          <a href="mailto:theovanstratum1953@gmail.com?subject=Notify me: Probabilistic%20Python" class="btn btn--ghost btn--large">Notify me on release →</a>
+          <a href="mailto:theovanstratum1953@gmail.com?subject=Notify me: Probabilistic%20Python" class="btn btn--secondary">Notify me on release →</a>
           
         </div>
 
@@ -167,13 +488,15 @@
         <p class="book-audience"><strong>Audience:</strong> Researchers and PhD students in any empirical discipline who need to apply Bayesian methods and communicate uncertainty in peer-reviewed publications.</p>
         
       </div>
+
     </div>
-  </section>
+  </div>
 
   
-  <section class="book-content">
-    <div class="container book-content__inner">
-      <div class="book-body prose">
+  <div class="book-content">
+    <div class="book-content__inner">
+
+      <div class="book-body">
         <p>Richard McElreath&rsquo;s <em>Statistical Rethinking</em> is the best introduction to Bayesian reasoning for researchers. It uses R. This book does for Python what <em>Statistical Rethinking</em> does for R — with a unified, modern toolchain and unusually strong treatment of the parts of Bayesian workflow that textbooks typically rush past.</p>
 <h2 id="the-gap-this-book-fills">The Gap This Book Fills</h2>
 <p>Python has become the dominant language for scientific computing. PyMC, ArviZ, and Bambi together form one of the most powerful Bayesian modelling ecosystems available. But the resources for learning these tools are fragmented: PyMC documentation written for engineers, ArviZ tutorials that assume you already understand MCMC, Bambi examples oriented toward machine learning rather than scientific inference.</p>
@@ -219,7 +542,9 @@
 <em>Appendix D: Bayesian Reporting Checklist for Peer Review</em></h2>
 
       </div>
+
       <aside class="book-sidebar">
+
         <div class="sidebar-block">
           <h4>Book details</h4>
           <dl class="book-details-list">
@@ -230,32 +555,38 @@
             <dt>Chapters</dt><dd>12 &#43; 4 Appendices</dd>
           </dl>
         </div>
+
         
+
         <div class="sidebar-block">
           <h4>Other books</h4>
           <ul class="sidebar-book-list">
             
             
             
-            <li><a href="http://localhost:1313/books/probabilistic-delivery/">Probabilistic Delivery</a>
+            <li>
+              <a href="http://localhost:1313/books/probabilistic-delivery/">Probabilistic Delivery</a>
               
             </li>
             
             
             
-            <li><a href="http://localhost:1313/books/gamblers-fallacy/">The Gambler&#39;s Fallacy</a>
+            <li>
+              <a href="http://localhost:1313/books/gamblers-fallacy/">The Gambler&#39;s Fallacy</a>
               
             </li>
             
             
             
-            <li><a href="http://localhost:1313/books/technical-debt-paradox/">The Technical Debt Paradox</a>
+            <li>
+              <a href="http://localhost:1313/books/technical-debt-paradox/">The Technical Debt Paradox</a>
               
             </li>
             
             
             
-            <li><a href="http://localhost:1313/books/pandas-for-academics/">Pandas for Academics</a>
+            <li>
+              <a href="http://localhost:1313/books/pandas-for-academics/">Pandas for Academics</a>
               
             </li>
             
@@ -263,13 +594,15 @@
             
             
             
-            <li><a href="http://localhost:1313/books/">Books</a>
+            <li>
+              <a href="http://localhost:1313/books/">Books</a>
               
             </li>
             
             
           </ul>
         </div>
+
         <div class="sidebar-block">
           <h4>Research</h4>
           <ul class="sidebar-book-list">
@@ -280,222 +613,13 @@
             
           </ul>
         </div>
+
       </aside>
     </div>
-  </section>
+  </div>
+
 </article>
 
-<style>
- 
-.book-breadcrumb {
-  padding: 1.5rem 0;
-  border-bottom: 1px solid rgba(255,255,255,0.06);
-}
-.book-breadcrumb a {
-  font-size: 0.8rem;
-  letter-spacing: 0.06em;
-  opacity: 0.45;
-  text-decoration: none;
-  transition: opacity 0.2s;
-}
-.book-breadcrumb a:hover { opacity: 0.8; }
-
- 
-.book-hero {
-  padding: 4rem 0;
-  border-bottom: 1px solid rgba(255,255,255,0.08);
-}
-.book-hero__inner {
-  display: grid;
-  grid-template-columns: 260px 1fr;
-  gap: 4rem;
-  align-items: start;
-}
-.book-hero__cover {
-  position: sticky;
-  top: 2rem;
-}
-.book-hero__cover img {
-  width: 100%;
-  border-radius: 2px;
-  box-shadow: 0 24px 80px rgba(0,0,0,0.5);
-}
-.book-hero__badges {
-  margin-bottom: 1rem;
-}
-.book-hero__info h1 {
-  font-size: clamp(1.8rem, 4vw, 2.8rem);
-  line-height: 1.1;
-  margin-bottom: 0.5rem;
-}
-.book-hero__subtitle {
-  font-size: 1.05rem;
-  font-style: italic;
-  opacity: 0.5;
-  margin-bottom: 2rem;
-  line-height: 1.5;
-}
-
- 
-.book-stats {
-  display: flex;
-  gap: 2rem;
-  margin-bottom: 1.5rem;
-  padding: 1.25rem 0;
-  border-top: 1px solid rgba(255,255,255,0.07);
-  border-bottom: 1px solid rgba(255,255,255,0.07);
-}
-.book-stat { text-align: left; }
-.book-stat__val {
-  display: block;
-  font-size: 1.4rem;
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  line-height: 1;
-  margin-bottom: 0.2rem;
-}
-.book-stat__label {
-  font-size: 0.7rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  opacity: 0.4;
-}
-
- 
-.book-hero__topics {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-  margin-bottom: 1.5rem;
-}
-
- 
-.book-hero__actions {
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-  margin-bottom: 1.5rem;
-}
-.btn--large { padding: 0.75rem 1.5rem; font-size: 0.9rem; }
-.btn--full { width: 100%; text-align: center; }
-
- 
-.book-audience {
-  font-size: 0.85rem;
-  line-height: 1.6;
-  opacity: 0.55;
-  max-width: 52ch;
-  border-left: 2px solid rgba(255,255,255,0.1);
-  padding-left: 1rem;
-}
-
- 
-.book-content { padding: 4rem 0; }
-.book-content__inner {
-  display: grid;
-  grid-template-columns: 1fr 280px;
-  gap: 4rem;
-  align-items: start;
-}
-.book-body.prose {
-  font-size: 1rem;
-  line-height: 1.8;
-  color: rgba(255,255,255,0.75);
-}
-.book-body.prose h2 {
-  font-size: 1.4rem;
-  color: rgba(255,255,255,0.9);
-  margin-top: 2.5rem;
-  margin-bottom: 0.75rem;
-}
-.book-body.prose h3 {
-  font-size: 1.05rem;
-  color: rgba(255,255,255,0.85);
-  margin-top: 1.75rem;
-  margin-bottom: 0.5rem;
-}
-.book-body.prose p { margin-bottom: 1.2rem; }
-.book-body.prose strong { color: rgba(255,255,255,0.9); }
-.book-body.prose ul, .book-body.prose ol {
-  padding-left: 1.5rem;
-  margin-bottom: 1.2rem;
-}
-.book-body.prose li { margin-bottom: 0.4rem; }
-.book-body.prose hr {
-  border: none;
-  border-top: 1px solid rgba(255,255,255,0.08);
-  margin: 2.5rem 0;
-}
-
- 
-.book-sidebar {
-  position: sticky;
-  top: 2rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-.sidebar-block {
-  border: 1px solid rgba(255,255,255,0.07);
-  padding: 1.25rem;
-  border-radius: 2px;
-}
-.sidebar-block h4 {
-  font-size: 0.65rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  opacity: 0.35;
-  margin-bottom: 0.85rem;
-}
-.book-details-list {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 0.35rem 1rem;
-  font-size: 0.82rem;
-}
-.book-details-list dt { opacity: 0.4; }
-.book-details-list dd { opacity: 0.8; margin: 0; }
-.sidebar-book-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
-}
-.sidebar-book-list a {
-  font-size: 0.85rem;
-  opacity: 0.65;
-  text-decoration: none;
-  transition: opacity 0.2s;
-}
-.sidebar-book-list a:hover { opacity: 1; }
-.sidebar-badge {
-  font-size: 0.6rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  opacity: 0.35;
-  margin-left: 0.35rem;
-}
-
- 
-.badge { font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.25rem 0.6rem; border-radius: 2px; }
-.badge--published { background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.7); border: 1px solid rgba(255,255,255,0.12); }
-.badge--proposal { background: rgba(200,170,100,0.08); color: rgba(200,170,100,0.7); border: 1px solid rgba(200,170,100,0.2); }
-.topic-tag { font-size: 0.65rem; letter-spacing: 0.08em; padding: 0.2rem 0.5rem; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 1px; opacity: 0.6; }
-.btn { display: inline-block; padding: 0.5rem 1rem; font-size: 0.8rem; letter-spacing: 0.06em; text-decoration: none; border-radius: 1px; transition: all 0.2s; }
-.btn--ghost { border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.7); }
-.btn--ghost:hover { border-color: rgba(255,255,255,0.4); color: #fff; }
-.btn--primary { background: rgba(255,255,255,0.9); color: #111; border: 1px solid transparent; }
-.btn--primary:hover { background: #fff; }
-
-@media (max-width: 900px) {
-  .book-hero__inner { grid-template-columns: 1fr; gap: 2rem; }
-  .book-hero__cover { position: static; max-width: 220px; }
-  .book-content__inner { grid-template-columns: 1fr; }
-  .book-sidebar { position: static; }
-}
-</style>
 
     </main>
     

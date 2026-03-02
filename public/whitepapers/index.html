@@ -105,27 +105,379 @@
         </ul>
     </nav>
 </header>
-<main class="main"> 
-<header class="page-header">
-  <h1>
-    Research &amp; Whitepapers
-  </h1>
-  <div class="post-description">
-    Independent research papers by Theo van Stratum, PhD — evidence-based analysis at the intersection of probabilistic reasoning, software governance, and technology decision-making.
-  </div>
-</header>
+<main class="main">
 
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">AI in Software Development
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>A rigorous synthesis of independent research on AI coding tools — finding a substantial gap between vendor marketing claims and measured outcomes, with serious structural risks that organisations are systematically underreporting.</p>
+<style>
+  :root {
+    --ink: #0d0d0d;
+    --paper: #f5f1ea;
+    --cream: #ede8de;
+    --rust: #b84c2b;
+    --rust-dark: #8a3520;
+    --slate: #2c3e50;
+    --gold: #c9a84c;
+    --muted: #7a7268;
+    --rule: #c8c0b0;
+   
+  body,
+  body.dark,
+  .main,
+  #content,
+  main {
+    background: var(--paper) !important;
+    color: var(--ink) !important;
+  }
+  header.header {
+    background: rgba(245, 241, 234, 0.92) !important;
+    border-bottom: 1px solid var(--rule) !important;
+    backdrop-filter: blur(12px);
+    color: var(--ink) !important;
+  }
+  header.header a,
+  header.header nav a,
+  .logo a {
+    color: var(--muted) !important;
+    text-decoration: none;
+  }
+  header.header a:hover,
+  header.header nav a:hover {
+    color: var(--rust) !important;
+  }
+  footer.footer {
+    background: var(--ink) !important;
+    color: rgba(255,255,255,0.4) !important;
+    border-top: none !important;
+  }
+  footer.footer a { color: rgba(255,255,255,0.5) !important; }
+
+   
+  .main {
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+  }
+  .post-single,
+  .post,
+  .page,
+  #content > * {
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+   
+  .wp-hero {
+    padding: 6rem 6rem 4rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .wp-hero .section-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .wp-hero .section-label::after {
+    content: '';
+    width: 40px;
+    height: 1px;
+    background: var(--rust);
+    opacity: 0.4;
+  }
+
+  .wp-hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 4vw, 3.2rem);
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--ink);
+    margin-bottom: 1rem;
+  }
+  .wp-hero h1 em { font-style: italic; color: var(--rust); }
+
+  .wp-hero .hero-sub {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--muted);
+    max-width: 58ch;
+    line-height: 1.8;
+  }
+
+   
+  .wp-section {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 4rem 6rem;
+  }
+
+   
+  .wp-card {
+    border: 1px solid var(--rule);
+    background: var(--cream);
+    padding: 2.5rem;
+    margin-bottom: 2px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 3rem;
+    align-items: start;
+    transition: background 0.2s;
+  }
+  .wp-card:hover { background: var(--paper); }
+
+  .wp-card__body {}
+
+  .wp-card__meta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .badge {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.7rem;
+    display: inline-block;
+  }
+  .badge--wp {
+    background: transparent;
+    color: var(--gold);
+    border: 1px solid rgba(201,168,76,0.35);
+  }
+
+  .wp-date {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+  }
+
+  .wp-card h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    line-height: 1.15;
+    color: var(--ink);
+    margin-bottom: 0.4rem;
+  }
+  .wp-card h2 a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .wp-card h2 a:hover { color: var(--rust); }
+
+  .wp-subtitle {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.95rem;
+    font-style: italic;
+    color: var(--muted);
+    margin-bottom: 1.2rem;
+    line-height: 1.5;
+  }
+
+  .wp-summary {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 300;
+    color: var(--slate);
+    line-height: 1.8;
+    max-width: 72ch;
+    margin-bottom: 1.2rem;
+  }
+
+  .wp-topics {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .topic-tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.08em;
+    padding: 0.25rem 0.6rem;
+    border: 1px solid var(--rule);
+    color: var(--muted);
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .topic-tag:hover { border-color: var(--rust); color: var(--rust); }
+
+  .wp-actions {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.7rem 1.3rem;
+    text-decoration: none;
+    transition: all 0.2s;
+    display: inline-block;
+    cursor: pointer;
+  }
+  .btn--primary { background: var(--rust); color: white; border: none; }
+  .btn--primary:hover { background: var(--rust-dark); }
+  .btn--ghost { background: transparent; color: var(--ink); border: 1px solid var(--rule); }
+  .btn--ghost:hover { border-color: var(--ink); }
+
+   
+  .wp-card__findings {
+    min-width: 220px;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    padding: 1.4rem;
+    flex-shrink: 0;
+  }
+
+  .wp-findings-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin-bottom: 1rem;
+    opacity: 0.7;
+  }
+
+  .wp-finding {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    margin-bottom: 0.9rem;
+  }
+  .wp-finding:last-child { margin-bottom: 0; }
+
+  .wp-finding-stat {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--rust);
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  .wp-finding-text {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 300;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+   
+  .wp-empty {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 0.9rem;
+    color: var(--muted);
+    font-style: italic;
+  }
+  .wp-empty a { color: var(--rust); text-decoration: none; }
+  .wp-empty a:hover { text-decoration: underline; }
+
+   
+  .wp-more {
+    margin-top: 2rem;
+    padding: 2rem;
+    border: 1px dashed var(--rule);
+    text-align: center;
+  }
+  .wp-more p {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+    margin-bottom: 0.75rem;
+  }
+  .wp-more a {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--rust);
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+  .wp-more a:hover { opacity: 0.7; }
+
+  @media (max-width: 900px) {
+    .wp-hero, .wp-section { padding-left: 1.5rem; padding-right: 1.5rem; }
+    .wp-card { grid-template-columns: 1fr; gap: 2rem; }
+    .wp-card__findings { min-width: auto; }
+  }
+</style>
+
+
+<div class="wp-hero">
+  <p class="section-label">Research</p>
+  <h1>Whitepapers &amp; <em>research</em></h1>
+  <p class="hero-sub">Independent research synthesising evidence from peer-reviewed studies, large-scale surveys, and empirical data — prioritising accuracy over narrative.</p>
+</div>
+
+<section class="wp-section">
+  
+  <article class="wp-card">
+    <div class="wp-card__body">
+      <div class="wp-card__meta">
+        <span class="badge badge--wp">Research White Paper</span>
+        <span class="wp-date">March 2026</span>
+      </div>
+      <h2><a href="http://localhost:1313/whitepapers/ai-in-software-development/">AI in Software Development</a></h2>
+      <p class="wp-subtitle">Costs, Successes, and Failures: What the Evidence Actually Shows</p>
+      <p class="wp-summary">A rigorous synthesis of independent research on AI coding tools — finding a substantial gap between vendor marketing claims and measured outcomes, with serious structural risks that organisations are systematically underreporting.</p>
+      <div class="wp-topics">
+        
+        <span class="topic-tag">AI</span>
+        
+        <span class="topic-tag">Software Development</span>
+        
+        <span class="topic-tag">Productivity</span>
+        
+        <span class="topic-tag">Evidence-Based Research</span>
+        
+        <span class="topic-tag">Technical Debt</span>
+        
+        <span class="topic-tag">Security</span>
+        
+      </div>
+      <div class="wp-actions">
+        
+        <a href="https://drive.google.com/file/d/1kKpGEsQxmcCG4c1HjnwaUt0YjUUVsfnC/view?usp=sharing" class="btn btn--primary" target="_blank" rel="noopener">Download PDF →</a>
+        
+        <a href="http://localhost:1313/whitepapers/ai-in-software-development/" class="btn btn--ghost">Read abstract</a>
+      </div>
+    </div>
+
+    
+
+  </article>
+  
+
+  
+
+  <div class="wp-more">
+    <p>Additional research papers forthcoming</p>
+    <a href="mailto:theovanstratum1953@gmail.com?subject=Research enquiry">Contact for preprints and working papers →</a>
   </div>
-  <footer class="entry-footer"><span title='2026-03-01 00:00:00 +0000 UTC'>March 1, 2026</span>&nbsp;·&nbsp;<span>Theo van Stratum, PhD</span></footer>
-  <a class="entry-link" aria-label="post link to AI in Software Development" href="http://localhost:1313/whitepapers/ai-in-software-development/"></a>
-</article>
+</section>
+
+
     </main>
     
 <footer class="footer">

@@ -1,81 +1,402 @@
 {{ define "main" }}
-<section class="books-hero">
-  <div class="container">
-    <p class="section-label">Publications</p>
-    <h1>Published <em>works</em> &amp; forthcoming</h1>
-    <p class="hero-sub">Each book is grounded in empirical data, probabilistic thinking, and the conviction that honest measurement beats comfortable theatre — every time.</p>
-  </div>
-</section>
+
+<style>
+  :root {
+    --ink: #0d0d0d;
+    --paper: #f5f1ea;
+    --cream: #ede8de;
+    --rust: #b84c2b;
+    --rust-dark: #8a3520;
+    --slate: #2c3e50;
+    --gold: #c9a84c;
+    --muted: #7a7268;
+    --rule: #c8c0b0;
+  /* ── PAPERMOD SHELL OVERRIDE — force light theme site-wide ── */
+  body,
+  body.dark,
+  .main,
+  #content,
+  main {
+    background: var(--paper) !important;
+    color: var(--ink) !important;
+  }
+  header.header {
+    background: rgba(245, 241, 234, 0.92) !important;
+    border-bottom: 1px solid var(--rule) !important;
+    backdrop-filter: blur(12px);
+    color: var(--ink) !important;
+  }
+  header.header a,
+  header.header nav a,
+  .logo a {
+    color: var(--muted) !important;
+    text-decoration: none;
+  }
+  header.header a:hover,
+  header.header nav a:hover {
+    color: var(--rust) !important;
+  }
+  footer.footer {
+    background: var(--ink) !important;
+    color: rgba(255,255,255,0.4) !important;
+    border-top: none !important;
+  }
+  footer.footer a { color: rgba(255,255,255,0.5) !important; }
+
+  /* ── BOOKS HERO ── */
+  .books-hero {
+    padding: 6rem 4rem 4rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .books-hero .section-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .books-hero .section-label::after {
+    content: '';
+    width: 40px;
+    height: 1px;
+    background: var(--rust);
+    opacity: 0.4;
+  }
+
+  .books-hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 4vw, 3.2rem);
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--ink);
+    margin-bottom: 1rem;
+  }
+  .books-hero h1 em { font-style: italic; color: var(--rust); }
+
+  .books-hero .hero-sub {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--muted);
+    max-width: 56ch;
+    line-height: 1.8;
+  }
+
+  /* ── SECTION ── */
+  .books-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 4rem 4rem;
+  }
+
+  .books-section + .books-section {
+    border-top: 1px solid var(--rule);
+    background: var(--cream);
+    max-width: 100%;
+    padding: 4rem 0;
+  }
+  .books-section + .books-section .books-section-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 4rem;
+  }
+
+  .section-header { margin-bottom: 3rem; }
+
+  .section-tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--rust);
+    display: block;
+    margin-bottom: 0.6rem;
+  }
+
+  .section-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.15;
+    margin-bottom: 0.5rem;
+  }
+  .section-header h2 em { font-style: italic; color: var(--rust); }
+
+  .section-desc {
+    font-size: 0.9rem;
+    color: var(--muted);
+    max-width: 56ch;
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  /* ── GRID ── */
+  .books-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+  }
+
+  .books-grid--proposals {
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  }
+
+  /* ── CARD ── */
+  .book-card {
+    background: var(--paper);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    transition: background 0.2s;
+    position: relative;
+  }
+  .book-card:hover { background: var(--cream); }
+
+  .book-card--proposal {
+    background: var(--cream);
+  }
+  .book-card--proposal:hover { background: var(--paper); }
+
+  /* Cover */
+  .book-card__cover-link { display: block; margin-bottom: 1.5rem; }
+
+  .book-card__cover {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--rule);
+  }
+
+  .book-card__cover img {
+    width: 100%;
+    display: block;
+    transition: transform 0.4s;
+  }
+  .book-card:hover .book-card__cover img { transform: scale(1.03); }
+
+  .book-card__cover-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(13,13,13,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.25s;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: white;
+  }
+  .book-card:hover .book-card__cover-overlay { opacity: 1; }
+
+  /* Badge */
+  .book-card__meta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+  }
+
+  .badge {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.7rem;
+    display: inline-block;
+  }
+  .badge--published { background: var(--rust); color: white; }
+  .badge--proposal { background: transparent; color: var(--muted); border: 1px solid var(--rule); }
+
+  .book-page-count {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+  }
+
+  /* Title */
+  .book-card__body h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--ink);
+    margin-bottom: 0.4rem;
+  }
+  .book-card__body h3 a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .book-card__body h3 a:hover { color: var(--rust); }
+
+  .book-card__subtitle {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.85rem;
+    font-style: italic;
+    color: var(--muted);
+    margin-bottom: 1rem;
+    line-height: 1.4;
+  }
+
+  .book-card__summary {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 0.83rem;
+    font-weight: 300;
+    color: var(--slate);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+    flex: 1;
+  }
+
+  /* Topics */
+  .book-card__topics {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .topic-tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.08em;
+    padding: 0.2rem 0.6rem;
+    border: 1px solid var(--rule);
+    color: var(--muted);
+  }
+
+  /* Actions */
+  .book-card__actions {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin-top: auto;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--rule);
+  }
+
+  .btn {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.6rem 1.1rem;
+    text-decoration: none;
+    transition: all 0.2s;
+    display: inline-block;
+    cursor: pointer;
+  }
+
+  .btn--primary {
+    background: var(--rust);
+    color: white;
+    border: none;
+  }
+  .btn--primary:hover { background: var(--rust-dark); }
+
+  .btn--ghost {
+    background: transparent;
+    color: var(--ink);
+    border: 1px solid var(--rule);
+  }
+  .btn--ghost:hover { border-color: var(--ink); }
+
+  @media (max-width: 900px) {
+    .books-hero,
+    .books-section { padding-left: 1.5rem; padding-right: 1.5rem; }
+    .books-section + .books-section .books-section-inner { padding: 0 1.5rem; }
+  }
+
+  @media (max-width: 640px) {
+    .books-grid,
+    .books-grid--proposals { grid-template-columns: 1fr; }
+  }
+</style>
+
+<!-- Hero -->
+<div class="books-hero">
+  <p class="section-label">Publications</p>
+  <h1>Published <em>works</em> &amp; forthcoming</h1>
+  <p class="hero-sub">Each book is grounded in empirical data, probabilistic thinking, and the conviction that honest measurement beats comfortable theatre — every time.</p>
+</div>
 
 {{ $published := where .Pages "Params.status" "published" }}
 {{ $proposals := where .Pages "Params.status" "proposal" }}
 
 {{ if $published }}
 <section class="books-section">
-  <div class="container">
-    <div class="section-header">
-      <span class="section-tag">Published</span>
-      <h2>Available <em>now</em></h2>
-    </div>
-    <div class="books-grid">
-      {{ range sort $published "Params.weight" }}
-      <article class="book-card book-card--published">
-        <a href="{{ .RelPermalink }}" class="book-card__cover-link">
-          <div class="book-card__cover">
-            {{ if .Params.cover }}
-            <img src="{{ .Params.cover }}" alt="{{ .Title }} cover" loading="lazy">
-            {{ end }}
-            <div class="book-card__cover-overlay">
-              <span>Read more →</span>
-            </div>
-          </div>
-        </a>
-        <div class="book-card__body">
-          <div class="book-card__meta">
-            <span class="badge badge--published">Published · {{ .Params.year }}</span>
-            {{ if .Params.pages }}<span class="book-meta-item">{{ .Params.pages }} pages</span>{{ end }}
-          </div>
-          <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
-          <p class="book-card__subtitle">{{ .Params.subtitle }}</p>
-          <p class="book-card__summary">{{ .Params.summary }}</p>
-          <div class="book-card__topics">
-            {{ range first 3 .Params.topics }}
-            <span class="topic-tag">{{ . }}</span>
-            {{ end }}
-          </div>
-          <div class="book-card__actions">
-            <a href="{{ .RelPermalink }}" class="btn btn--ghost">Full details →</a>
-            {{ if .Params.leanpub_url }}
-            <a href="{{ .Params.leanpub_url }}" class="btn btn--primary" target="_blank" rel="noopener">Buy on Leanpub</a>
-            {{ end }}
-          </div>
+  <div class="section-header">
+    <span class="section-tag">Published</span>
+    <h2>Available <em>now</em></h2>
+  </div>
+  <div class="books-grid">
+    {{ range sort $published "Params.weight" }}
+    <article class="book-card book-card--published">
+      <a href="{{ .RelPermalink }}" class="book-card__cover-link">
+        <div class="book-card__cover">
+          {{ if .Params.cover.image }}
+          <img src="{{ .Params.cover.image }}" alt="{{ .Title }} cover" loading="lazy">
+          {{ end }}
+          <div class="book-card__cover-overlay">Read more →</div>
         </div>
-      </article>
-      {{ end }}
-    </div>
+      </a>
+      <div class="book-card__body">
+        <div class="book-card__meta">
+          <span class="badge badge--published">Published · {{ .Params.year }}</span>
+          {{ if .Params.pages }}<span class="book-page-count">{{ .Params.pages }} pages</span>{{ end }}
+        </div>
+        <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+        <p class="book-card__subtitle">{{ .Params.subtitle }}</p>
+        <p class="book-card__summary">{{ .Params.summary }}</p>
+        <div class="book-card__topics">
+          {{ range first 3 .Params.topics }}
+          <span class="topic-tag">{{ . }}</span>
+          {{ end }}
+        </div>
+        <div class="book-card__actions">
+          {{ if .Params.leanpub_url }}
+          <a href="{{ .Params.leanpub_url }}" class="btn btn--primary" target="_blank" rel="noopener">Buy on Leanpub →</a>
+          {{ end }}
+          <a href="{{ .RelPermalink }}" class="btn btn--ghost">Full details</a>
+        </div>
+      </div>
+    </article>
+    {{ end }}
   </div>
 </section>
 {{ end }}
 
 {{ if $proposals }}
 <section class="books-section books-section--proposals">
-  <div class="container">
+  <div class="books-section-inner">
     <div class="section-header">
       <span class="section-tag">In Development</span>
       <h2>Academic <em>textbooks</em> under proposal</h2>
-      <p class="section-desc">Two textbooks currently under proposal with an academic publisher — filling a genuine gap in the literature for Python resources written specifically for researchers.</p>
+      <p class="section-desc">Textbooks currently under proposal with an academic publisher — filling a genuine gap in the literature for Python resources written specifically for researchers.</p>
     </div>
     <div class="books-grid books-grid--proposals">
       {{ range sort $proposals "Params.weight" }}
       <article class="book-card book-card--proposal">
         <a href="{{ .RelPermalink }}" class="book-card__cover-link">
           <div class="book-card__cover">
-            {{ if .Params.cover }}
-            <img src="{{ .Params.cover }}" alt="{{ .Title }} cover" loading="lazy">
+            {{ if .Params.cover.image }}
+            <img src="{{ .Params.cover.image }}" alt="{{ .Title }} cover" loading="lazy">
             {{ end }}
-            <div class="book-card__cover-overlay">
-              <span>Read more →</span>
-            </div>
+            <div class="book-card__cover-overlay">Read more →</div>
           </div>
         </a>
         <div class="book-card__body">
@@ -91,7 +412,7 @@
             {{ end }}
           </div>
           <div class="book-card__actions">
-            <a href="{{ .RelPermalink }}" class="btn btn--ghost">Full details →</a>
+            <a href="{{ .RelPermalink }}" class="btn btn--ghost">Full details</a>
           </div>
         </div>
       </article>
@@ -101,241 +422,4 @@
 </section>
 {{ end }}
 
-<style>
-/* ── Books List Page ───────────────────────────────────────── */
-.books-hero {
-  padding: 5rem 0 3rem;
-  border-bottom: 1px solid rgba(255,255,255,0.08);
-}
-.books-hero .section-label {
-  font-size: 0.75rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  opacity: 0.5;
-  margin-bottom: 1rem;
-}
-.books-hero h1 {
-  font-size: clamp(2.2rem, 5vw, 3.5rem);
-  margin-bottom: 1rem;
-  line-height: 1.1;
-}
-.books-hero .hero-sub {
-  max-width: 52ch;
-  opacity: 0.65;
-  font-size: 1.05rem;
-  line-height: 1.7;
-}
-
-.books-section {
-  padding: 4rem 0;
-}
-.books-section--proposals {
-  border-top: 1px solid rgba(255,255,255,0.06);
-  background: rgba(255,255,255,0.015);
-}
-
-.section-header {
-  margin-bottom: 3rem;
-}
-.section-tag {
-  display: inline-block;
-  font-size: 0.7rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  opacity: 0.4;
-  margin-bottom: 0.75rem;
-}
-.section-header h2 {
-  font-size: clamp(1.6rem, 3.5vw, 2.4rem);
-  margin-bottom: 0.75rem;
-  line-height: 1.15;
-}
-.section-desc {
-  max-width: 58ch;
-  opacity: 0.6;
-  font-size: 0.95rem;
-  line-height: 1.7;
-}
-
-/* Grid */
-.books-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 2rem;
-}
-.books-grid--proposals {
-  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-}
-
-/* Card */
-.book-card {
-  display: flex;
-  flex-direction: column;
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 2px;
-  overflow: hidden;
-  transition: border-color 0.25s, transform 0.25s;
-  background: rgba(255,255,255,0.02);
-}
-.book-card:hover {
-  border-color: rgba(255,255,255,0.2);
-  transform: translateY(-3px);
-}
-.book-card--proposal {
-  border-style: dashed;
-  border-color: rgba(255,255,255,0.06);
-}
-.book-card--proposal:hover {
-  border-color: rgba(255,255,255,0.15);
-  border-style: dashed;
-}
-
-/* Cover */
-.book-card__cover-link { display: block; }
-.book-card__cover {
-  position: relative;
-  aspect-ratio: 3/2;
-  overflow: hidden;
-  background: rgba(255,255,255,0.03);
-}
-.book-card__cover img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.4s;
-}
-.book-card:hover .book-card__cover img {
-  transform: scale(1.04);
-}
-.book-card__cover-overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,0.55);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  transition: opacity 0.25s;
-  color: #fff;
-  font-size: 0.9rem;
-  letter-spacing: 0.05em;
-}
-.book-card:hover .book-card__cover-overlay {
-  opacity: 1;
-}
-
-/* Body */
-.book-card__body {
-  padding: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  flex: 1;
-}
-.book-card__meta {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  flex-wrap: wrap;
-}
-.badge {
-  font-size: 0.65rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  padding: 0.25rem 0.6rem;
-  border-radius: 2px;
-}
-.badge--published {
-  background: rgba(255,255,255,0.06);
-  color: rgba(255,255,255,0.7);
-  border: 1px solid rgba(255,255,255,0.12);
-}
-.badge--proposal {
-  background: rgba(200,170,100,0.08);
-  color: rgba(200,170,100,0.7);
-  border: 1px solid rgba(200,170,100,0.2);
-}
-.book-meta-item {
-  font-size: 0.75rem;
-  opacity: 0.4;
-}
-.book-card__body h3 {
-  font-size: 1.2rem;
-  line-height: 1.2;
-  margin: 0;
-}
-.book-card__body h3 a {
-  color: inherit;
-  text-decoration: none;
-}
-.book-card__body h3 a:hover {
-  opacity: 0.8;
-}
-.book-card__subtitle {
-  font-size: 0.85rem;
-  opacity: 0.5;
-  font-style: italic;
-  line-height: 1.4;
-  margin: 0;
-}
-.book-card__summary {
-  font-size: 0.9rem;
-  line-height: 1.65;
-  opacity: 0.7;
-  margin: 0;
-}
-.book-card__topics {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-  margin-top: 0.25rem;
-}
-.topic-tag {
-  font-size: 0.65rem;
-  letter-spacing: 0.08em;
-  padding: 0.2rem 0.5rem;
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 1px;
-  opacity: 0.6;
-}
-.book-card__actions {
-  display: flex;
-  gap: 0.75rem;
-  flex-wrap: wrap;
-  margin-top: auto;
-  padding-top: 0.5rem;
-}
-.btn {
-  display: inline-block;
-  padding: 0.5rem 1rem;
-  font-size: 0.8rem;
-  letter-spacing: 0.06em;
-  text-decoration: none;
-  border-radius: 1px;
-  transition: all 0.2s;
-  cursor: pointer;
-}
-.btn--ghost {
-  border: 1px solid rgba(255,255,255,0.15);
-  color: rgba(255,255,255,0.7);
-}
-.btn--ghost:hover {
-  border-color: rgba(255,255,255,0.4);
-  color: #fff;
-}
-.btn--primary {
-  background: rgba(255,255,255,0.9);
-  color: #111;
-  border: 1px solid transparent;
-}
-.btn--primary:hover {
-  background: #fff;
-}
-
-@media (max-width: 640px) {
-  .books-grid,
-  .books-grid--proposals { grid-template-columns: 1fr; }
-}
-</style>
 {{ end }}
